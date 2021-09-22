@@ -6,6 +6,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
 import { Stuffs } from '../api/stuff/StuffCollection';
+import { Inventories } from '../api/inventory/InventoryCollection';
 import { ROLE } from '../api/role/Role';
 import { AdminProfiles } from '../api/user/AdminProfileCollection';
 import { UserProfiles } from '../api/user/UserProfileCollection';
@@ -15,6 +16,7 @@ export function withSubscriptions() {
     // Add the collections to subscribe to.
     AdminProfiles.subscribe();
     Stuffs.subscribeStuff();
+    Inventories.subscribeInventory();
     UserProfiles.subscribe();
     const poll = Meteor.setInterval(() => {
       if (DDP._allSubscriptionsReady()) {

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../stuff/StuffCollection';
+import { Inventories } from '../inventory/InventoryCollection';
 import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
 
@@ -14,6 +15,7 @@ class MATRPClass {
     // list of all the MATRP collections
     this.collections = [
       AdminProfiles,
+      Inventories,
       Stuffs,
       UserProfiles,
     ];
@@ -22,6 +24,7 @@ class MATRPClass {
      */
     this.collectionLoadSequence = [
       AdminProfiles,
+      Inventories,
       UserProfiles,
       Stuffs,
     ];
