@@ -1,8 +1,10 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" },
-    { "email": "default@foo.com", "password": "changeme" }
+    { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
+    },
+    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" },
+    { "email": "default@foo.com", "password": "changeme", "role": "USER" , "firstName": "Bryce", "lastName": "Smith"  }
+
   ],
 
   "defaultData": [
@@ -558,5 +560,8 @@
       "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com"
     }
-  ]
+  ],
+  "public": {
+    "development": true
+  }
 }

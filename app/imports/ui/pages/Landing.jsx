@@ -1,21 +1,24 @@
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Image, Menu } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 /** A simple static component to render some text for the landing page. */
 const Landing = () => (
-  <Grid id={PAGE_IDS.LANDING} verticalAlign='middle' textAlign='center' container>
-
-    <Grid.Column width={4}>
-      <Image size='small' circular src="/images/meteor-logo.png" />
-    </Grid.Column>
-
-    <Grid.Column width={8}>
-      <h1>Welcome to this template</h1>
-      <p>Now get to work and modify this app!</p>
-    </Grid.Column>
-
-  </Grid>
+    <Grid d={PAGE_IDS.LANDING} style={{ marginTop: '50px' }} verticalAlign='middle' textAlign='center' container>
+      <Menu>
+        <Grid.Column width={6}>
+          <Menu.Item as={NavLink} activeClassName="" exact to="add">
+            <Image width={'350px'} src="/images/addorder.jpg"/>
+          </Menu.Item>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Menu.Item as={NavLink} activeClassName="" exact to="inventory">
+            <Image width={'330px'} src="/images/listinventory.jpg"/>
+          </Menu.Item>
+        </Grid.Column>
+      </Menu>
+    </Grid>
 );
 
 export default Landing;
