@@ -13,7 +13,7 @@ const Landing = () => (
           </Menu.Item>
         </Grid.Column>
         <Grid.Column width={6}>
-          <Menu.Item as={NavLink} activeClassName="" exact to="inventory">
+          <Menu.Item as={NavLink} activeClassName="" exact to="list">
             <Image width={'330px'} src="/images/listinventory.jpg"/>
           </Menu.Item>
         </Grid.Column>

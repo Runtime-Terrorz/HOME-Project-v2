@@ -14,7 +14,7 @@ const formSchema = new SimpleSchema({
   medication: {
     type: String,
     allowedValues: inventoryMedications,
-    defaultValue: '',
+    defaultValue: 'Allergy & Cold Medicines',
   },
   name: String,
   location: String,
