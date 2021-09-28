@@ -29,48 +29,60 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 /** Renders the Page for adding a document. */
 const AddInventory = () => {
 
+  /** Check if the quantity against the threshold to determine the status */
+  const checkAmount = (quantity, threshold) => {
+    console.log(`Threshold: ${threshold} Quantity: ${quantity}`);
+    console.log(quantity <= threshold);
+    switch (quantity <= threshold) {
+    case true:
+      return 'bad';
+    default:
+      return 'good';
+    }
+  };
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { medication, name, location, should_have, quantity, lot, expiration } = data;
     const owner = Meteor.user().username;
+    const status = checkAmount(quantity, should_have);
     const collectionName = Inventories.getCollectionName();
-    const definitionData = { medication, name, location, should_have, quantity, lot, expiration, owner };
+    const definitionData = { medication, name, location, should_have, quantity, lot, expiration, owner, status };
     defineMethod.callPromise({ collectionName, definitionData })
-        .catch(error => swal('Error', error.message, 'error'))
-        .then(() => {
-          swal('Success', 'Order added successfully', 'success');
-          formRef.reset();
-        });
+      .catch(error => swal('Error', error.message, 'error'))
+      .then(() => {
+        swal('Success', 'Order added successfully', 'success');
+        formRef.reset();
+      });
   };
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
   return (
-      <Grid id={PAGE_IDS.ADD_INVENTORY} container centered>
-        <Grid.Column width={10}>
-          <Header as="h2" textAlign="center">Add Inventory</Header>
-          <AutoForm ref={ref => {
-            fRef = ref;
-          }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-            <Segment inverted style={{ backgroundColor: '#FB785E' }}>
-              <SelectField name='medication'/>
-              <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
-              <Form.Group widths={'equal'}>
-                <TextField name='location'/>
-                <Form.Group>
-                  <NumField name='should_have' decimal={false}/>
-                  <NumField name='quantity' decimal={false}/>
-                </Form.Group>
+    <Grid id={PAGE_IDS.ADD_INVENTORY} container centered>
+      <Grid.Column width={10}>
+        <Header as="h2" textAlign="center">Add Inventory</Header>
+        <AutoForm ref={ref => {
+          fRef = ref;
+        }} schema={bridge} onSubmit={data => submit(data, fRef)}>
+          <Segment inverted style={{ backgroundColor: '#FB785E' }}>
+            <SelectField name='medication'/>
+            <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
+            <Form.Group widths={'equal'}>
+              <TextField name='location'/>
+              <Form.Group>
+                <NumField name='should_have' decimal={false}/>
+                <NumField name='quantity' decimal={false}/>
               </Form.Group>
-              <Form.Group widths={'equal'}>
-                <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
-                <TextField name='lot'/>
-              </Form.Group>
-              <SubmitField value='Submit'/>
-              <ErrorsField/>
-            </Segment>
-          </AutoForm>
-        </Grid.Column>
-      </Grid>
+            </Form.Group>
+            <Form.Group widths={'equal'}>
+              <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
+              <TextField name='lot'/>
+            </Form.Group>
+            <SubmitField value='Submit'/>
+            <ErrorsField/>
+          </Segment>
+        </AutoForm>
+      </Grid.Column>
+    </Grid>
   );
 };
 

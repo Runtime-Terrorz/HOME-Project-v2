@@ -12,6 +12,7 @@ export const inventoryMedications = ['Allergy & Cold Medicines', 'Analgesics/Ant
 export const inventoryPublications = {
   inventory: 'Inventory',
 };
+export const states = ['good', 'bad'];
 
 class InventoryCollection extends BaseCollection {
   constructor() {
@@ -28,6 +29,10 @@ class InventoryCollection extends BaseCollection {
       lot: String,
       expiration: String,
       owner: String,
+      status: {
+        type: String,
+        allowedValues: states,
+      },
     }));
   }
 
@@ -40,9 +45,11 @@ class InventoryCollection extends BaseCollection {
    * @param quantity the number of items.
    * @param lot the lot number of the item.
    * @param expiration expiration date of the item.
+   * @param owner owner of the inventory item
+   * @param status determine whether the item is low in stock
    * @return {String} the docID of the new document.
    */
-  define({ medication, name, location, should_have, quantity, lot, expiration, owner }) {
+  define({ medication, name, location, should_have, quantity, lot, expiration, owner, status }) {
     const docID = this._collection.insert({
       medication,
       name,
@@ -52,6 +59,7 @@ class InventoryCollection extends BaseCollection {
       lot,
       expiration,
       owner,
+      status,
     });
     return docID;
   }
@@ -64,8 +72,9 @@ class InventoryCollection extends BaseCollection {
    * @param should_have the number of items that is recommended to have in stock.
    * @param quantity the number of items.
    * @param expiration expiration date of the item.
+   * @param status current state of the item to update
    */
-  update(docID, { name, location, should_have, quantity, expiration }) {
+  update(docID, { name, location, should_have, quantity, expiration, status }) {
     const updateData = {};
     if (name) {
       updateData.name = name;
@@ -82,6 +91,9 @@ class InventoryCollection extends BaseCollection {
     }
     if (expiration) {
       updateData.expiration = expiration;
+    }
+    if (status) {
+      updateData.status = status;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -163,7 +175,8 @@ class InventoryCollection extends BaseCollection {
     const lot = doc.lot;
     const expiration = doc.expiration;
     const owner = doc.owner;
-    return { medication, name, should_have, quantity, lot, expiration, owner };
+    const status = doc.status;
+    return { medication, name, should_have, quantity, lot, expiration, owner, status };
   }
 }
 
