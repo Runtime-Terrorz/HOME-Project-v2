@@ -6,34 +6,39 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useParams } from 'react-router';
-import { Stuffs } from '../../api/stuff/StuffCollection';
+import { Inventories } from '../../api/inventory/InventoryCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
-const bridge = new SimpleSchema2Bridge(Stuffs._schema);
+const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
 /** Renders the Page for editing a single document. */
-const EditStuff = ({ doc, ready }) => {
+const EditInventory = ({ doc, ready }) => {
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { name, quantity, condition, _id } = data;
-    const collectionName = Stuffs.getCollectionName();
-    const updateData = { id: _id, name, quantity, condition };
+    const { medication, name, location, should_have, quantity, lot, expiration, status, _id } = data;
+    const collectionName = Inventories.getCollectionName();
+    const updateData = { id: _id, medication, name, location, should_have, quantity, lot, expiration, status };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
-      .then(() => swal('Success', 'Item updated successfully', 'success'));
+      .then(() => swal('Success', 'Inventory updated successfully', 'success'));
   };
 
   return (ready) ? (
-    <Grid id={PAGE_IDS.EDIT_STUFF} container centered>
+    <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered>
       <Grid.Column>
-        <Header as="h2" textAlign="center">Edit Stuff</Header>
+        <Header as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment>
+            <SelectField name='medication' />
             <TextField name='name' />
-            <NumField name='quantity' decimal={false} />
-            <SelectField name='condition' />
+            <TextField name='location' />
+            <NumField name='should_have' decimal={true} />
+            <NumField name='quantity' decimal={true} />
+            <TextField name='lot' />
+            <TextField name='expiration' />
+            <SelectField name='status' />
             <SubmitField value='Submit' />
             <ErrorsField />
             <HiddenField name='owner' />
@@ -45,7 +50,7 @@ const EditStuff = ({ doc, ready }) => {
 };
 
 // Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
-EditStuff.propTypes = {
+EditInventory.propTypes = {
   doc: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
@@ -56,13 +61,13 @@ export default withTracker(() => {
   const { _id } = useParams();
   const documentId = _id;
   // Get access to Stuff documents.
-  const subscription = Stuffs.subscribeStuff();
+  const subscription = Inventories.subscribeStuff();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the document
-  const doc = Stuffs.findDoc(documentId);
+  const doc = Inventories.findDoc(documentId);
   return {
     doc,
     ready,
   };
-})(EditStuff);
+})(EditInventory);
