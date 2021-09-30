@@ -1,10 +1,10 @@
-import { Selector, t } from 'testcafe';
-import { addInventoryPage, listInventoryPage, manageDatabasePage, signOutPage } from './simple.page';
+// import { Selector, t } from 'testcafe';
+import { addInventoryPage, listInventoryPage, signOutPage } from './simple.page';
 import { signInPage } from './signin.page';
 import { navBar } from './navbar.component';
 import { signUpPage } from './signup.page';
 import { landingPage } from './landing.page';
-import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
+// import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
 
 /* global fixture:false, test:false */
 
@@ -12,6 +12,7 @@ import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
 const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
+const testOrder = { medication: 'p', name: 'test medication', location: 'test location', threshold: 3, quantity: 20, expiration: '11/11/1111', lot: 'ABC123' };
 
 fixture('matrp localhost test with default db')
   .page('http://localhost:3000');
@@ -65,7 +66,14 @@ test('Test that admin pages show up', async () => {
   await t.click(editLinks.nth(0));
   await editStuffPage.isDisplayed();
   await navBar.gotoListInventoryAdminPage();
-  await list.isDisplayed(); */
+  await list.isDisplayed();
   await navBar.gotoManageDatabasePage();
-  await manageDatabasePage.isDisplayed();
+  await manageDatabasePage.isDisplayed(); */
+});
+
+test('Test that user can add an order', async () => {
+  await navBar.gotoSigninPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoAddOrderPage();
 });

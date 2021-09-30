@@ -8,6 +8,7 @@ import SimpleSchema from 'simpl-schema';
 import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -57,25 +58,50 @@ const AddInventory = () => {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
   return (
-    <Grid id={PAGE_IDS.ADD_INVENTORY} container centered>
+    <Grid id={PAGE_IDS.ADD_INVENTORY_} container centered>
       <Grid.Column width={10}>
         <Header as="h2" textAlign="center">Add Inventory</Header>
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
           <Segment inverted style={{ backgroundColor: '#FB785E' }}>
-            <SelectField name='medication'/>
-            <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
+            <SelectField
+              name='medication'
+              id={COMPONENT_IDS.ADD_INVENTORY_MEDICATION}
+            />
+            <TextField
+              name='name'
+              placeholder={'Diphenhydramine 50 mg/mL'}
+              id={COMPONENT_IDS.ADD_INVENTORY_NAME}
+            />
             <Form.Group widths={'equal'}>
-              <TextField name='location'/>
+              <TextField
+                name='location'
+                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+              />
               <Form.Group>
-                <NumField name='threshold' decimal={false}/>
-                <NumField name='quantity' decimal={false}/>
+                <NumField
+                  name='threshold'
+                  decimal={false}
+                  id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
+                />
+                <NumField
+                  name='quantity'
+                  decimal={false}
+                  id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
+                />
               </Form.Group>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
-              <TextField name='lot'/>
+              <TextField
+                name='expiration'
+                placeholder={'Ex: 08/04/2022'}
+                id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
+              />
+              <TextField
+                name='lot'
+                id={COMPONENT_IDS.ADD_INVENTORY_LOT}
+              />
             </Form.Group>
             <SubmitField value='Submit'/>
             <ErrorsField/>
