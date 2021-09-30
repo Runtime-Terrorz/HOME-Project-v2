@@ -18,7 +18,7 @@ const formSchema = new SimpleSchema({
   },
   name: String,
   location: String,
-  should_have: Number,
+  threshold: Number,
   quantity: Number,
   lot: String,
   expiration: String,
@@ -42,11 +42,11 @@ const AddInventory = () => {
   };
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, should_have, quantity, lot, expiration } = data;
+    const { medication, name, location, threshold, quantity, lot, expiration } = data;
     const owner = Meteor.user().username;
-    const status = checkAmount(quantity, should_have);
+    const status = checkAmount(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
-    const definitionData = { medication, name, location, should_have, quantity, lot, expiration, owner, status };
+    const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
@@ -69,7 +69,7 @@ const AddInventory = () => {
             <Form.Group widths={'equal'}>
               <TextField name='location'/>
               <Form.Group>
-                <NumField name='should_have' decimal={false}/>
+                <NumField name='threshold' decimal={false}/>
                 <NumField name='quantity' decimal={false}/>
               </Form.Group>
             </Form.Group>

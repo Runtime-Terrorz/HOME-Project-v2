@@ -44,7 +44,7 @@ if (Meteor.isServer) {
 
     it('Can define duplicates', function test2() {
       const name = faker.animal.dog();
-      const quantity = faker.datatype.number({ min: 1, max: 100 });
+      const quantity = faker.datatype.Number({ min: 1, max: 100 });
       const owner = faker.internet.email();
       const status = inventoryStates[Math.floor(Math.random() * inventoryStates.length)];
       const docID1 = Inventories.define({ medication, name, location, threshold, quantity, lot, expiration, owner, status });

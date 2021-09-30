@@ -5,23 +5,23 @@ import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 const InventoryItem = ({ inventory }) => (
-          <Table.Row>
-            <Table.Cell>{inventory.medication}</Table.Cell>
-            <Table.Cell>{inventory.name}</Table.Cell>
-            <Table.Cell>{inventory.should_have}</Table.Cell>
-            <Table.Cell>{inventory.quantity}</Table.Cell>
-            <Table.Cell>{inventory.location}</Table.Cell>
-            <Table.Cell>{inventory.lot}</Table.Cell>
-            <Table.Cell>{inventory.expiration}</Table.Cell>
-          </Table.Row>
-    );
+  <Table.Row>
+    <Table.Cell>{inventory.medication}</Table.Cell>
+    <Table.Cell>{inventory.name}</Table.Cell>
+    <Table.Cell>{inventory.threshold}</Table.Cell>
+    <Table.Cell>{inventory.quantity}</Table.Cell>
+    <Table.Cell>{inventory.location}</Table.Cell>
+    <Table.Cell>{inventory.lot}</Table.Cell>
+    <Table.Cell>{inventory.expiration}</Table.Cell>
+  </Table.Row>
+);
 
 /** Require a document to be passed to this component. */
 InventoryItem.propTypes = {
   inventory: PropTypes.shape({
     medication: PropTypes.string,
     name: PropTypes.string,
-    should_have: PropTypes.number,
+    threshold: PropTypes.number,
     quantity: PropTypes.number,
     location: PropTypes.string,
     lot: PropTypes.string,
