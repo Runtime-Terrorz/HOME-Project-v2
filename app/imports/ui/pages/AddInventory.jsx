@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Segment, Header, Form } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
@@ -21,13 +23,13 @@ const formSchema = new SimpleSchema({
   should_have: Number,
   quantity: Number,
   lot: String,
-  expiration: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
 const AddInventory = () => {
+  const [startDate, setStartDate] = useState(new Date());
 
   /** Check if the quantity against the threshold to determine the status */
   const checkAmount = (quantity, threshold) => {
@@ -42,8 +44,9 @@ const AddInventory = () => {
   };
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, should_have, quantity, lot, expiration } = data;
+    const { medication, name, location, should_have, quantity, lot } = data;
     const owner = Meteor.user().username;
+    const expiration = startDate;
     const status = checkAmount(quantity, should_have);
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, should_have, quantity, lot, expiration, owner, status };
@@ -68,13 +71,11 @@ const AddInventory = () => {
             <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
             <Form.Group widths={'equal'}>
               <TextField name='location'/>
-              <Form.Group>
-                <NumField name='should_have' decimal={false}/>
-                <NumField name='quantity' decimal={false}/>
-              </Form.Group>
+              <NumField name='should_have' decimal={false}/>
+              <NumField name='quantity' decimal={false}/>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
+              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
               <TextField name='lot'/>
             </Form.Group>
             <SubmitField value='Submit'/>

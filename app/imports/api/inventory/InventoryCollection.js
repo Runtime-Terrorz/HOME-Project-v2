@@ -9,6 +9,10 @@ import { ROLE } from '../role/Role';
 export const inventoryMedications = ['Allergy & Cold Medicines', 'Analgesics/Anti-inflammatory', 'Anti-hypertensives',
   'Anti-microbial', 'Cardiac/Cholesterol', 'Dermatological Preparations', 'Diabetes Meds', 'Ear and Eye Preparations',
   'Emergency Kit', 'GI Meds', 'GYN Meds', 'Pulmonary', 'Smoking Cessation', 'Vitamins and Supplements'];
+
+export const medLocations = ['Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Case 6', 'Case 7', 'Case 8',
+  'Refrigerator Closet', 'Freezer', 'Freezer-Derm', 'Drawer 2-2', 'Drawer 2-3', 'Emergency Kit'];
+
 export const inventoryPublications = {
   inventory: 'Inventory',
 };
@@ -23,11 +27,15 @@ class InventoryCollection extends BaseCollection {
         defaultValue: 'Allergy & Cold Medicines',
       },
       name: String,
-      location: String,
+      location: {
+        type: String,
+        allowedValues: medLocations,
+        defaultValue: 'Case 1',
+      },
       should_have: Number,
       quantity: Number,
       lot: String,
-      expiration: String,
+      expiration: Date,
       owner: String,
       status: {
         type: String,
