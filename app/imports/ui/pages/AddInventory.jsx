@@ -70,7 +70,7 @@ const AddInventory = () => {
             <SelectField name='medication'/>
             <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
             <Form.Group widths={'equal'}>
-              <TextField name='location'/>
+              <SelectField name='location'/>
               <NumField name='should_have' decimal={false}/>
               <NumField name='quantity' decimal={false}/>
             </Form.Group>
