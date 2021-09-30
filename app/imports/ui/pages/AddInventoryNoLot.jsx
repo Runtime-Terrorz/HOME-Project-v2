@@ -8,7 +8,6 @@ import SimpleSchema from 'simpl-schema';
 import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import { useParams} from 'react-router-dom';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -28,9 +27,7 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
-const AddInventory = () => {
-
-  const { lotVal } = useParams();
+const AddInventoryNoLot = () => {
 
   /** Check if the quantity against the threshold to determine the status */
   const checkAmount = (quantity, threshold) => {
@@ -78,7 +75,7 @@ const AddInventory = () => {
             </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
-              <TextField name='lot' readOnly={true} value={lotVal}/>
+              <TextField name='lot'/>
             </Form.Group>
             <SubmitField value='Submit'/>
             <ErrorsField/>
@@ -89,4 +86,4 @@ const AddInventory = () => {
   );
 };
 
-export default AddInventory;
+export default AddInventoryNoLot;
