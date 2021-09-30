@@ -7,7 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
+import { Inventories, inventoryMedications, medLocations } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
@@ -19,7 +19,11 @@ const formSchema = new SimpleSchema({
     defaultValue: 'Allergy & Cold Medicines',
   },
   name: String,
-  location: String,
+  location: {
+    type: String,
+    allowedValues: medLocations,
+    defaultValue: '',
+  },
   should_have: Number,
   quantity: Number,
   lot: String,
@@ -69,12 +73,12 @@ const AddInventory = () => {
           <Segment inverted style={{ backgroundColor: '#FB785E' }}>
             <SelectField name='medication'/>
             <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
-            <Form.Group widths={'equal'}>
+            <Form.Group widths={3}>
               <SelectField name='location'/>
               <NumField name='should_have' decimal={false}/>
               <NumField name='quantity' decimal={false}/>
             </Form.Group>
-            <Form.Group widths={'equal'}>
+            <Form.Group widths={2}>
               <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
               <TextField name='lot'/>
             </Form.Group>
