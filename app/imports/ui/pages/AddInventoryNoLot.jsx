@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Segment, Header, Form } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
@@ -8,6 +8,7 @@ import SimpleSchema from 'simpl-schema';
 import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import QRCode from 'qrcode';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -47,6 +48,15 @@ const AddInventoryNoLot = () => {
     const status = checkAmount(quantity, should_have);
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, should_have, quantity, lot, expiration, owner, status };
+    /**Generates QR Code for dispense page**/
+    QRCode.toDataURL('http://localhost:3000/#/dispense/' + lot)
+      .then(url => {
+        console.log(url)
+      })
+      .catch(err => {
+        console.error(err)
+      })
+
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {

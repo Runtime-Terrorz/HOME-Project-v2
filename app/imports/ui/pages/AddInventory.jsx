@@ -9,6 +9,8 @@ import { Inventories, inventoryMedications } from '../../api/inventory/Inventory
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { useParams} from 'react-router-dom';
+import QRCode from 'qrcode';
+import { useEffect, useState } from 'react';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -30,7 +32,13 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 /** Renders the Page for adding a document. */
 const AddInventory = () => {
 
+  /**Generates QR Code for dispense page**/
   const { lotVal } = useParams();
+  const [qrCode, setSrc] = useState("");
+  useEffect(() => {
+    QRCode.toDataURL('http://localhost:3000/#/dispense/' + lotVal)
+      .then(setSrc);
+  } , []);
 
   /** Check if the quantity against the threshold to determine the status */
   const checkAmount = (quantity, threshold) => {
