@@ -1,9 +1,10 @@
-// import { Selector, t } from 'testcafe';
+import { Selector, t } from 'testcafe';
 import { addInventoryPage, listInventoryPage, signOutPage } from './simple.page';
 import { signInPage } from './signin.page';
 import { navBar } from './navbar.component';
 import { signUpPage } from './signup.page';
 import { landingPage } from './landing.page';
+import { addOrder } from './addorder.page';
 // import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
 
 /* global fixture:false, test:false */
@@ -12,7 +13,7 @@ import { landingPage } from './landing.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
 const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
-const testOrder = { medication: 'p', name: 'test medication', location: 'test location', threshold: 3, quantity: 20, expiration: '11/11/1111', lot: 'ABC123' };
+const testOrder = { medication: 'p', name: 'test medication', location: 'test location', threshold: '3', quantity: '20', expiration: '11/11/1111', lot: 'ABC123' };
 
 fixture('matrp localhost test with default db')
   .page('http://localhost:3000');
@@ -35,6 +36,17 @@ test('Test that sign up and sign out work', async () => {
   await navBar.isLoggedIn(newCredentials.username);
   await navBar.logout();
   await signOutPage.isDisplayed();
+});
+
+test('Test that user can add an order', async () => {
+  await navBar.gotoSigninPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoAddOrderPage();
+  await addOrder.orderIsAdded(testOrder.medication, testOrder.name, testOrder.location, testOrder.threshold, testOrder.quantity, testOrder.expiration, testOrder.lot);
+  await navBar.gotoListInventoryPage();
+  const inventoryExists = Selector('ABC123').exists;
+  await t.expect(inventoryExists).ok();
 });
 
 test('Test that user pages show up', async () => {
@@ -69,11 +81,4 @@ test('Test that admin pages show up', async () => {
   await list.isDisplayed();
   await navBar.gotoManageDatabasePage();
   await manageDatabasePage.isDisplayed(); */
-});
-
-test('Test that user can add an order', async () => {
-  await navBar.gotoSigninPage();
-  await signInPage.signin(credentials.username, credentials.password);
-  await navBar.isLoggedIn(credentials.username);
-  await navBar.gotoAddOrderPage();
 });
