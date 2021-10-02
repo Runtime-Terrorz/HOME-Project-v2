@@ -1,5 +1,5 @@
 export const COMPONENT_IDS = {
-  LIST_STUFF_EDIT: 'list-stuff-edit',
+  LIST_INVENTORY_EDIT: 'list-inventory-edit',
   NAVBAR_ADD_INVENTORY: 'navbar-add-inventory',
   NAVBAR_LIST_INVENTORY: 'navbar-list-inventory',
   NAVBAR_LIST_INVENTORY_ADMIN: 'navbar-list-inventory-admin',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Form } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -27,20 +27,25 @@ const EditInventory = ({ doc, ready }) => {
 
   return (ready) ? (
     <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered>
-      <Grid.Column>
+      <Grid.Column width={10}>
         <Header as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
-          <Segment>
-            <SelectField name='medication' />
-            <TextField name='name' />
-            <TextField name='location' />
-            <NumField name='should_have' decimal={true} />
-            <NumField name='quantity' decimal={true} />
-            <TextField name='lot' />
-            <TextField name='expiration' />
-            <SelectField name='status' />
-            <SubmitField value='Submit' />
-            <ErrorsField />
+          <Segment inverted style={{ backgroundColor: '#992E2E' }}>
+            <SelectField name='medication'/>
+            <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
+            <Form.Group widths={'equal'}>
+              <TextField name='location'/>
+              <Form.Group>
+                <NumField name='should_have' decimal={false}/>
+                <NumField name='quantity' decimal={false}/>
+              </Form.Group>
+            </Form.Group>
+            <Form.Group widths={'equal'}>
+              <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
+              <TextField name='lot'/>
+            </Form.Group>
+            <SubmitField value='Submit'/>
+            <ErrorsField/>
             <HiddenField name='owner' />
           </Segment>
         </AutoForm>
@@ -61,7 +66,7 @@ export default withTracker(() => {
   const { _id } = useParams();
   const documentId = _id;
   // Get access to Stuff documents.
-  const subscription = Inventories.subscribeStuff();
+  const subscription = Inventories.subscribeInventory();
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the document
