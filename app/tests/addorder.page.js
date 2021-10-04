@@ -23,6 +23,7 @@ class AddOrderPage {
     await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}`, expiration);
     await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_LOT}`, lot);
     await t.click(`#${COMPONENT_IDS.ADD_INVENTORY_SUBMIT}`);
+    await t.click('button[class="swal-button swal-button--confirm"]');
   }
 }
 

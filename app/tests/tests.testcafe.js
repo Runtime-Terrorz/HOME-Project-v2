@@ -45,7 +45,7 @@ test('Test that user can add an order', async () => {
   await navBar.gotoAddOrderPage();
   await addOrder.orderIsAdded(testOrder.medication, testOrder.name, testOrder.location, testOrder.threshold, testOrder.quantity, testOrder.expiration, testOrder.lot);
   await navBar.gotoListInventoryPage();
-  const inventoryExists = Selector('ABC123').exists;
+  const inventoryExists = Selector('ABC123');
   await t.expect(inventoryExists).ok();
 });
 
