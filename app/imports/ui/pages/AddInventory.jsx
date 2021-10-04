@@ -8,6 +8,7 @@ import SimpleSchema from 'simpl-schema';
 import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -18,7 +19,7 @@ const formSchema = new SimpleSchema({
   },
   name: String,
   location: String,
-  should_have: Number,
+  threshold: Number,
   quantity: Number,
   lot: String,
   expiration: String,
@@ -42,11 +43,11 @@ const AddInventory = () => {
   };
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, should_have, quantity, lot, expiration } = data;
+    const { medication, name, location, threshold, quantity, lot, expiration } = data;
     const owner = Meteor.user().username;
-    const status = checkAmount(quantity, should_have);
+    const status = checkAmount(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
-    const definitionData = { medication, name, location, should_have, quantity, lot, expiration, owner, status };
+    const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
@@ -64,20 +65,48 @@ const AddInventory = () => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
           <Segment inverted style={{ backgroundColor: '#FB785E' }}>
-            <SelectField name='medication'/>
-            <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
+            <SelectField
+              name='medication'
+              id={COMPONENT_IDS.ADD_INVENTORY_MEDICATION}
+            />
+            <TextField
+              name='name'
+              placeholder={'Diphenhydramine 50 mg/mL'}
+              id={COMPONENT_IDS.ADD_INVENTORY_NAME}
+            />
             <Form.Group widths={'equal'}>
-              <TextField name='location'/>
+              <TextField
+                name='location'
+                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+              />
               <Form.Group>
-                <NumField name='should_have' decimal={false}/>
-                <NumField name='quantity' decimal={false}/>
+                <NumField
+                  name='threshold'
+                  decimal={false}
+                  id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
+                />
+                <NumField
+                  name='quantity'
+                  decimal={false}
+                  id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
+                />
               </Form.Group>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
-              <TextField name='lot'/>
+              <TextField
+                name='expiration'
+                placeholder={'Ex: 08/04/2022'}
+                id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
+              />
+              <TextField
+                name='lot'
+                id={COMPONENT_IDS.ADD_INVENTORY_LOT}
+              />
             </Form.Group>
-            <SubmitField value='Submit'/>
+            <SubmitField
+              value='Submit'
+              id={COMPONENT_IDS.ADD_INVENTORY_SUBMIT}
+            />
             <ErrorsField/>
           </Segment>
         </AutoForm>
