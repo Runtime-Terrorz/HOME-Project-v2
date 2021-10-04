@@ -60,6 +60,7 @@ const Inventory = ({ ready, inventories }) => ((ready) ? (
           <Table.HeaderCell>Storage Location</Table.HeaderCell>
           <Table.HeaderCell>Lot #</Table.HeaderCell>
           <Table.HeaderCell>Expiration Date</Table.HeaderCell>
+          <Table.HeaderCell>Edit</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>

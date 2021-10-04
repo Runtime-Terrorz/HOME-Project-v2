@@ -1,19 +1,24 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Icon, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 const InventoryItem = ({ inventory }) => (
-  <Table.Row>
-    <Table.Cell>{inventory.medication}</Table.Cell>
-    <Table.Cell>{inventory.name}</Table.Cell>
-    <Table.Cell>{inventory.threshold}</Table.Cell>
-    <Table.Cell>{inventory.quantity}</Table.Cell>
-    <Table.Cell>{inventory.location}</Table.Cell>
-    <Table.Cell>{inventory.lot}</Table.Cell>
-    <Table.Cell>{inventory.expiration}</Table.Cell>
-  </Table.Row>
+    <Table.Row>
+      <Table.Cell>{inventory.medication}</Table.Cell>
+      <Table.Cell>{inventory.name}</Table.Cell>
+      <Table.Cell>{inventory.threshold}</Table.Cell>
+      <Table.Cell>{inventory.quantity}</Table.Cell>
+      <Table.Cell>{inventory.location}</Table.Cell>
+      <Table.Cell>{inventory.lot}</Table.Cell>
+      <Table.Cell>{inventory.expiration}</Table.Cell>
+      <Table.Cell>
+        <Link className={COMPONENT_IDS.LIST_INVENTORY_EDIT_EDIT} to={`/edit/${inventory._id}`}><Icon
+            name='edit outline'/></Link>
+      </Table.Cell>
+    </Table.Row>
 );
 
 /** Require a document to be passed to this component. */
