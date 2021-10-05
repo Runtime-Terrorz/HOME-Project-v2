@@ -13,14 +13,16 @@ class AddOrderPage {
     await t.expect(this.pageSelector.exists).ok();
   }
 
-  async orderIsAdded(medication, name, location, threshold, quantity, expiration, lot) {
+  async orderIsAdded(medication, name, location, threshold, quantity, lot) {
     await this.isDisplayed();
     await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_MEDICATION}`, medication);
     await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_NAME}`, name);
-    await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_LOCATION}`, location);
+    await t.click(`#${COMPONENT_IDS.ADD_INVENTORY_LOCATION}`);
+    await t.click('option[value="Case 4"]');
+    // await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_LOCATION}`, location);
+    // await t.pressKey('enter');
     await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}`, threshold);
     await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_QUANTITY}`, quantity);
-    await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}`, expiration);
     await t.typeText(`#${COMPONENT_IDS.ADD_INVENTORY_LOT}`, lot);
     await t.click(`#${COMPONENT_IDS.ADD_INVENTORY_SUBMIT}`);
     await t.click('button[class="swal-button swal-button--confirm"]');

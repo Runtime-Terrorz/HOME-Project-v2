@@ -84,7 +84,6 @@ const AddInventory = () => {
             <Form.Group widths={'equal'}>
               <SelectField
                 name='location'
-                placeholder={'Top Shelf'}
                 id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
               />
               <Form.Group>
@@ -103,7 +102,11 @@ const AddInventory = () => {
               </Form.Group>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
+              />
               <TextField
                 name='lot'
                 placholder={'ABC123'}
