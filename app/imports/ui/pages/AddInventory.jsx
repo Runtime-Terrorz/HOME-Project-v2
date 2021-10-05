@@ -49,7 +49,7 @@ const AddInventory = () => {
   };
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, should_have, quantity, lot } = data;
+    const { medication, name, location, threshold, quantity, lot } = data;
     const owner = Meteor.user().username;
     const expiration = startDate;
     const status = checkAmount(quantity, threshold);
@@ -82,7 +82,7 @@ const AddInventory = () => {
               id={COMPONENT_IDS.ADD_INVENTORY_NAME}
             />
             <Form.Group widths={'equal'}>
-              <SelectField 
+              <SelectField
                 name='location'
                 placeholder={'Top Shelf'}
                 id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
@@ -104,11 +104,6 @@ const AddInventory = () => {
             </Form.Group>
             <Form.Group widths={'equal'}>
               <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-              <!--<TextField
-                name='expiration'
-                placeholder={'Ex: 08/04/2022'}
-                id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
-              />-->
               <TextField
                 name='lot'
                 placholder={'ABC123'}

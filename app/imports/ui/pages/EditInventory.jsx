@@ -17,9 +17,9 @@ const EditInventory = ({ doc, ready }) => {
 
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { medication, name, location, should_have, quantity, lot, expiration, status, _id } = data;
+    const { medication, name, location, threshold, quantity, lot, expiration, status, _id } = data;
     const collectionName = Inventories.getCollectionName();
-    const updateData = { id: _id, medication, name, location, should_have, quantity, lot, expiration, status };
+    const updateData = { id: _id, medication, name, location, threshold, quantity, lot, expiration, status };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Inventory updated successfully', 'success'));
@@ -36,7 +36,7 @@ const EditInventory = ({ doc, ready }) => {
             <Form.Group widths={'equal'}>
               <TextField name='location'/>
               <Form.Group>
-                <NumField name='should_have' decimal={false}/>
+                <NumField name='threshold' decimal={false}/>
                 <NumField name='quantity' decimal={false}/>
               </Form.Group>
             </Form.Group>
