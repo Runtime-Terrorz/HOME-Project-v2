@@ -77,16 +77,19 @@ const AddInventory = () => {
             <Form.Group widths={'equal'}>
               <TextField
                 name='location'
+                placeholder={'Top Shelf'}
                 id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
               />
               <Form.Group>
                 <NumField
                   name='threshold'
+                  placeholder={'5'}
                   decimal={false}
                   id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
                 />
                 <NumField
                   name='quantity'
+                  placeholder={'10'}
                   decimal={false}
                   id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
                 />
@@ -100,6 +103,7 @@ const AddInventory = () => {
               />
               <TextField
                 name='lot'
+                placholder={'ABC123'}
                 id={COMPONENT_IDS.ADD_INVENTORY_LOT}
               />
             </Form.Group>
