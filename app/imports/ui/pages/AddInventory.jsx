@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Segment, Header, Form } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
+import { Inventories, inventoryMedications, medLocations } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
@@ -18,17 +20,21 @@ const formSchema = new SimpleSchema({
     defaultValue: 'Allergy & Cold Medicines',
   },
   name: String,
-  location: String,
+  location: {
+    type: String,
+    allowedValues: medLocations,
+    defaultValue: '',
+  },
   threshold: Number,
   quantity: Number,
   lot: String,
-  expiration: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
 const AddInventory = () => {
+  const [startDate, setStartDate] = useState(new Date());
 
   /** Check if the quantity against the threshold to determine the status */
   const checkAmount = (quantity, threshold) => {
@@ -43,8 +49,9 @@ const AddInventory = () => {
   };
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, threshold, quantity, lot, expiration } = data;
+    const { medication, name, location, should_have, quantity, lot } = data;
     const owner = Meteor.user().username;
+    const expiration = startDate;
     const status = checkAmount(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
@@ -75,7 +82,7 @@ const AddInventory = () => {
               id={COMPONENT_IDS.ADD_INVENTORY_NAME}
             />
             <Form.Group widths={'equal'}>
-              <TextField
+              <SelectField 
                 name='location'
                 placeholder={'Top Shelf'}
                 id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
@@ -96,11 +103,12 @@ const AddInventory = () => {
               </Form.Group>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <TextField
+              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              <!--<TextField
                 name='expiration'
                 placeholder={'Ex: 08/04/2022'}
                 id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
-              />
+              />-->
               <TextField
                 name='lot'
                 placholder={'ABC123'}
