@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
 import { _ } from 'meteor/underscore';
-import { Roles } from 'meteor/alanning:roles';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
 
@@ -16,7 +15,7 @@ export const medLocations = ['Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', '
 export const inventoryPublications = {
   inventory: 'Inventory',
 };
-export const states = ['good', 'bad'];
+export const inventoryStates = ['good', 'bad'];
 
 class InventoryCollection extends BaseCollection {
   constructor() {
@@ -32,14 +31,14 @@ class InventoryCollection extends BaseCollection {
         allowedValues: medLocations,
         defaultValue: 'Case 1',
       },
-      should_have: Number,
+      threshold: Number,
       quantity: Number,
       lot: String,
       expiration: Date,
       owner: String,
       status: {
         type: String,
-        allowedValues: states,
+        allowedValues: inventoryStates,
       },
     }));
   }
@@ -49,7 +48,7 @@ class InventoryCollection extends BaseCollection {
    * @param medication the classification of medicine.
    * @param name the name of the item.
    * @param location the location of the item.
-   * @param should_have the number of items that is recommended to have in stock.
+   * @param threshold the number of items that is recommended to have in stock.
    * @param quantity the number of items.
    * @param lot the lot number of the item.
    * @param expiration expiration date of the item.
@@ -57,12 +56,12 @@ class InventoryCollection extends BaseCollection {
    * @param status determine whether the item is low in stock
    * @return {String} the docID of the new document.
    */
-  define({ medication, name, location, should_have, quantity, lot, expiration, owner, status }) {
+  define({ medication, name, location, threshold, quantity, lot, expiration, owner, status }) {
     const docID = this._collection.insert({
       medication,
       name,
       location,
-      should_have,
+      threshold,
       quantity,
       lot,
       expiration,
@@ -77,12 +76,12 @@ class InventoryCollection extends BaseCollection {
    * @param docID the id of the document to update.
    * @param name the name of the item.
    * @param location the location of the item.
-   * @param should_have the number of items that is recommended to have in stock.
+   * @param threshold the number of items that is recommended to have in stock.
    * @param quantity the number of items.
    * @param expiration expiration date of the item.
    * @param status current state of the item to update
    */
-  update(docID, { name, location, should_have, quantity, expiration, status }) {
+  update(docID, { name, location, threshold, quantity, expiration, status }) {
     const updateData = {};
     if (name) {
       updateData.name = name;
@@ -90,8 +89,8 @@ class InventoryCollection extends BaseCollection {
     if (location) {
       updateData.location = location;
     }
-    if (_.isNumber(should_have)) {
-      updateData.should_have = should_have;
+    if (_.isNumber(threshold)) {
+      updateData.threshold = threshold;
     }
     // if (quantity) { NOTE: 0 is falsy so we need to check if the quantity is a number.
     if (_.isNumber(quantity)) {
@@ -178,13 +177,13 @@ class InventoryCollection extends BaseCollection {
     const doc = this.findDoc(docID);
     const medication = doc.medication;
     const name = doc.name;
-    const should_have = doc.should_have;
+    const threshold = doc.threshold;
     const quantity = doc.quantity;
     const lot = doc.lot;
     const expiration = doc.expiration;
     const owner = doc.owner;
     const status = doc.status;
-    return { medication, name, should_have, quantity, lot, expiration, owner, status };
+    return { medication, name, threshold, quantity, lot, expiration, owner, status };
   }
 }
 
