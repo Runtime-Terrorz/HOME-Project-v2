@@ -1,19 +1,15 @@
 import { withRouter } from 'react-router-dom';
-import { Feed, Container } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const NotificationFeed = ({ inventory }) => (
-  <Feed>
-    <Feed.Event>
-      <Feed.Content>
-        <Feed.Date content='1 day ago'/>
-        <Feed.Summary>
-            Running Low on <a>{inventory.name}</a> with lot # {inventory.lot}.
-        </Feed.Summary>
-      </Feed.Content>
-    </Feed.Event>
-  </Feed>
+  <Card>
+    <Card.Content>
+      <Icon color='red' name='warning sign'/>
+      <p className='text'>Running Low on <a>{inventory.name}</a> with lot # {inventory.lot}.</p>
+    </Card.Content>
+  </Card>
 );
 
 NotificationFeed.propTypes = {

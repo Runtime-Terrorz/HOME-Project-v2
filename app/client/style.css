@@ -1,0 +1,31 @@
+.ui.active.visible.top.left.pointing.dropdown .menu.transition.visible.notmenu {
+  left: -10px;
+}
+
+.ui.card .content.notitem {
+  padding: 0 0;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.content.notitem .ui.card {
+  margin: 0 0;
+  height: auto;
+  white-space: normal;
+}
+
+.content .close.icon {
+  position: relative;
+  left: 16.4em;
+  bottom: 0.7em;
+}
+.content .warning.icon {
+  position: relative;
+  bottom: 0.4em;
+}
+.content .date {
+  width: 60px;
+  position: relative;
+  left: 14em;
+  bottom: 0.5em;
+}
