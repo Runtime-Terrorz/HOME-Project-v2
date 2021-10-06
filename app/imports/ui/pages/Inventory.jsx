@@ -84,7 +84,6 @@ export default withTracker(() => {
   const ready = subscription.ready();
   // Get the Inventory documents and sort them by name.
   const inventories = Inventories.find({}, { sort: { name: 1 } }).fetch();
-  console.log(inventories);
   return {
     inventories,
     ready,

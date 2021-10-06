@@ -15,7 +15,7 @@ const InventoryItem = ({ inventory }) => (
     <Table.Cell>{inventory.lot}</Table.Cell>
     <Table.Cell>{inventory.expiration.toLocaleDateString()}</Table.Cell>
     <Table.Cell>
-      <Link className={COMPONENT_IDS.LIST_INVENTORY_EDIT_EDIT} to={`/edit/${inventory._id}`}>
+      <Link id={COMPONENT_IDS.LIST_INVENTORY_EDIT} to={`/edit/${inventory._id}`}>
         <Icon name='edit outline'/>
       </Link>
     </Table.Cell>
