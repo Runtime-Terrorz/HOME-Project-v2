@@ -79,7 +79,10 @@ const AddInventory = () => {
               id={COMPONENT_IDS.ADD_INVENTORY_NAME}
             />
             <Form.Group widths={'equal'}>
-              <SelectField name='location'/>
+              <SelectField
+                name='location'
+                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+              />
               <Form.Group>
                 <NumField
                   name='threshold'
@@ -96,7 +99,11 @@ const AddInventory = () => {
               </Form.Group>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
+              />
               <TextField
                 name='lot'
                 placholder={'ABC123'}
