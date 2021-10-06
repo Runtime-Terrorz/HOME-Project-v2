@@ -1,6 +1,7 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"},
+    { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
+    },
     { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" },
     { "email": "default@foo.com", "password": "changeme", "role": "USER" , "firstName": "Bryce", "lastName": "Smith"  }
 
@@ -20,7 +21,7 @@
       "threshold": 15,
       "quantity": 100,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-10-16T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -30,7 +31,7 @@
       "threshold": 1,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-05-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -40,7 +41,7 @@
       "threshold": 1,
       "quantity": 1.5,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-16T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -50,7 +51,7 @@
       "threshold": 50,
       "quantity": 415,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-16T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -60,7 +61,7 @@
       "threshold": 1,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-10-15T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -71,7 +72,7 @@
       "threshold": 30,
       "quantity": 100,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -81,7 +82,7 @@
       "threshold": 1,
       "quantity": 1,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -91,7 +92,7 @@
       "threshold": 1,
       "quantity": 1,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -101,7 +102,7 @@
       "threshold": 1,
       "quantity": 1,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -111,7 +112,7 @@
       "threshold": 30,
       "quantity": 100,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -122,7 +123,7 @@
       "threshold": 0,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -132,7 +133,7 @@
       "threshold": 30,
       "quantity": 90,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -142,7 +143,7 @@
       "threshold": 30,
       "quantity": 90,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -152,7 +153,7 @@
       "threshold": 30,
       "quantity": 90,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -162,7 +163,7 @@
       "threshold": 25,
       "quantity": 100,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -173,7 +174,7 @@
       "threshold": 2,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -183,7 +184,7 @@
       "threshold": 30,
       "quantity": 67,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -193,7 +194,7 @@
       "threshold": 1,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -203,7 +204,7 @@
       "threshold": 1,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -213,7 +214,7 @@
       "threshold": 5,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -224,7 +225,7 @@
       "threshold": 60,
       "quantity": 50,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -234,7 +235,7 @@
       "threshold": 30,
       "quantity": 100,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -244,7 +245,7 @@
       "threshold": 25,
       "quantity": 50,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -254,7 +255,7 @@
       "threshold": 30,
       "quantity": 60,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -264,7 +265,7 @@
       "threshold": 30,
       "quantity": 42,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -275,7 +276,7 @@
       "threshold": 1,
       "quantity": 1,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -285,7 +286,7 @@
       "threshold": 1,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -295,7 +296,7 @@
       "threshold": 2,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -305,7 +306,7 @@
       "threshold": 2,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -315,7 +316,7 @@
       "threshold": 1,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -325,7 +326,7 @@
       "threshold": 2,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -334,7 +335,7 @@
       "location": "Emergency Kit",
       "threshold": 10, "quantity": 10,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -344,7 +345,7 @@
       "threshold": 2,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -354,7 +355,7 @@
       "threshold": 2,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -364,7 +365,7 @@
       "threshold": 1,
       "quantity": 1,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -375,7 +376,7 @@
       "threshold": 50,
       "quantity": 75,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -385,7 +386,7 @@
       "threshold": 5,
       "quantity": 10,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -395,7 +396,7 @@
       "threshold": 50,
       "quantity": 112,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -405,7 +406,7 @@
       "threshold": 1,
       "quantity": 1,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -415,7 +416,7 @@
       "threshold": 1,
       "quantity": 0.33,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -425,7 +426,7 @@
       "location": "Case 3",
       "threshold": 1, "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -434,7 +435,7 @@
       "location": "Case 3",
       "threshold": 2, "quantity": 6,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -443,7 +444,7 @@
       "location": "Case 3",
       "threshold": 2, "quantity": 6,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -452,7 +453,7 @@
       "location": "Case 3",
       "threshold": 1, "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -461,7 +462,7 @@
       "location": "Case 3",
       "threshold": 30, "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -472,7 +473,7 @@
       "threshold": 5,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -483,7 +484,7 @@
       "threshold": 5,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "bad"
     },
@@ -493,7 +494,7 @@
       "threshold": 2,
       "quantity": 3,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -503,7 +504,7 @@
       "threshold": 1,
       "quantity": 1,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -513,7 +514,7 @@
       "threshold": 1,
       "quantity": 2,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -524,7 +525,7 @@
       "threshold": 30,
       "quantity": 120,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -534,7 +535,7 @@
       "threshold": 50,
       "quantity": 200,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -545,7 +546,7 @@
       "threshold": 50,
       "quantity": 200,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -555,7 +556,7 @@
       "threshold": 14,
       "quantity": 57,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -565,7 +566,7 @@
       "threshold": 14,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -575,7 +576,7 @@
       "threshold": 50,
       "quantity": 210,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -585,7 +586,7 @@
       "threshold": 50,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -595,7 +596,7 @@
       "threshold": 50,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -605,7 +606,7 @@
       "threshold": 50,
       "quantity": 250,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     },
@@ -615,7 +616,7 @@
       "threshold": 30,
       "quantity": 0,
       "lot": 100,
-      "expiration": "2021/10/14",
+      "expiration": "2021-09-17T00:00:00.000Z",
       "owner": "default@foo.com",
       "status": "good"
     }
