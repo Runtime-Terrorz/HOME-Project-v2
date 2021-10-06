@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Segment, Header, Form } from 'semantic-ui-react';
+import { Grid, Segment, Header, Form, Icon } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -23,7 +23,7 @@ const formSchema = new SimpleSchema({
   location: {
     type: String,
     allowedValues: medLocations,
-    defaultValue: '',
+    defaultValue: 'Case 1',
   },
   threshold: Number,
   quantity: Number,
@@ -63,7 +63,7 @@ const AddInventory = () => {
   let fRef = null;
   return (
     <Grid id={PAGE_IDS.ADD_INVENTORY} container centered>
-      <Grid.Column width={10}>
+      <Grid.Column width={8}>
         <Header as="h2" textAlign="center">Add Inventory</Header>
         <AutoForm ref={ref => {
           fRef = ref;
@@ -79,11 +79,22 @@ const AddInventory = () => {
               id={COMPONENT_IDS.ADD_INVENTORY_NAME}
             />
             <Form.Group widths={'equal'}>
-              <SelectField
-                name='location'
-                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+              <TextField
+                  name='lot'
+                  placholder={'ABC123'}
+                  id={COMPONENT_IDS.ADD_INVENTORY_LOT}
               />
-              <Form.Group>
+              <Grid.Row>
+              Expiration Date
+              <Icon name='calendar alternate outline'/>
+              <DatePicker name='expiration'
+                          selected={startDate}
+                          onChange={(date) => setStartDate(date)}
+                          id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
+              />
+              </Grid.Row>
+            </Form.Group>
+            <Form.Group widths={'equal'}>
                 <NumField
                   name='threshold'
                   placeholder={'5'}
@@ -96,20 +107,11 @@ const AddInventory = () => {
                   decimal={false}
                   id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
                 />
-              </Form.Group>
             </Form.Group>
-            <Form.Group widths={'equal'}>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
-              />
-              <TextField
-                name='lot'
-                placholder={'ABC123'}
-                id={COMPONENT_IDS.ADD_INVENTORY_LOT}
-              />
-            </Form.Group>
+            <SelectField
+                name='location'
+                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+            />
             <SubmitField
               value='Submit'
               id={COMPONENT_IDS.ADD_INVENTORY_SUBMIT}
