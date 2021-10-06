@@ -36,17 +36,14 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const AddInventory = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-  /** Check if the quantity against the threshold to determine the status */
+  // Check if the quantity against the threshold to determine the status
   const checkAmount = (quantity, threshold) => {
-    console.log(`Threshold: ${threshold} Quantity: ${quantity}`);
-    console.log(quantity <= threshold);
-    switch (quantity <= threshold) {
-    case true:
+    if (quantity <= threshold) {
       return 'bad';
-    default:
-      return 'good';
     }
+    return 'good';
   };
+
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { medication, name, location, threshold, quantity, lot } = data;

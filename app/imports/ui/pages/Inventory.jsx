@@ -7,7 +7,7 @@ import { Inventories } from '../../api/inventory/InventoryCollection';
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => ((ready) ? (
   <Container id={PAGE_IDS.LIST_INVENTORY}>
     <Grid container column={3}>
@@ -70,7 +70,7 @@ const Inventory = ({ ready, inventories }) => ((ready) ? (
   </Container>
 ) : <Loader active>Getting data</Loader>);
 
-/** Require an array of Stuff documents in the props. */
+/** Require an array of Inventory documents in the props. */
 Inventory.propTypes = {
   inventories: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -78,12 +78,13 @@ Inventory.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to Inventory documents.
   const subscription = Inventories.subscribeInventory();
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents and sort them by name.
+  // Get the Inventory documents and sort them by name.
   const inventories = Inventories.find({}, { sort: { name: 1 } }).fetch();
+  console.log(inventories);
   return {
     inventories,
     ready,
