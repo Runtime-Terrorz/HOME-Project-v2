@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Table, Header, Grid, Dropdown, Icon, Button, Loader } from 'semantic-ui-react';
+import { Container, Table, Header, Grid, Dropdown, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Inventories } from '../../api/inventory/InventoryCollection';

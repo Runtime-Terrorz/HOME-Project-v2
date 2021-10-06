@@ -32,7 +32,7 @@ const EditInventory = ({ doc, ready }) => {
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment inverted style={{ backgroundColor: '#992E2E' }}>
             <SelectField name='medication'/>
-            <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
+            <TextField name='name'/>
             <Form.Group widths={'equal'}>
               <TextField name='location'/>
               <Form.Group>
@@ -41,7 +41,7 @@ const EditInventory = ({ doc, ready }) => {
               </Form.Group>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
+              <TextField name='expiration'/>
               <TextField name='lot'/>
             </Form.Group>
             <SubmitField value='Submit'/>
