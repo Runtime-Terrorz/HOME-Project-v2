@@ -1,11 +1,13 @@
-import React from 'react';
-import { Grid, Segment, Header, Form } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Grid, Segment, Header, Form, Icon } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Inventories, inventoryMedications } from '../../api/inventory/InventoryCollection';
+import { Inventories, inventoryMedications, medLocations } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
@@ -18,33 +20,35 @@ const formSchema = new SimpleSchema({
     defaultValue: 'Allergy & Cold Medicines',
   },
   name: String,
-  location: String,
+  location: {
+    type: String,
+    allowedValues: medLocations,
+    defaultValue: 'Case 1',
+  },
   threshold: Number,
   quantity: Number,
   lot: String,
-  expiration: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
 const AddInventory = () => {
+  const [startDate, setStartDate] = useState(new Date());
 
-  /** Check if the quantity against the threshold to determine the status */
+  // Check if the quantity against the threshold to determine the status
   const checkAmount = (quantity, threshold) => {
-    console.log(`Threshold: ${threshold} Quantity: ${quantity}`);
-    console.log(quantity <= threshold);
-    switch (quantity <= threshold) {
-    case true:
+    if (quantity <= threshold) {
       return 'bad';
-    default:
-      return 'good';
     }
+    return 'good';
   };
+
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, threshold, quantity, lot, expiration } = data;
+    const { medication, name, location, threshold, quantity, lot } = data;
     const owner = Meteor.user().username;
+    const expiration = startDate;
     const status = checkAmount(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
@@ -58,8 +62,8 @@ const AddInventory = () => {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
   return (
-    <Grid id={PAGE_IDS.ADD_INVENTORY} container centered>
-      <Grid.Column width={10}>
+    <Grid id={PAGE_IDS.ADD_INVENTORY} container centered className="addinventory">
+      <Grid.Column width={8}>
         <Header as="h2" textAlign="center">Add Inventory</Header>
         <AutoForm ref={ref => {
           fRef = ref;
@@ -76,33 +80,38 @@ const AddInventory = () => {
             />
             <Form.Group widths={'equal'}>
               <TextField
-                name='location'
-                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+                  name='lot'
+                  placholder={'ABC123'}
+                  id={COMPONENT_IDS.ADD_INVENTORY_LOT}
               />
-              <Form.Group>
+              <Grid.Row>
+              Expiration Date
+              <Icon name='calendar alternate outline'/>
+              <DatePicker name='expiration'
+                          selected={startDate}
+                          onChange={(date) => setStartDate(date)}
+                          id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
+              />
+              </Grid.Row>
+            </Form.Group>
+            <Form.Group widths={'equal'}>
                 <NumField
                   name='threshold'
+                  placeholder={'5'}
                   decimal={false}
                   id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
                 />
                 <NumField
                   name='quantity'
+                  placeholder={'10'}
                   decimal={false}
                   id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
                 />
-              </Form.Group>
             </Form.Group>
-            <Form.Group widths={'equal'}>
-              <TextField
-                name='expiration'
-                placeholder={'Ex: 08/04/2022'}
-                id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
-              />
-              <TextField
-                name='lot'
-                id={COMPONENT_IDS.ADD_INVENTORY_LOT}
-              />
-            </Form.Group>
+            <SelectField
+                name='location'
+                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+            />
             <SubmitField
               value='Submit'
               id={COMPONENT_IDS.ADD_INVENTORY_SUBMIT}

@@ -13,7 +13,7 @@ import { addOrder } from './addorder.page';
 const credentials = { username: 'john@foo.com', password: 'changeme' };
 const adminCredentials = { username: 'admin@foo.com', password: 'changeme' };
 const newCredentials = { username: 'jane@foo.com', password: 'changeme' };
-const testOrder = { medication: 'p', name: 'test medication', location: 'test location', threshold: '3', quantity: '20', expiration: '11/11/1111', lot: 'ABC123' };
+const testOrder = { medication: 'p', name: 'test medication', location: 'r', threshold: '3', quantity: '20', lot: 'ABC123' };
 
 fixture('matrp localhost test with default db')
   .page('http://localhost:3000');
@@ -43,7 +43,7 @@ test('Test that user can add an order', async () => {
   await signInPage.signin(credentials.username, credentials.password);
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoAddOrderPage();
-  await addOrder.orderIsAdded(testOrder.medication, testOrder.name, testOrder.location, testOrder.threshold, testOrder.quantity, testOrder.expiration, testOrder.lot);
+  await addOrder.orderIsAdded(testOrder.medication, testOrder.name, testOrder.location, testOrder.threshold, testOrder.quantity, testOrder.lot);
   await navBar.gotoListInventoryPage();
   const inventoryExists = Selector('ABC123');
   await t.expect(inventoryExists).ok();
