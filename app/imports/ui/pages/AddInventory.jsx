@@ -62,7 +62,7 @@ const AddInventory = () => {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   let fRef = null;
   return (
-    <Grid id={PAGE_IDS.ADD_INVENTORY} container centered>
+    <Grid id={PAGE_IDS.ADD_INVENTORY} container centered className="addinventory">
       <Grid.Column width={8}>
         <Header as="h2" textAlign="center">Add Inventory</Header>
         <AutoForm ref={ref => {

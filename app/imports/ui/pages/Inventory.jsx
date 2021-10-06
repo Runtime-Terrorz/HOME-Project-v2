@@ -11,7 +11,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 const Inventory = ({ ready, inventories }) => ((ready) ? (
   <Container id={PAGE_IDS.LIST_INVENTORY}>
     <Grid container column={3}>
-      <Grid.Row column={2} className="top inventory">
+      <Grid.Row column={2} className="inventory">
         <Grid.Column width={10}>
           <Header as="h1" textAlign="left">Inventory</Header>
         </Grid.Column>
@@ -37,20 +37,10 @@ const Inventory = ({ ready, inventories }) => ((ready) ? (
               <Dropdown.Item>Pills</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Link to={'/edit'}>
-            <Button
-              icon
-              labelPosition='left'
-              color='blue'
-              floated='right'
-            >
-              <Icon name='pencil'/> Edit
-            </Button>
-          </Link>
         </Grid.Column>
       </Grid.Row>
     </Grid>
-    <Table celled>
+    <Table celled className="listcontainer" >
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Medication</Table.HeaderCell>

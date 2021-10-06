@@ -1,4 +1,4 @@
-.navBar {
+.top {
     margin-bottom: 10px !important;
     box-shadow: none;
     border: none !important;
@@ -6,9 +6,10 @@
     color: #FFFFFF !important;
 }
 
-.navBar .item {
+.item {
     color: #FFFFFF !important;
     font-family: "Kohinoor Bangla";
+    font-size: 18px;
 }
 
 .homeButton {
@@ -33,7 +34,7 @@
 }
 
 .ui.container .ui.container.grid {
-    margin-top: 10px;
+    margin-top: 40px;
 }
 
 .ui.container.grid .row {
@@ -42,10 +43,28 @@
 }
 .row .twelve.wide.column {
     padding-top: 1rem;
+
 }
 .row .thirteen.wide.column {
     padding-top: 1rem;
+
 }
 .ui.container.inventory {
     margin-bottom: 2rem;
+}
+.listcontainer {
+  background-color: #800000 !important;
+  color: #FFFFFF !important;
+}
+.ui.container.addinventory {
+  margin-top: 40px;
+}
+
+.ui.container.editinventory {
+  margin-top: 40px;
+}
+
+.h2 {
+  font-family: "Kohinoor Bangla";
+  font-size: 18px;
 }

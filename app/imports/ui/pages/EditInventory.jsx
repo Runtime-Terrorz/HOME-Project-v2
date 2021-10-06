@@ -26,7 +26,7 @@ const EditInventory = ({ doc, ready }) => {
   };
 
   return (ready) ? (
-    <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered>
+    <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered className="editinventory">
       <Grid.Column width={10}>
         <Header as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>

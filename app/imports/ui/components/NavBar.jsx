@@ -15,7 +15,7 @@ const NavBar = ({ currentUser }) => {
   return (
     <Menu style={menuStyle} attached="top" borderless>
       <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/">
-        <Image width={'50px'} src="/images/logo2.jpg"/>
+        <Image width={'53px'} src="/images/logo2.jpg"/>
       </Menu.Item>
       {currentUser ? (
         [<Menu.Item id={COMPONENT_IDS.NAVBAR_ADD_INVENTORY} as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Order</Menu.Item>,
