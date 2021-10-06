@@ -9,6 +9,7 @@ import { Inventories, inventoryMedications } from '../../api/inventory/Inventory
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import QRCode from 'qrcode';
+import { useParams } from 'react-router-dom';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -29,7 +30,6 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
 const AddInventoryNoLot = () => {
-
   /** Check if the quantity against the threshold to determine the status */
   const checkAmount = (quantity, threshold) => {
     console.log(`Threshold: ${threshold} Quantity: ${quantity}`);
@@ -41,6 +41,7 @@ const AddInventoryNoLot = () => {
       return 'good';
     }
   };
+
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { medication, name, location, should_have, quantity, lot, expiration } = data;
@@ -48,19 +49,22 @@ const AddInventoryNoLot = () => {
     const status = checkAmount(quantity, should_have);
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, should_have, quantity, lot, expiration, owner, status };
+
     /**Generates QR Code for dispense page**/
+    let qrCode;
     QRCode.toDataURL('http://localhost:3000/#/dispense/' + lot)
       .then(url => {
-        console.log(url)
-      })
-      .catch(err => {
-        console.error(err)
+        qrCode = url;
       })
 
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
-        swal('Success', 'Order added successfully', 'success');
+        swal({
+          title: 'Success',
+          text: 'Order added successfully. Save QRCode for dispensing.',
+          icon: qrCode,
+        });
         formRef.reset();
       });
   };

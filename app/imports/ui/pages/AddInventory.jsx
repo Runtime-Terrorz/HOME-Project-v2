@@ -61,7 +61,11 @@ const AddInventory = () => {
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
-        swal('Success', 'Order added successfully', 'success');
+        swal({
+          title: 'Success',
+          text: 'Order added successfully. Save QRCode for dispensing.',
+          icon: qrCode
+        });
         formRef.reset();
       });
   };
