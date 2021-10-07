@@ -18,8 +18,8 @@ const NavBar = ({ currentUser }) => {
         <Image width={'53px'} src="/images/logo2.jpg"/>
       </Menu.Item>
       {currentUser ? (
-        [<Menu.Item id={COMPONENT_IDS.NAVBAR_ADD_INVENTORY} as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Order</Menu.Item>,
-          <Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY} as={NavLink} activeClassName="active" exact to="/list" key='list'>List Inventory</Menu.Item>,
+        [<Menu.Item id={COMPONENT_IDS.NAVBAR_ADD_INVENTORY} as={NavLink} activeClassName="active" exact to="/add" key='add' className={'navbar-item'}>Add Order</Menu.Item>,
+          <Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY} as={NavLink} activeClassName="active" exact to="/list" key='list' className={'navbar-item'}>List Inventory</Menu.Item>,
           <Menu.Item id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key ='notification'><Notification/></Menu.Item>]
       ) : ''}
       {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (

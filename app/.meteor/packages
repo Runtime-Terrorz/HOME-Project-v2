@@ -33,7 +33,7 @@ aldeed:collection2
 aldeed:schema-index              # Support index: true and unique: true in schema definitions.
 
 # Utilities
-underscore@1.0.10                # http://underscorejs.org/
+underscore                # http://underscorejs.org/
 ejson@1.1.1                      # https://docs.meteor.com/api/ejson.html
 
 # Application Performance Monitoring

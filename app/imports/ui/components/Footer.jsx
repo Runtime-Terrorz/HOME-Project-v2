@@ -6,7 +6,7 @@ class Footer extends React.Component {
   render() {
     const divStyle = { padding: '12px', marginTop: '116px', color: 'white' };
     return (
-      <footer inverted style={{ backgroundColor: '#800000' }}>
+      <footer style={{ backgroundColor: '#800000' }}>
         <div style={divStyle} className="ui center aligned container">
             Hawaii H.O.M.E. Project <br />
             Homeless Outreach & Medical Education<br />
