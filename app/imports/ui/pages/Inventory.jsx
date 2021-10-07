@@ -12,7 +12,7 @@ const Inventory = ({ ready, inventories }) => ((ready) ? (
     <Grid container column={3}>
       <Grid.Row column={2} className="inventory">
         <Grid.Column width={10}>
-          <Header as="h1" textAlign="left">Inventory</Header>
+          <Header inverted as="h1" textAlign="left">Inventory</Header>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

@@ -48,14 +48,14 @@ const Signup = ({ location }) => {
     return <Redirect to={from} />;
   }
   return (
-    <Container id={PAGE_IDS.SIGN_UP}>
+    <Container id={PAGE_IDS.SIGN_UP} className="logup-page">
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">
-            Register your account
+        <Grid.Column width={6} style={{ backgroundColor: '#992E2E' }}>
+          <Header inverted as="h2" textAlign="center">
+            <p>Register your account</p>
           </Header>
           <Form onSubmit={submit}>
-            <Segment stacked>
+            <Segment stacked inverted style={{ backgroundColor: '#800000' }}>
               <Form.Input
                 label="Email"
                 id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL}
@@ -76,7 +76,7 @@ const Signup = ({ location }) => {
                 type="password"
                 onChange={handleChange}
               />
-              <Form.Button id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} content="Submit" />
+              <Form.Button id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} content="Submit" color='blue' />
             </Segment>
           </Form>
           <Message>
@@ -85,7 +85,7 @@ const Signup = ({ location }) => {
           {error === '' ? (
             ''
           ) : (
-            <Message
+            <Message warning
               error
               header="Registration was not successful"
               content={error}

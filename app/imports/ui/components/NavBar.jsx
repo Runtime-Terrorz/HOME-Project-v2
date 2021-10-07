@@ -11,7 +11,7 @@ import Notification from './Notification';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 const NavBar = ({ currentUser }) => {
-  const menuStyle = { marginBottom: '10px' };
+  const menuStyle = { marginBottom: '60px' };
   return (
     <Menu style={menuStyle} attached="top" borderless>
       <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/">
