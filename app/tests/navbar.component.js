@@ -39,21 +39,21 @@ class NavBar {
   }
 
   /** Go to the add stuff page. */
-  async gotoAddStuffPage() {
+  async gotoAddOrderPage() {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.NAVBAR_ADD_STUFF}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_ADD_INVENTORY}`);
   }
 
   /** Go to the list stuff page. */
-  async gotoListStuffPage() {
+  async gotoListInventoryPage() {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.NAVBAR_LIST_STUFF}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_LIST_INVENTORY}`);
   }
 
   /** Go to the list stuff admin page. */
-  async gotoListStuffAdminPage() {
+  async gotoListInventoryAdminPage() {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
-    await t.click(`#${COMPONENT_IDS.NAVBAR_LIST_STUFF_ADMIN}`);
+    await t.click(`#${COMPONENT_IDS.NAVBAR_LIST_INVENTORY_ADMIN}`);
   }
 
   /** Go to the manage database page. Must be adimin. */

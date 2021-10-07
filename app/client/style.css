@@ -1,0 +1,70 @@
+.top {
+    margin-bottom: 10px !important;
+    box-shadow: none;
+    border: none !important;
+    background-color: #800000 !important;
+    color: #FFFFFF !important;
+}
+
+.item {
+    color: #FFFFFF !important;
+    font-family: "Kohinoor Bangla";
+    font-size: 18px;
+}
+
+.homeButton {
+    color: #FFFFFF !important;
+}
+
+.navBar .active.item {
+    font-weight: bold !important;
+    background: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: #FFFFFF !important;
+    text-underline-offset: 0.5em !important;
+
+}
+
+.navBar .item:hover {
+    background: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: #FFFFFF !important;
+    text-underline-offset: 0.5em !important;
+    font-family: "Kohinoor Bangla";
+}
+
+.ui.container .ui.container.grid {
+    margin-top: 40px;
+}
+
+.ui.container.grid .row {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+.row .twelve.wide.column {
+    padding-top: 1rem;
+
+}
+.row .thirteen.wide.column {
+    padding-top: 1rem;
+
+}
+.ui.container.inventory {
+    margin-bottom: 2rem;
+}
+.listcontainer {
+  background-color: #800000 !important;
+  color: #FFFFFF !important;
+}
+.ui.container.addinventory {
+  margin-top: 40px;
+}
+
+.ui.container.editinventory {
+  margin-top: 40px;
+}
+
+.h2 {
+  font-family: "Kohinoor Bangla";
+  font-size: 18px;
+}

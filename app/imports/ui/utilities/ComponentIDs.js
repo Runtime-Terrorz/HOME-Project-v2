@@ -1,5 +1,14 @@
 export const COMPONENT_IDS = {
+  ADD_INVENTORY_MEDICATION: 'medication',
+  ADD_INVENTORY_NAME: 'name',
+  ADD_INVENTORY_LOCATION: 'location',
+  ADD_INVENTORY_THRESHOLD: 'threshold',
+  ADD_INVENTORY_QUANTITY: 'quantity',
+  ADD_INVENTORY_EXPIRATION: 'expiration',
+  ADD_INVENTORY_LOT: 'lot',
+  ADD_INVENTORY_SUBMIT: 'add-inventory-submit',
   LIST_STUFF_EDIT: 'list-stuff-edit',
+  LIST_INVENTORY_EDIT: 'list-inventory-edit',
   NAVBAR_ADD_INVENTORY: 'navbar-add-inventory',
   NAVBAR_LIST_INVENTORY: 'navbar-list-inventory',
   NAVBAR_LIST_INVENTORY_ADMIN: 'navbar-list-inventory-admin',
@@ -17,4 +26,5 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_EMAIL: 'sign-up-form-email',
   SIGN_UP_FORM_PASSWORD: 'sign-up-form-password',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
+
 };
