@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { _ } from 'meteor/underscore';
 import { Container, Table, Header, Grid, Dropdown, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -9,13 +10,21 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => {
   const [filter, setFilter] = useState('');
+  let sorted = inventories;
   const handleChange = (e, data) => {
     e.preventDefault();
-    setFilter('abc');
+    setFilter(data.value);
     console.log(data);
   };
   if (ready) {
-
+    console.log('abc');
+    if (filter !== 'threshold') {
+      sorted = _.sortBy(inventories, filter);
+      console.log(sorted);
+    } else {
+      sorted = _.filter(inventories, (inventory) => inventory.quantity < inventory.threshold);
+      sorted = _.sortBy(sorted, filter);
+    }
   }
   return ((ready) ? (
     <Container id={PAGE_IDS.LIST_INVENTORY}>
@@ -36,16 +45,15 @@ const Inventory = ({ ready, inventories }) => {
               labeled
               button
               className='icon'
-              onChange={handleChange}
             >
-              <Dropdown.Menu>
+              <Dropdown.Menu style={{ color: 'black !important' }}>
                 <Dropdown.Header icon='tags' content='Filter by tag'/>
                 <Dropdown.Divider/>
-                <Dropdown.Item>Medicines</Dropdown.Item>
-                <Dropdown.Item>Expiration Date</Dropdown.Item>
-                <Dropdown.Item>Quantity</Dropdown.Item>
-                <Dropdown.Item>Low Inventory</Dropdown.Item>
-                <Dropdown.Item>Category Tags</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value = 'medication'>Medicines</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value = 'expiration'>Expiration Date</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value = 'quantity'>Quantity</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value = 'threshold'>Low Inventory</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange}>Category Tags</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>
@@ -65,7 +73,7 @@ const Inventory = ({ ready, inventories }) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {inventories.map((inventory) => <InventoryItem key={inventory._id} inventory={inventory}/>)}
+          {sorted.map((inventory) => <InventoryItem key={inventory._id} inventory={inventory}/>)}
         </Table.Body>
       </Table>
     </Container>
