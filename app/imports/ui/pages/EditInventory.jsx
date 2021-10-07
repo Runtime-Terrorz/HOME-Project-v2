@@ -27,26 +27,24 @@ const EditInventory = ({ doc, ready }) => {
 
   return (ready) ? (
     <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered className="editinventory">
-      <Grid.Column width={10}>
+      <Grid.Column width={8}>
         <Header as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment inverted style={{ backgroundColor: '#992E2E' }}>
             <SelectField name='medication'/>
-            <TextField name='name' placeholder={'Diphenhydramine 50 mg/mL'}/>
+            <TextField name='name'/>
             <Form.Group widths={'equal'}>
-              <TextField name='location'/>
-              <Form.Group>
-                <NumField name='threshold' decimal={false}/>
-                <NumField name='quantity' decimal={false}/>
-              </Form.Group>
-            </Form.Group>
-            <Form.Group widths={'equal'}>
-              <TextField name='expiration' placeholder={'Ex: 08/04/2022'}/>
               <TextField name='lot'/>
+              <TextField name='expiration'/>
             </Form.Group>
+            <Form.Group widths={'equal'}>
+              <NumField name='threshold' decimal={false}/>
+              <NumField name='quantity' decimal={false}/>
+            </Form.Group>
+            <TextField name='location'/>
             <SubmitField value='Submit'/>
             <ErrorsField/>
-            <HiddenField name='owner' />
+            <HiddenField name='owner'/>
           </Segment>
         </AutoForm>
       </Grid.Column>

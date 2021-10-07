@@ -1,5 +1,4 @@
 .top {
-    margin-bottom: 10px !important;
     box-shadow: none;
     border: none !important;
     background-color: #800000 !important;
@@ -22,7 +21,6 @@
     text-decoration: underline !important;
     text-decoration-color: #FFFFFF !important;
     text-underline-offset: 0.5em !important;
-
 }
 
 .navBar .item:hover {
@@ -31,6 +29,7 @@
     text-decoration-color: #FFFFFF !important;
     text-underline-offset: 0.5em !important;
     font-family: "Kohinoor Bangla";
+
 }
 
 .ui.container .ui.container.grid {
@@ -49,6 +48,7 @@
     padding-top: 1rem;
 
 }
+
 .ui.container.inventory {
     margin-bottom: 2rem;
 }
@@ -56,12 +56,9 @@
   background-color: #800000 !important;
   color: #FFFFFF !important;
 }
-.ui.container.addinventory {
-  margin-top: 40px;
-}
 
 .ui.container.editinventory {
-  margin-top: 40px;
+  margin-bottom: 90px;
 }
 
 .h2 {

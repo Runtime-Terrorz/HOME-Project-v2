@@ -68,7 +68,7 @@ const AddInventory = () => {
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-          <Segment inverted style={{ backgroundColor: '#FB785E' }}>
+          <Segment inverted style={{ backgroundColor: '#992E2E' }}>
             <SelectField
               name='medication'
               id={COMPONENT_IDS.ADD_INVENTORY_MEDICATION}
@@ -80,37 +80,37 @@ const AddInventory = () => {
             />
             <Form.Group widths={'equal'}>
               <TextField
-                  name='lot'
-                  placholder={'ABC123'}
-                  id={COMPONENT_IDS.ADD_INVENTORY_LOT}
+                name='lot'
+                placholder={'ABC123'}
+                id={COMPONENT_IDS.ADD_INVENTORY_LOT}
               />
               <Grid.Row>
               Expiration Date
-              <Icon name='calendar alternate outline'/>
-              <DatePicker name='expiration'
-                          selected={startDate}
-                          onChange={(date) => setStartDate(date)}
-                          id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
-              />
+                <Icon name='calendar alternate outline'/>
+                <DatePicker name='expiration'
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  id={COMPONENT_IDS.ADD_INVENTORY_EXPIRATION}
+                />
               </Grid.Row>
             </Form.Group>
             <Form.Group widths={'equal'}>
-                <NumField
-                  name='threshold'
-                  placeholder={'5'}
-                  decimal={false}
-                  id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
-                />
-                <NumField
-                  name='quantity'
-                  placeholder={'10'}
-                  decimal={false}
-                  id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
-                />
+              <NumField
+                name='threshold'
+                placeholder={'5'}
+                decimal={false}
+                id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
+              />
+              <NumField
+                name='quantity'
+                placeholder={'10'}
+                decimal={false}
+                id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
+              />
             </Form.Group>
             <SelectField
-                name='location'
-                id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
+              name='location'
+              id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
             />
             <SubmitField
               value='Submit'
