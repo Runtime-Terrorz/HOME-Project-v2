@@ -20,11 +20,11 @@ const NavBar = ({ currentUser }) => {
       {currentUser ? (
         [<Menu.Item id={COMPONENT_IDS.NAVBAR_ADD_INVENTORY} as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Order</Menu.Item>,
           <Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY} as={NavLink} activeClassName="active" exact to="/list" key='list'>List Inventory</Menu.Item>,
-          <Menu.Item id={COMPONENT_IDS.LOG_HISTORY} as={NavLink} activeClassName="active" exact to="/log" key='log'>Log History</Menu.Item>,
           <Menu.Item id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key ='notification'><Notification/></Menu.Item>]
       ) : ''}
       {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
         [<Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY_ADMIN} as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>,
+          <Menu.Item id={COMPONENT_IDS.LOG_HISTORY} as={NavLink} activeClassName="active" exact to="/log" key='log'>Log History</Menu.Item>,
           <Dropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} item text="Manage" key="manage-dropdown">
             <Dropdown.Menu>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} exact to="/manage-database" content="Database" />
