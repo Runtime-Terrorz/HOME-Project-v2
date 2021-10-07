@@ -505,7 +505,7 @@
       "lot": 100,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good"
+      "status": "bad"
     },
     { "medication": "Pulmonary",
       "name": "Steroid/Long Acting Beta Agonist (Child)",
@@ -567,7 +567,7 @@
       "lot": 100,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good"
+      "status": "bad"
     },
     { "medication": "Vitamins and Supplements",
       "name": "Multivitamins - Adult",
@@ -587,7 +587,7 @@
       "lot": 100,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good"
+      "status": "bad"
     },
     { "medication": "Vitamins and Supplements",
       "name": "Multivitamins - Children's Gummies",
@@ -597,7 +597,7 @@
       "lot": 100,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good"
+      "status": "bad"
     },
     { "medication": "Vitamins and Supplements",
       "name": "Multivitamins - Kids Chewable",
@@ -617,7 +617,7 @@
       "lot": 100,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good"
+      "status": "bad"
     }
   ],
   "public": {
