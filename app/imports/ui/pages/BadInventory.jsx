@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Table, Header, Grid, Dropdown, Loader } from 'semantic-ui-react';
+import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Inventories } from '../../api/inventory/InventoryCollection';
@@ -9,36 +9,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const BadInventory = ({ ready, inventories }) => ((ready) ? (
   <Container id={PAGE_IDS.LIST_BadInventory}>
-    <Grid container column={3}>
-      <Grid.Row column={2} className="inventory">
-        <Grid.Column width={10}>
-          <Header as="h1" textAlign="left">Report</Header>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column width={12}>
-            Showing 1-3 of 3
-        </Grid.Column>
-        <Grid.Column width={4}>
-          <Dropdown
-            text='Filter'
-            icon='filter'
-            floating
-            labeled
-            button
-            className='icon'
-          >
-            <Dropdown.Menu>
-              <Dropdown.Header icon='tags' content='Filter by tag'/>
-              <Dropdown.Divider/>
-              <Dropdown.Item>Medicines</Dropdown.Item>
-              <Dropdown.Item>Vaccines</Dropdown.Item>
-              <Dropdown.Item>Pills</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <Header as="h1" textAlign="left">Report</Header>
     <Table celled className="listcontainer" >
       <Table.Header>
         <Table.Row>
@@ -72,7 +43,7 @@ export default withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Inventory documents and sort them by name.
-  const inventories = Inventories.find({status: 'bad'}, { sort: { name: 1 } }).fetch();
+  const inventories = Inventories.find({ status: 'bad' }, { sort: { name: 1 } }).fetch();
   return {
     inventories,
     ready,

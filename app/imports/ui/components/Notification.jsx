@@ -15,7 +15,7 @@ const Notification = ({ ready, lowInventory }) => (
           <Card.Content>
             <Card.Header>Notifications</Card.Header>
             <Link to={'/bad'}>
-              <Button color='blue' id={COMPONENT_IDS.GENERATE_REPORT_BUTTON}>Generate Report</Button>
+              <Button color='red' id={COMPONENT_IDS.GENERATE_REPORT_BUTTON}>Generate Report</Button>
             </Link>
           </Card.Content>
           <Card.Content className='notitem'>
