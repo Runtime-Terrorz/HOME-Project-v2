@@ -4,7 +4,7 @@
 
 .mail.icon {
   position: relative;
-  top: 0.4em;
+  top: 0.2em;
 }
 
 .ui.card .content.notitem {
@@ -36,6 +36,7 @@
 
 .baditem {
   background-color: #D8C405;
+  color: #FFFFFF;
 }
 
 .top {
@@ -92,16 +93,16 @@
 .ui.container.inventory {
     margin-bottom: 2rem;
 }
-.listcontainer {
+/*.listcontainer {
   background-color: #800000 !important;
   color: #FFFFFF !important;
-}
+} */
 
 .ui.container.editinventory {
   margin-bottom: 90px;
 }
 
-.h2, p{
+h1.ui.header {
   font-family: "Kohinoor Bangla";
   font-size: 20px;
   letter-spacing: 0.2rem;
