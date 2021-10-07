@@ -14,10 +14,17 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
 /** Renders the Page for editing a single document. */
 const EditInventory = ({ doc, ready }) => {
-
+  // Check the quantity against the threshold to determine the status
+  const checkAmount = (quantity, threshold) => {
+    if (quantity <= threshold) {
+      return 'bad';
+    }
+    return 'good';
+  };
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { medication, name, location, threshold, quantity, lot, expiration, status, _id } = data;
+    const { medication, name, location, threshold, quantity, lot, expiration, _id } = data;
+    const status = checkAmount(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
     const updateData = { id: _id, medication, name, location, threshold, quantity, lot, expiration, status };
     updateMethod.callPromise({ collectionName, updateData })
