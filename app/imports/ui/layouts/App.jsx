@@ -16,6 +16,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ManageDatabase from '../pages/ManageDatabase';
+import LogHistory from '../pages/LogHistory';
 import { ROLE } from '../../api/role/Role';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -34,6 +35,7 @@ class App extends React.Component {
             <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
             <ProtectedRoute path="/bad" component={BadInventory}/>
             <ProtectedRoute path="/add" component={AddInventory}/>
+            <ProtectedRoute path="/log" component={LogHistory}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <Route component={NotFound}/>
           </Switch>
