@@ -10,6 +10,7 @@ import Landing from '../pages/Landing';
 import Inventory from '../pages/Inventory';
 import AddInventory from '../pages/AddInventory';
 import EditInventory from '../pages/EditInventory';
+import BadInventory from '../pages/BadInventory';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -31,6 +32,7 @@ class App extends React.Component {
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/list" component={Inventory}/>
             <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
+            <ProtectedRoute path="/bad" component={BadInventory}/>
             <ProtectedRoute path="/add" component={AddInventory}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <Route component={NotFound}/>

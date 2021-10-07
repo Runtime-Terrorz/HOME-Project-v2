@@ -7,10 +7,10 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import QRCode from 'qrcode';
 import { Inventories, inventoryMedications, medLocations } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import QRCode from 'qrcode';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
@@ -37,7 +37,7 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const AddInventory = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-  // Check if the quantity against the threshold to determine the status
+  // Check the quantity against the threshold to determine the status
   const checkAmount = (quantity, threshold) => {
     if (quantity <= threshold) {
       return 'bad';
@@ -54,12 +54,12 @@ const AddInventory = () => {
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
 
-    //Generates QR Code for dispense page
+    // Generates QR Code for dispense page
     let qrCode;
-    QRCode.toDataURL('http://localhost:3000/#/dispense/' + lot)
+    QRCode.toDataURL(`http://localhost:3000/#/dispense/${lot}`)
       .then(url => {
         qrCode = url;
-      })
+      });
 
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
@@ -77,7 +77,7 @@ const AddInventory = () => {
   return (
     <Grid id={PAGE_IDS.ADD_INVENTORY} container centered className="addinventory">
       <Grid.Column width={8}>
-        <Header inverted  as="h2" textAlign="center">Add Inventory</Header>
+        <Header inverted as="h1" textAlign="center">Add Inventory</Header>
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>

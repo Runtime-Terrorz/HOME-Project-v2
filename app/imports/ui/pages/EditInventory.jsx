@@ -18,10 +18,19 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 const EditInventory = ({ doc, ready }) => {
   const [startDate, setStartDate] = useState(new Date());
 
+  // Check the quantity against the threshold to determine the status
+  const checkAmount = (quantity, threshold) => {
+    if (quantity <= threshold) {
+      return 'bad';
+    }
+    return 'good';
+  };
+
   // On successful submit, insert the data.
   const submit = (data) => {
-    const { medication, name, location, threshold, quantity, lot, status, _id } = data;
+    const { medication, name, location, threshold, quantity, lot, _id } = data;
     const expiration = startDate;
+    const status = checkAmount(threshold, quantity);
     const collectionName = Inventories.getCollectionName();
     const updateData = { id: _id, medication, name, location, threshold, quantity, lot, expiration, status };
     updateMethod.callPromise({ collectionName, updateData })
@@ -40,7 +49,7 @@ const EditInventory = ({ doc, ready }) => {
             <Form.Group widths={'equal'}>
               <TextField name='lot'/>
               <Grid.Row>
-                Expiration Date
+                  Expiration Date
                 <Icon name='calendar alternate outline'/>
                 <DatePicker name='expiration' selected={startDate} onChange={(date) => setStartDate(date)}/>
               </Grid.Row>

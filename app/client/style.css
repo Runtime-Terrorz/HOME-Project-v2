@@ -1,3 +1,44 @@
+.ui.active.visible.top.left.pointing.dropdown .menu.transition.visible{
+  left: -10px;
+}
+
+.mail.icon {
+  position: relative;
+  top: 0.2em;
+}
+
+.ui.card .content.notitem {
+  padding: 0 0;
+  max-height: 500px;
+  width: 295px;
+  overflow: auto;
+}
+
+.content.notitem .ui.card {
+  margin: 0 0;
+  height: auto;
+  white-space: normal;
+}
+
+.content .close.icon {
+  position: relative;
+  left: 16.4em;
+  bottom: 0.7em;
+}
+.content .warning.icon {
+  position: relative;
+  bottom: 0.4em;
+}
+
+.content .text {
+  color: black;
+}
+
+.baditem {
+  background-color: #D8C405;
+  color: #FFFFFF;
+}
+
 .top {
     box-shadow: none;
     border: none !important;
@@ -52,16 +93,16 @@
 .ui.container.inventory {
     margin-bottom: 2rem;
 }
-.listcontainer {
+/*.listcontainer {
   background-color: #800000 !important;
   color: #FFFFFF !important;
-}
+} */
 
 .ui.container.editinventory {
   margin-bottom: 90px;
 }
 
-.h2, p{
+h1.ui.header {
   font-family: "Kohinoor Bangla";
   font-size: 20px;
   letter-spacing: 0.2rem;
