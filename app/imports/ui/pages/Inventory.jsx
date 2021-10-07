@@ -14,13 +14,10 @@ const Inventory = ({ ready, inventories }) => {
   const handleChange = (e, data) => {
     e.preventDefault();
     setFilter(data.value);
-    console.log(data);
   };
   if (ready) {
-    console.log('abc');
     if (filter !== 'threshold') {
       sorted = _.sortBy(inventories, filter);
-      console.log(sorted);
     } else {
       sorted = _.filter(inventories, (inventory) => inventory.quantity < inventory.threshold);
       sorted = _.sortBy(sorted, filter);

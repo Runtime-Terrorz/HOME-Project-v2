@@ -1,5 +1,6 @@
 /** Define ids for each page. */
 export const PAGE_IDS = {
+  BAD_INVENTORY: 'bad-inventory',
   ADD_INVENTORY: 'add-inventory',
   EDIT_INVENTORY: 'edit-inventory',
   LANDING: 'landing',
