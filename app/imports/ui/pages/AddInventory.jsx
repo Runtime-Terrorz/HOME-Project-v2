@@ -64,11 +64,11 @@ const AddInventory = () => {
   return (
     <Grid id={PAGE_IDS.ADD_INVENTORY} container centered className="addinventory">
       <Grid.Column width={8}>
-        <Header as="h2" textAlign="center">Add Inventory</Header>
+        <Header inverted  as="h2" textAlign="center">Add Inventory</Header>
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-          <Segment inverted style={{ backgroundColor: '#992E2E' }}>
+          <Segment inverted style={{ backgroundColor: '#800000' }}>
             <SelectField
               name='medication'
               id={COMPONENT_IDS.ADD_INVENTORY_MEDICATION}

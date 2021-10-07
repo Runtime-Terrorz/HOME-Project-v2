@@ -28,9 +28,9 @@ const EditInventory = ({ doc, ready }) => {
   return (ready) ? (
     <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered className="editinventory">
       <Grid.Column width={8}>
-        <Header as="h2" textAlign="center">Edit Inventory</Header>
+        <Header inverted  as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
-          <Segment inverted style={{ backgroundColor: '#992E2E' }}>
+          <Segment inverted style={{ backgroundColor: '#800000' }}>
             <SelectField name='medication'/>
             <TextField name='name'/>
             <Form.Group widths={'equal'}>

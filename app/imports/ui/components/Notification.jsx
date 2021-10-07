@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Card, Dropdown, Container } from 'semantic-ui-react';
+import { Card, Dropdown, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Inventories } from '../../api/inventory/InventoryCollection';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
@@ -10,7 +10,7 @@ import NotificationFeed from './NotificationFeed';
 const Notification = ({ ready, lowInventory }) => ((ready) ? (
   <Dropdown id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key='notification' icon={'mail'} pointing="top left">
     <Dropdown.Menu>
-      <Card>
+      <Card fluid>
         <Card.Content>
           <Card.Header>Notifications</Card.Header>
         </Card.Content>

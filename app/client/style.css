@@ -61,7 +61,30 @@
   margin-bottom: 90px;
 }
 
-.h2 {
+.h2, p{
   font-family: "Kohinoor Bangla";
-  font-size: 18px;
+  font-size: 20px;
+  letter-spacing: 0.2rem;
+  color: whitesmoke;
 }
+
+.ui.grid.landing {
+  margin-top: 140px;
+  margin-bottom: 180px;
+}
+
+.signout-page {
+  margin-top: 276px;
+  margin-bottom: 310px;
+}
+
+.login-page {
+  margin-top: 180px;
+  margin-bottom: 160px;
+}
+
+.logup-page {
+  margin-top: 180px;
+  margin-bottom: 160px;
+}
+

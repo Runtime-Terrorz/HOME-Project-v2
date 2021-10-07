@@ -51,14 +51,14 @@ const Signin = ({ location }) => {
   }
   // Otherwise return the Login form.
   return (
-    <Container id={PAGE_IDS.SIGN_IN}>
+    <Container id={PAGE_IDS.SIGN_IN} className="login-page">
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-        <Grid.Column>
-          <Header as="h2" textAlign="center">
-            Login to your account
+        <Grid.Column width={6} style={{ backgroundColor: '#800000' }}>
+          <Header inverted as="h2" textAlign="center">
+            <p>Login to your account</p>
           </Header>
           <Form onSubmit={submit}>
-            <Segment stacked>
+            <Segment stacked inverted style={{ backgroundColor: '#992E2E' }}>
               <Form.Input
                 label="Email"
                 id={COMPONENT_IDS.SIGN_IN_FORM_EMAIL}
@@ -79,10 +79,10 @@ const Signin = ({ location }) => {
                 type="password"
                 onChange={handleChange}
               />
-              <Form.Button id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} content="Submit" />
+              <Form.Button id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} content="Submit" color='blue'/>
             </Segment>
           </Form>
-          <Message>
+          <Message floating>
             <Link to="/signup">Click here to Register</Link>
           </Message>
           {error === '' ? (
