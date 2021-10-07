@@ -5,6 +5,7 @@
 .ui.card .content.notitem {
   padding: 0 0;
   max-height: 500px;
+  width: 295px;
   overflow: auto;
 }
 
@@ -22,6 +23,10 @@
 .content .warning.icon {
   position: relative;
   bottom: 0.4em;
+}
+
+.content .text {
+  color: black;
 }
 
 .top {

@@ -25,7 +25,7 @@ const Notification = ({ ready, lowInventory }) => (
   ) : '');
 
 Notification.propTypes = {
-  lowInventory: PropTypes.array,
+  lowInventory: PropTypes.object,
   ready: PropTypes.bool,
 };
 
@@ -35,7 +35,7 @@ const NotificationContainer = withTracker(() => {
   // Determine if the subscription is ready
   const ready = subscription.ready();
   // Get the Stuff documents and sort them by name.
-  const lowInventory = Inventories.find({ status: 'bad' }).fetch();
+  const lowInventory = Inventories.find({ status: 'bad' }).fetch().reverse();
 
   return {
     ready,

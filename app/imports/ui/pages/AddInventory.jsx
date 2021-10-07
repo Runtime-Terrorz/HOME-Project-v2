@@ -36,7 +36,7 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const AddInventory = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-  // Check if the quantity against the threshold to determine the status
+  // Check the quantity against the threshold to determine the status
   const checkAmount = (quantity, threshold) => {
     if (quantity <= threshold) {
       return 'bad';
