@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Segment, Header, Form, Icon } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
@@ -10,6 +10,7 @@ import SimpleSchema from 'simpl-schema';
 import { Inventories, inventoryMedications, medLocations } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import QRCode from 'qrcode';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
@@ -52,10 +53,22 @@ const AddInventory = () => {
     const status = checkAmount(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
+
+    //Generates QR Code for dispense page
+    let qrCode;
+    QRCode.toDataURL('http://localhost:3000/#/dispense/' + lot)
+      .then(url => {
+        qrCode = url;
+      })
+
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
-        swal('Success', 'Order added successfully', 'success');
+        swal({
+          title: 'Success',
+          text: 'Order added successfully. Save QRCode for dispensing.',
+          icon: qrCode,
+        });
         formRef.reset();
       });
   };
