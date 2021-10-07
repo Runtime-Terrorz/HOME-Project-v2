@@ -31,27 +31,25 @@ const EditInventory = ({ doc, ready }) => {
 
   return (ready) ? (
     <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered className="editinventory">
-      <Grid.Column width={10}>
-        <Header as="h2" textAlign="center">Edit Inventory</Header>
+      <Grid.Column width={8}>
+        <Header inverted as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
-          <Segment inverted style={{ backgroundColor: '#992E2E' }}>
+          <Segment inverted style={{ backgroundColor: '#800000' }}>
             <SelectField name='medication'/>
             <TextField name='name'/>
             <Form.Group widths={'equal'}>
-              <TextField name='location'/>
-              <Form.Group>
-                <NumField name='threshold' decimal={false}/>
-                <NumField name='quantity' decimal={false}/>
-              </Form.Group>
-            </Form.Group>
-            <Form.Group widths={'2'}>
+              <TextField name='lot'/>
               <Grid.Row>
                 Expiration Date
                 <Icon name='calendar alternate outline'/>
                 <DatePicker name='expiration' selected={startDate} onChange={(date) => setStartDate(date)}/>
               </Grid.Row>
-              <TextField name='lot'/>
             </Form.Group>
+            <Form.Group widths={'equal'}>
+              <NumField name='threshold' decimal={false}/>
+              <NumField name='quantity' decimal={false}/>
+            </Form.Group>
+            <TextField name='location'/>
             <SubmitField value='Submit'/>
             <ErrorsField/>
             <HiddenField name='owner' />
