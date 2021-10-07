@@ -9,7 +9,6 @@ import { Inventories, inventoryMedications } from '../../api/inventory/Inventory
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import QRCode from 'qrcode';
-import { useParams } from 'react-router-dom';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -29,7 +28,7 @@ const formSchema = new SimpleSchema({
 const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
-const AddInventoryNoLot = () => {
+const AddInventory = () => {
   /** Check if the quantity against the threshold to determine the status */
   const checkAmount = (quantity, threshold) => {
     console.log(`Threshold: ${threshold} Quantity: ${quantity}`);
@@ -100,4 +99,4 @@ const AddInventoryNoLot = () => {
   );
 };
 
-export default AddInventoryNoLot;
+export default AddInventory;

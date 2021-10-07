@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import Inventory from '../pages/Inventory';
 import AddInventory from '../pages/AddInventory';
-import AddInventoryNoLot from '../pages/AddInventoryNoLot';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -30,8 +29,7 @@ class App extends React.Component {
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/list" component={Inventory}/>
-            <ProtectedRoute path="/add/:lotVal" component={AddInventory}/>
-            <ProtectedRoute path="/add" component={AddInventoryNoLot}/>
+            <ProtectedRoute path="/add" component={AddInventory}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <Route component={NotFound}/>
           </Switch>
