@@ -226,7 +226,7 @@
       "lot": 100,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good"
+      "status": "bad"
     },
     { "medication": "Diabetes Meds",
       "name": "Glipizide 10 mg",
@@ -417,7 +417,7 @@
       "lot": 100,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good"
+      "status": "bad"
     },
 
     { "medication": "GYN Meds",
