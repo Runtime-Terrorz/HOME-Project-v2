@@ -5,7 +5,7 @@ import { navBar } from './navbar.component';
 import { signUpPage } from './signup.page';
 import { landingPage } from './landing.page';
 import { addOrder } from './addorder.page';
-import { editOrder } from "./editinventory.page";
+import { editOrder } from './editinventory.page';
 // import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
 
 /* global fixture:false, test:false */
