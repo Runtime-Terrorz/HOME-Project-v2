@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Card, Dropdown, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
@@ -14,7 +14,9 @@ const Notification = ({ ready, lowInventory }) => (
         <Card>
           <Card.Content>
             <Card.Header>Notifications</Card.Header>
-            <Button color='blue'>Generate Report</Button>
+            <Link to={'/bad'}>
+              <Button color='blue' id={COMPONENT_IDS.GENERATE_REPORT_BUTTON}>Generate Report</Button>
+            </Link>
           </Card.Content>
           <Card.Content className='notitem'>
             {lowInventory.map((inventory) => <NotificationFeed key={inventory._id} inventory={inventory}/>)}
@@ -25,7 +27,7 @@ const Notification = ({ ready, lowInventory }) => (
   ) : '');
 
 Notification.propTypes = {
-  lowInventory: PropTypes.object,
+  lowInventory: PropTypes.array,
   ready: PropTypes.bool,
 };
 

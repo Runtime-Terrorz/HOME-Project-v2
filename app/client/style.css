@@ -1,5 +1,10 @@
-.ui.active.visible.top.left.pointing.dropdown .menu.transition.visible.notmenu {
+.ui.active.visible.top.left.pointing.dropdown .menu.transition.visible{
   left: -10px;
+}
+
+.mail.icon {
+  position: relative;
+  top: 0.4em;
 }
 
 .ui.card .content.notitem {
@@ -27,6 +32,10 @@
 
 .content .text {
   color: black;
+}
+
+.baditem {
+  background-color: #D8C405;
 }
 
 .top {
