@@ -56,11 +56,18 @@ class NavBar {
     await t.click(`#${COMPONENT_IDS.NAVBAR_LIST_INVENTORY_ADMIN}`);
   }
 
-  /** Go to the manage database page. Must be adimin. */
+  /** Go to the manage database page. Must be admin. */
   async gotoManageDatabasePage() {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN}`);
     await t.click(`#${COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE}`);
+  }
+
+  /** Got to the notifications tab. */
+  async gotoNotificationsTab() {
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_NOTIFICATION}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_NOTIFICATION}`);
   }
 }
 
