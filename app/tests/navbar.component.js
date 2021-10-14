@@ -63,11 +63,17 @@ class NavBar {
     await t.click(`#${COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE}`);
   }
 
-  /** Got to the notifications tab. */
+  /** Go to the notifications tab. */
   async gotoNotificationsTab() {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_NOTIFICATION}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_NOTIFICATION}`);
+  }
+
+  /** Go to the notifications tab. */
+  async gotoLogHistoryPage() {
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.click(`#${COMPONENT_IDS.NAVBAR_LOG_HISTORY}`);
   }
 }
 

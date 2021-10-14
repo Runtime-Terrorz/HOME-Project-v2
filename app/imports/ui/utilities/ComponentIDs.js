@@ -25,6 +25,7 @@ export const COMPONENT_IDS = {
   NAVBAR_LOGIN_DROPDOWN: 'navbar-login-dropdown',
   NAVBAR_LOGIN_DROPDOWN_SIGN_IN: 'navbar-login-dropdown-sign-in',
   NAVBAR_LOGIN_DROPDOWN_SIGN_UP: 'navbar-login-dropdown-sign-up',
+  NAVBAR_LOG_HISTORY: 'navbar-log-history',
   NAVBAR_MANAGE_DROPDOWN: 'navbar-manage-dropdown',
   NAVBAR_NOTIFICATION: 'navbar-notification',
   NAVBAR_MANAGE_DROPDOWN_DATABASE: 'navbar-manage-dropdown-database',
