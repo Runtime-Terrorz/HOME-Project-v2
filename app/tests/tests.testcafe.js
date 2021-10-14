@@ -57,12 +57,12 @@ test('Test that user can edit an order', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoListInventoryPage();
   await t.click('a[id="list-inventory-edit"]');
+  await editOrder.isDisplayed();
   await editOrder.orderIsEdited(updatedOrder.medication, updatedOrder.name, updatedOrder.location, updatedOrder.threshold, updatedOrder.quantity, updatedOrder.lot);
   await navBar.gotoListInventoryPage();
   const inventoryExists = Selector('ABC124');
   await t.expect(inventoryExists).ok();
 });
-
 
 test('Test that user pages show up', async () => {
   await navBar.gotoSigninPage();

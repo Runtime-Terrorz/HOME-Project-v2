@@ -11,6 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Inventories } from '../../api/inventory/InventoryCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
@@ -44,22 +45,50 @@ const EditInventory = ({ doc, ready }) => {
         <Header inverted as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment inverted style={{ backgroundColor: '#800000' }}>
-            <SelectField name='medication'/>
-            <TextField name='name'/>
+            <SelectField
+              name='medication'
+              id={COMPONENT_IDS.EDIT_INVENTORY_MEDICATION}
+            />
+            <TextField
+              name='name'
+              id={COMPONENT_IDS.EDIT_INVENTORY_NAME}
+            />
             <Form.Group widths={'equal'}>
-              <TextField name='lot'/>
+              <TextField
+                name='lot'
+                id={COMPONENT_IDS.EDIT_INVENTORY_LOT}
+              />
               <Grid.Row>
                   Expiration Date
                 <Icon name='calendar alternate outline'/>
-                <DatePicker name='expiration' selected={startDate} onChange={(date) => setStartDate(date)}/>
+                <DatePicker
+                  name='expiration'
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  id={COMPONENT_IDS.EDIT_INVENTORY_EXPIRATION}
+                />
               </Grid.Row>
             </Form.Group>
             <Form.Group widths={'equal'}>
-              <NumField name='threshold' decimal={false}/>
-              <NumField name='quantity' decimal={false}/>
+              <NumField
+                name='threshold'
+                decimal={false}
+                id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
+              />
+              <NumField
+                name='quantity'
+                decimal={false}
+                id={COMPONENT_IDS.EDIT_INVENTORY_QUANTITY}
+              />
             </Form.Group>
-            <TextField name='location'/>
-            <SubmitField value='Submit'/>
+            <TextField
+              name='location'
+              id={COMPONENT_IDS.EDIT_INVENTORY_LOCATION}
+            />
+            <SubmitField
+              value='Submit'
+              id={COMPONENT_IDS.EDIT_INVENTORY_SUBMIT}
+            />
             <ErrorsField/>
             <HiddenField name='owner' />
           </Segment>
