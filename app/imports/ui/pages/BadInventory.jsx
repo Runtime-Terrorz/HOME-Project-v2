@@ -8,7 +8,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const BadInventory = ({ ready, inventories }) => ((ready) ? (
-  <Container id={PAGE_IDS.LIST_BadInventory}>
+  <Container id={PAGE_IDS.LIST_BAD_INVENTORY}>
     <Header as="h1" textAlign="left" inverted>Report</Header>
     <Table celled className="listcontainer" >
       <Table.Header>
