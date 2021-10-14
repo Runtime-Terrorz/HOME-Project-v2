@@ -1,5 +1,5 @@
 import { Selector, t } from 'testcafe';
-import { addInventoryPage, listInventoryPage, signOutPage } from './simple.page';
+import { addInventoryPage, listInventoryPage, signOutPage, logHistoryPage } from './simple.page';
 import { signInPage } from './signin.page';
 import { navBar } from './navbar.component';
 import { signUpPage } from './signup.page';
@@ -87,5 +87,7 @@ test('Test that admin pages show up', async () => {
   await addInventoryPage.isDisplayed();
   await navBar.gotoListInventoryPage();
   await listInventoryPage.isDisplayed();
+  await navBar.gotoLogHistoryPage();
+  await logHistoryPage.isDisplayed();
   await navBar.gotoNotificationsTab();
 });
