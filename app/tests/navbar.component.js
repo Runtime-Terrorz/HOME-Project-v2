@@ -66,6 +66,7 @@ class NavBar {
   /** Got to the notifications tab. */
   async gotoNotificationsTab() {
     await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_CURRENT_USER}`).exists).ok();
+    await t.expect(Selector(`#${COMPONENT_IDS.NAVBAR_NOTIFICATION}`).exists).ok();
     await t.click(`#${COMPONENT_IDS.NAVBAR_NOTIFICATION}`);
   }
 }
