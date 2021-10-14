@@ -17,7 +17,6 @@ class SimplePage {
 }
 
 export const addInventoryPage = new SimplePage(PAGE_IDS.ADD_INVENTORY);
-export const editStuffPage = new SimplePage(PAGE_IDS.EDIT_STUFF);
 export const listInventoryPage = new SimplePage(PAGE_IDS.LIST_INVENTORY);
 export const listStuffAdminPage = new SimplePage(PAGE_IDS.LIST_INVENTORY);
 export const manageDatabasePage = new SimplePage(PAGE_IDS.MANAGE_DATABASE);

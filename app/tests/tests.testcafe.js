@@ -72,10 +72,9 @@ test('Test that user pages show up', async () => {
   await addInventoryPage.isDisplayed();
   await navBar.gotoListInventoryPage();
   await listInventoryPage.isDisplayed();
-  /*  // want to see if we can get to the editStuffPage
-  const editLinks = await Selector(`.${COMPONENT_IDS.LIST_STUFF_EDIT}`);
-  await t.click(editLinks.nth(0));
-  await editStuffPage.isDisplayed(); */
+  await t.click('a[id="list-inventory-edit"]');
+  await editOrder.isDisplayed();
+  await navBar.gotoNotificationsTab();
   await navBar.logout();
   await signOutPage.isDisplayed();
 });
@@ -88,12 +87,5 @@ test('Test that admin pages show up', async () => {
   await addInventoryPage.isDisplayed();
   await navBar.gotoListInventoryPage();
   await listInventoryPage.isDisplayed();
-  // want to see if we can get to the editStuffPage
-  /* const editLinks = await Selector(`.${COMPONENT_IDS.LIST_STUFF_EDIT}`);
-  await t.click(editLinks.nth(0));
-  await editStuffPage.isDisplayed();
-  await navBar.gotoListInventoryAdminPage();
-  await list.isDisplayed();
-  await navBar.gotoManageDatabasePage();
-  await manageDatabasePage.isDisplayed(); */
+  await navBar.gotoNotificationsTab();
 });
