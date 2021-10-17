@@ -17,7 +17,7 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
 /** Renders the Page for editing a single document. */
 const EditInventory = ({ doc, ready }) => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(doc.expiration);
 
   // Check the quantity against the threshold to determine the status
   const checkAmount = (quantity, threshold) => {
