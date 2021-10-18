@@ -106,6 +106,19 @@ class InventoryCollection extends BaseCollection {
   }
 
   /**
+   * Updates the given document.
+   * @param docID the id of the document to update.
+   * @param amount the amount to dispense from quantity.
+   */
+  dispense(docID, { amount }) {
+    const updateData = {};
+    if (_.isNumber(amount)) {
+      updateData.quantity -= amount;
+    }
+    this._collection.update(docID, { $set: updateData });
+  }
+
+  /**
    * A stricter form of remove that throws an error if the document or docID could not be found in this collection.
    * @param { String | Object } name A document or docID in this collection.
    * @returns true

@@ -19,6 +19,11 @@ const InventoryItem = ({ inventory }) => ((inventory.status === 'good') ? (
         <Icon name='edit outline'/>
       </Link>
     </Table.Cell>
+    <Table.Cell>
+      <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}/${inventory.lot}`}>
+        <Icon name='recycle'/>
+      </Link>
+    </Table.Cell>
   </Table.Row>
 ) : <Table.Row className='baditem'>
   <Table.Cell>{inventory.medication}</Table.Cell>
@@ -31,6 +36,11 @@ const InventoryItem = ({ inventory }) => ((inventory.status === 'good') ? (
   <Table.Cell>
     <Link id={COMPONENT_IDS.LIST_INVENTORY_EDIT} to={`/edit/${inventory._id}`}>
       <Icon name='edit outline'/>
+    </Link>
+  </Table.Cell>
+  <Table.Cell>
+    <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}/${inventory.lot}`}>
+      <Icon name='recycle'/>
     </Link>
   </Table.Cell>
 </Table.Row>);
