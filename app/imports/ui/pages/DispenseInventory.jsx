@@ -17,12 +17,12 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 /** Renders the Page for dispensing a single document. */
 const DispenseInventory = ({ doc, ready }) => {
 
-  // On successful submit, insert the data.
+  // On successful submit, update the data
   const submit = (data) => {
-    const { _id } = data;
-    const quantity = ready.quantity - data.quantity;
+    const { medication, name, lot, _id } = data;
     const collectionName = Inventories.getCollectionName();
-    const updateData = { id: _id, quantity };
+    const quantity = doc.quantity - data.quantity;
+    const updateData = { id: _id, medication, name, quantity, lot };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
@@ -55,6 +55,7 @@ const DispenseInventory = ({ doc, ready }) => {
               <NumField
                 name='quantity'
                 decimal={false}
+                value={0}
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
               />
             </Form.Group>
