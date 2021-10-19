@@ -3,7 +3,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Card, Dropdown, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Inventories } from '../../api/inventory/InventoryCollection';
+import { Inventories, inventoryStates } from '../../api/inventory/InventoryCollection';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import NotificationFeed from './NotificationFeed';
 
@@ -30,12 +30,12 @@ Notification.propTypes = {
 };
 
 const NotificationContainer = withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to inventory documents.
   const subscription = Inventories.subscribeInventory();
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents and sort them by name.
-  const lowInventory = Inventories.find({ status: 'bad' }).fetch().reverse();
+  // Get the Inventory documents and sort them by name.
+  const lowInventory = Inventories.find({ status: { $in: [inventoryStates.bad, inventoryStates.ok] } }).fetch().reverse();
 
   return {
     ready,
