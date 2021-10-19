@@ -88,27 +88,22 @@ if (Meteor.isServer) {
       });
       // console.log(Stuffs.findDoc(docID));
       fc.assert(
-        fc.property(fc.integer(0, inventoryMedications.length - 1), fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.date(), fc.lorem(1), fc.lorem(1), fc.integer(0, inventoryStates.length - 1),
-          (newMedication, newName, newLocation, newThreshold, newQuantity, newLot, newExpiration, newOwner, newStatus) => {
+        fc.property(fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.date(), fc.integer(0, inventoryStates.length - 1),
+          (newName, newLocation, newThreshold, newQuantity, newExpiration, newStatus) => {
             Inventories.update(docID, {
-              medication: newMedication,
               name: newName,
               location: newLocation,
               threshold: newThreshold,
               quantity: newQuantity,
               expiration: newExpiration,
-              owner: newOwner,
               status: inventoryStates[newStatus],
             });
             const inventory = Inventories.findDoc(docID);
-            expect(inventory.medication).to.equal(newMedication);
             expect(inventory.name).to.equal(newName);
             expect(inventory.location).to.equal(newLocation);
             expect(inventory.threshold).to.equal(newThreshold);
             expect(inventory.quantity).to.equal(newQuantity);
-            expect(inventory.lot).to.equal(newLot);
             expect(inventory.expiration).to.equal(newExpiration);
-            expect(inventory.owner).to.equal(newOwner);
             expect(inventory.status).to.equal(inventoryStates[newStatus]);
           }),
       );
