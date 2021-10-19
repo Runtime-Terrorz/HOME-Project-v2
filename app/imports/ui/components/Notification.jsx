@@ -17,7 +17,7 @@ const Notification = ({ lowInventory }) => (
             <Button color='red' id={COMPONENT_IDS.GENERATE_REPORT_BUTTON}>Generate Report</Button>
           </Link>
         </Card.Content>
-        <Card.Content className='notitem'>
+        <Card.Content className='notificationItem'>
           {lowInventory.map((inventory) => <NotificationFeed key={inventory._id} inventory={inventory}/>)}
         </Card.Content>
       </Card>
