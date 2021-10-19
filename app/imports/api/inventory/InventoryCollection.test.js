@@ -43,8 +43,13 @@ if (Meteor.isServer) {
     });
 
     it('Can define duplicates', function test2() {
+      const medication = faker.animal.type();
       const name = faker.animal.dog();
+      const location = faker.address.country();
+      const threshold = faker.datatype.Number({ min: 1, max: 100 });
       const quantity = faker.datatype.Number({ min: 1, max: 100 });
+      const lot = faker.unique.datatype.Number({ min: 1, max: 1000 });
+      const expiration = faker.date.between('2021-10-19', '2021-12-31').toLocaleDateString('en-US');
       const owner = faker.internet.email();
       const status = inventoryStates[Math.floor(Math.random() * inventoryStates.length)];
       const docID1 = Inventories.define({ medication, name, location, threshold, quantity, lot, expiration, owner, status });

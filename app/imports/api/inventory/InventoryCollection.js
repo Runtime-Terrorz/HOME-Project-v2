@@ -125,7 +125,7 @@ class InventoryCollection extends BaseCollection {
     }
     return status;
   }
-  
+
   /**
    * A stricter form of remove that throws an error if the document or docID could not be found in this collection.
    * @param { String | Object } name A document or docID in this collection.
