@@ -56,7 +56,7 @@ if (Meteor.isServer) {
       const location = medLocations[Math.floor(Math.random() * medLocations.length)];
       const threshold = faker.datatype.number({ min: 1, max: 100 });
       const quantity = faker.datatype.number({ min: 1, max: 100 });
-      const lot = faker.unique.datatype.number({ min: 1, max: 1000 });
+      const lot = faker.datatype.number({ min: 1, max: 1000 });
       const expiration = faker.date.between('2021-10-19', '2021-12-31').toLocaleDateString('en-US');
       const owner = faker.internet.email();
       const status = inventoryStates[Math.floor(Math.random() * inventoryStates.length)];
