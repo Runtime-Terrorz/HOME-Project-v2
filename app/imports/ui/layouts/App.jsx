@@ -18,6 +18,7 @@ import Signout from '../pages/Signout';
 import ManageDatabase from '../pages/ManageDatabase';
 import LogHistory from '../pages/LogHistory';
 import { ROLE } from '../../api/role/Role';
+import ListUserAdmin from '../pages/ListUserAdmin';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
             <ProtectedRoute path="/add" component={AddInventory}/>
             <ProtectedRoute path="/log" component={LogHistory}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
+            <AdminProtectedRoute path="/admin" component={ListUserAdmin}/>
             <Route component={NotFound}/>
           </Switch>
           <Footer/>
