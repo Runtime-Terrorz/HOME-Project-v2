@@ -7,14 +7,14 @@
   top: 0.2em;
 }
 
-.ui.card .content.notitem {
+.ui.card .content.notificationItem {
   padding: 0 0;
   max-height: 500px;
   width: 295px;
   overflow: auto;
 }
 
-.content.notitem .ui.card {
+.content.notificationItem .ui.card {
   margin: 0 0;
   height: auto;
   white-space: normal;
@@ -32,11 +32,6 @@
 
 .content .text {
   color: black;
-}
-
-.baditem {
-  background-color: #D8C405;
-  color: #FFFFFF;
 }
 
 .top {

@@ -32,7 +32,7 @@
       "lot": 2,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Allergy & Cold Medicines",
       "name": "Cold and Flu Syrup",
@@ -83,7 +83,7 @@
       "lot": 7,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Anti-microbial",
       "name": "Amoxicillin 250 mg/5ml Susp",
@@ -93,7 +93,7 @@
       "lot": 8,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Anti-microbial",
       "name": "Amoxicillin 400 mg/5ml Susp",
@@ -103,7 +103,7 @@
       "lot": 9,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Anti-microbial",
       "name": "Amoxicillin 500 mg Capsules",
@@ -175,7 +175,7 @@
       "lot": 16,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Dermatological Preparations",
       "name": "Bacitracin Ointment packets",
@@ -215,7 +215,7 @@
       "lot": 20,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
 
     { "medication": "Diabetes Meds",
@@ -226,7 +226,7 @@
       "lot": 21,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Diabetes Meds",
       "name": "Glipizide 10 mg",
@@ -277,7 +277,7 @@
       "lot": 26,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Ear and Eye Preparations",
       "name": "Antipyrine & Benzocaine Otic",
@@ -297,7 +297,7 @@
       "lot": 28,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Ear and Eye Preparations",
       "name": "Artificial Tears",
@@ -307,7 +307,7 @@
       "lot": 29,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Ear and Eye Preparations",
       "name": "Neomycin/Polymyxin/Hydrocortisone (Cortisporin) Otic",
@@ -327,7 +327,7 @@
       "lot": 31,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Emergency Kit",
       "name": "Medicaine Sting/Bite Swab",
@@ -336,7 +336,7 @@
       "lot": 32,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Emergency Kit",
       "name": "Epipen",
@@ -366,7 +366,7 @@
       "lot": 35,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
 
     { "medication": "GI Meds",
@@ -407,7 +407,7 @@
       "lot": 39,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "GI Meds",
       "name": "Pepto-Bismol",
@@ -417,7 +417,7 @@
       "lot": 40,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
 
     { "medication": "GYN Meds",
@@ -505,7 +505,7 @@
       "lot": 49,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Pulmonary",
       "name": "Steroid/Long Acting Beta Agonist (Child)",
