@@ -15,7 +15,7 @@ export const medLocations = ['Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', '
 export const inventoryPublications = {
   inventory: 'Inventory',
 };
-export const inventoryStates = ['good', 'bad'];
+export const inventoryStates = { good: 'good', ok: 'ok', bad: 'bad' };
 
 class InventoryCollection extends BaseCollection {
   constructor() {
@@ -36,10 +36,7 @@ class InventoryCollection extends BaseCollection {
       lot: String,
       expiration: Date,
       owner: String,
-      status: {
-        type: String,
-        allowedValues: inventoryStates,
-      },
+      status: String,
     }));
   }
 
@@ -103,6 +100,30 @@ class InventoryCollection extends BaseCollection {
       updateData.status = status;
     }
     this._collection.update(docID, { $set: updateData });
+  }
+
+  /**
+   * Compares the quantity vs the threshold and determines status
+   * @param quantity the amount of the inventory left
+   * @param threshold the amount that will determine that status
+   * @return the status of the item
+   */
+  checkStatus(quantity, threshold) {
+    let status;
+    // if quantity is less than or equal to 0
+    if (quantity <= 0) {
+      // status is set to bad
+      status = inventoryStates.bad;
+      // if quantity is greater than zero, but less than or equal to thresh hold
+    } else if (quantity <= threshold && quantity > 0) {
+      // set status to ok
+      status = inventoryStates.ok;
+    } else {
+      // if quantity is greater than threshold
+      // set status to good
+      status = inventoryStates.good;
+    }
+    return status;
   }
 
   /**
