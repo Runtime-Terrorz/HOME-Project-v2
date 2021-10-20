@@ -81,7 +81,7 @@ const EditInventory = ({ doc, ready }) => {
                 id={COMPONENT_IDS.EDIT_INVENTORY_QUANTITY}
               />
             </Form.Group>
-            <TextField
+            <SelectField
               name='location'
               id={COMPONENT_IDS.EDIT_INVENTORY_LOCATION}
             />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Loader, Header, Segment, Form } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Form, TextArea } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -55,8 +55,16 @@ const DispenseInventory = ({ doc, ready }) => {
               <NumField
                 name='quantity'
                 decimal={false}
+                min='0'
                 value={0}
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
+              />
+            </Form.Group>
+            <Form.Group>
+              <TextArea
+                placeholder='Notes'
+                rows={3}
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
               />
             </Form.Group>
             <SubmitField

@@ -19,6 +19,7 @@ export const COMPONENT_IDS = {
   DISPENSE_INVENTORY_NAME: 'name',
   DISPENSE_INVENTORY_QUANTITY: 'quantity',
   DISPENSE_INVENTORY_LOT: 'lot',
+  DISPENSE_INVENTORY_NOTES: 'notes',
   DISPENSE_INVENTORY_SUBMIT: 'add-inventory-submit',
   LIST_STUFF_EDIT: 'list-stuff-edit',
   LIST_INVENTORY_EDIT: 'list-inventory-edit',
