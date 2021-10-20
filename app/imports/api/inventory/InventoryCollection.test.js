@@ -105,7 +105,7 @@ if (Meteor.isServer) {
             expect(inventory.threshold).to.equal(newThreshold);
             expect(inventory.quantity).to.equal(newQuantity);
             expect(inventory.expiration).to.equal(newExpiration);
-            expect(inventory.status).to.equal(inventoryStates[newStatus]);
+            expect(inventory.status).to.equal(newStatus);
           }),
       );
       done();
