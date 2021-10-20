@@ -36,11 +36,7 @@ class InventoryCollection extends BaseCollection {
       lot: String,
       expiration: Date,
       owner: String,
-      status: {
-        type: String,
-        allowedValues: inventoryStates,
-        defaultValue: 'good',
-      },
+      status: String,
     }));
   }
 
