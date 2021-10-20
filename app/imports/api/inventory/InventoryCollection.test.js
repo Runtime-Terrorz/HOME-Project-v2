@@ -26,11 +26,11 @@ if (Meteor.isServer) {
 
     it('Can define and removeIt', function test1(done) {
       fc.assert(
-        fc.property(fc.integer(0, inventoryMedications.length - 1), fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.date(), fc.lorem(1), fc.lorem(1), fc.integer(0, inventoryStates.length - 1),
-          (medChoice, name, locChoice, threshold, quantity, lot, expiration, owner, statusChoice) => {
+        fc.property(fc.integer(0, inventoryMedications.length - 1), fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.lorem(1), fc.date(), fc.lorem(1),
+          (medChoice, name, locChoice, threshold, quantity, lot, expiration, owner) => {
             const medication = inventoryMedications[medChoice];
             const location = medLocations[locChoice];
-            const status = inventoryStates[statusChoice];
+            const status = Inventories.checkStatus(quantity, threshold);
             const docID = Inventories.define({
               medication,
               name,
@@ -59,7 +59,7 @@ if (Meteor.isServer) {
       const lot = faker.datatype.number({ min: 1, max: 1000 });
       const expiration = faker.date.between('2021-10-19', '2021-12-31').toLocaleDateString('en-US');
       const owner = faker.internet.email();
-      const status = inventoryStates[Math.floor(Math.random() * inventoryStates.length)];
+      const status = Inventories.checkStatus(quantity, threshold);
       const docID1 = Inventories.define({ medication, name, location, threshold, quantity, lot, expiration, owner, status });
       const docID2 = Inventories.define({ medication, name, location, threshold, quantity, lot, expiration, owner, status });
       expect(docID1).to.not.equal(docID2);
@@ -74,7 +74,7 @@ if (Meteor.isServer) {
       const lot = faker.lorem.words();
       const expiration = faker.date.between('2021-10-19', '2021-12-31').toLocaleDateString('en-US');
       const owner = faker.lorem.words();
-      const status = inventoryStates[faker.datatype.number({ min: 1, max: inventoryStates.length - 1 })];
+      const status = Inventories.checkStatus(quantity, threshold);
       const docID = Inventories.define({
         medication,
         name,
@@ -88,15 +88,16 @@ if (Meteor.isServer) {
       });
       // console.log(Stuffs.findDoc(docID));
       fc.assert(
-        fc.property(fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.date(), fc.integer(0, inventoryStates.length - 1),
-          (newName, newLocation, newThreshold, newQuantity, newExpiration, newStatus) => {
+        fc.property(fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.date(),
+          (newName, newLocation, newThreshold, newQuantity, newExpiration) => {
+            const newStatus = Inventories.checkStatus(newQuantity, newThreshold);
             Inventories.update(docID, {
               name: newName,
               location: newLocation,
               threshold: newThreshold,
               quantity: newQuantity,
               expiration: newExpiration,
-              status: inventoryStates[newStatus],
+              status: newStatus,
             });
             const inventory = Inventories.findDoc(docID);
             expect(inventory.name).to.equal(newName);
