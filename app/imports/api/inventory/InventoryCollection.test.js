@@ -26,7 +26,7 @@ if (Meteor.isServer) {
 
     it('Can define and removeIt', function test1(done) {
       fc.assert(
-        fc.property(fc.integer(0, inventoryMedications.length - 1), fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.date(), fc.lorem(1), fc.lorem(1), fc.integer(0, inventoryStates.length - 1),
+        fc.property(fc.integer(0, inventoryMedications.length - 1), fc.lorem(2), fc.integer(0, inventoryPublications.length - 1), fc.integer(5, 10), fc.integer(0, 10), fc.lorem(1), fc.date(), fc.lorem(1), fc.integer(0, inventoryStates.length - 1),
           (medChoice, name, locChoice, threshold, quantity, lot, expiration, owner, statusChoice) => {
             const medication = inventoryMedications[medChoice];
             const location = medLocations[locChoice];
