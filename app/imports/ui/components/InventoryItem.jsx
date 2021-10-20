@@ -3,6 +3,7 @@ import { Icon, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { inventoryStates } from '../../api/inventory/InventoryCollection';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 const InventoryItem = ({ inventory }) => ((inventory.status === 'good') ? (

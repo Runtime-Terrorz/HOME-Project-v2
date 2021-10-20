@@ -19,7 +19,7 @@
       "location": "Case 2",
       "threshold": 15,
       "quantity": 100,
-      "lot": 100,
+      "lot": 1,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -29,17 +29,17 @@
       "location": "Case 2",
       "threshold": 1,
       "quantity": 2,
-      "lot": 100,
+      "lot": 2,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Allergy & Cold Medicines",
       "name": "Cold and Flu Syrup",
       "location": "Case 2",
       "threshold": 1,
       "quantity": 1.5,
-      "lot": 100,
+      "lot": 3,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -49,7 +49,7 @@
       "location": "Case 2",
       "threshold": 50,
       "quantity": 415,
-      "lot": 100,
+      "lot": 4,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -59,7 +59,7 @@
       "location": "Case 2",
       "threshold": 1,
       "quantity": 0,
-      "lot": 100,
+      "lot": 5,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -70,7 +70,7 @@
       "location": "Freezer",
       "threshold": 30,
       "quantity": 100,
-      "lot": 100,
+      "lot": 6,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -80,37 +80,37 @@
       "location": "Freezer",
       "threshold": 1,
       "quantity": 1,
-      "lot": 100,
+      "lot": 7,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Anti-microbial",
       "name": "Amoxicillin 250 mg/5ml Susp",
       "location": "Freezer",
       "threshold": 1,
       "quantity": 1,
-      "lot": 100,
+      "lot": 8,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Anti-microbial",
       "name": "Amoxicillin 400 mg/5ml Susp",
       "location": "Freezer",
       "threshold": 1,
       "quantity": 1,
-      "lot": 100,
+      "lot": 9,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Anti-microbial",
       "name": "Amoxicillin 500 mg Capsules",
       "location": "Freezer",
       "threshold": 30,
       "quantity": 100,
-      "lot": 100,
+      "lot": 10,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -121,7 +121,7 @@
       "location": "Case 7",
       "threshold": 0,
       "quantity": 0,
-      "lot": 100,
+      "lot": 11,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -131,7 +131,7 @@
       "location": "Case 7",
       "threshold": 30,
       "quantity": 90,
-      "lot": 100,
+      "lot": 12,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -141,7 +141,7 @@
       "location": "Case 7",
       "threshold": 30,
       "quantity": 90,
-      "lot": 100,
+      "lot": 13,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -151,7 +151,7 @@
       "location": "Case 7",
       "threshold": 30,
       "quantity": 90,
-      "lot": 100,
+      "lot": 14,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -161,7 +161,7 @@
       "location": "Case 7",
       "threshold": 25,
       "quantity": 100,
-      "lot": 100,
+      "lot": 15,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -172,17 +172,17 @@
       "location": "Freezer-Derm",
       "threshold": 2,
       "quantity": 2,
-      "lot": 100,
+      "lot": 16,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Dermatological Preparations",
       "name": "Bacitracin Ointment packets",
       "location": "Freezer-Derm",
       "threshold": 30,
       "quantity": 67,
-      "lot": 100,
+      "lot": 17,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -192,7 +192,7 @@
       "location": "Freezer-Derm",
       "threshold": 1,
       "quantity": 2,
-      "lot": 100,
+      "lot": 18,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -202,7 +202,7 @@
       "location": "Freezer-Derm",
       "threshold": 1,
       "quantity": 0,
-      "lot": 100,
+      "lot": 19,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -212,10 +212,10 @@
       "location": "Freezer-Derm",
       "threshold": 5,
       "quantity": 2,
-      "lot": 100,
+      "lot": 20,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
 
     { "medication": "Diabetes Meds",
@@ -223,17 +223,17 @@
       "location": "Case 8",
       "threshold": 60,
       "quantity": 50,
-      "lot": 100,
+      "lot": 21,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Diabetes Meds",
       "name": "Glipizide 10 mg",
       "location": "Case 8",
       "threshold": 30,
       "quantity": 100,
-      "lot": 100,
+      "lot": 22,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -243,7 +243,7 @@
       "location": "Case 8",
       "threshold": 25,
       "quantity": 50,
-      "lot": 100,
+      "lot": 23,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -253,7 +253,7 @@
       "location": "Case 8",
       "threshold": 30,
       "quantity": 60,
-      "lot": 100,
+      "lot": 24,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -263,7 +263,7 @@
       "location": "Case 8",
       "threshold": 30,
       "quantity": 42,
-      "lot": 100,
+      "lot": 25,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -274,17 +274,17 @@
       "location": "Case 1",
       "threshold": 1,
       "quantity": 1,
-      "lot": 100,
+      "lot": 26,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Ear and Eye Preparations",
       "name": "Antipyrine & Benzocaine Otic",
       "location": "Case 1",
       "threshold": 1,
       "quantity": 0,
-      "lot": 100,
+      "lot": 27,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -294,27 +294,27 @@
       "location": "Case 1",
       "threshold": 2,
       "quantity": 2,
-      "lot": 100,
+      "lot": 28,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Ear and Eye Preparations",
       "name": "Artificial Tears",
       "location": "Case 1",
       "threshold": 2,
       "quantity": 2,
-      "lot": 100,
+      "lot": 29,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Ear and Eye Preparations",
       "name": "Neomycin/Polymyxin/Hydrocortisone (Cortisporin) Otic",
       "location": "Case 1",
       "threshold": 1,
       "quantity": 0,
-      "lot": 100,
+      "lot": 30,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -324,26 +324,26 @@
       "location": "Emergency Kit",
       "threshold": 2,
       "quantity": 2,
-      "lot": 100,
+      "lot": 31,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Emergency Kit",
       "name": "Medicaine Sting/Bite Swab",
       "location": "Emergency Kit",
       "threshold": 10, "quantity": 10,
-      "lot": 100,
+      "lot": 32,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Emergency Kit",
       "name": "Epipen",
       "location": "Emergency Kit",
       "threshold": 2,
       "quantity": 0,
-      "lot": 100,
+      "lot": 33,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -353,7 +353,7 @@
       "location": "Emergency Kit",
       "threshold": 2,
       "quantity": 0,
-      "lot": 100,
+      "lot": 34,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -363,10 +363,10 @@
       "location": "Emergency Kit",
       "threshold": 1,
       "quantity": 1,
-      "lot": 100,
+      "lot": 35,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
 
     { "medication": "GI Meds",
@@ -374,7 +374,7 @@
       "location": "Case 3",
       "threshold": 50,
       "quantity": 75,
-      "lot": 100,
+      "lot": 36,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -384,7 +384,7 @@
       "location": "Case 3",
       "threshold": 5,
       "quantity": 10,
-      "lot": 100,
+      "lot": 37,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -394,7 +394,7 @@
       "location": "Case 3",
       "threshold": 50,
       "quantity": 112,
-      "lot": 100,
+      "lot": 38,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -404,27 +404,27 @@
       "location": "Case 3",
       "threshold": 1,
       "quantity": 1,
-      "lot": 100,
+      "lot": 39,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "GI Meds",
       "name": "Pepto-Bismol",
       "location": "Case 3",
       "threshold": 1,
       "quantity": 0.33,
-      "lot": 100,
+      "lot": 40,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
 
     { "medication": "GYN Meds",
       "name": "Miconazole Applicator Set",
       "location": "Case 3",
       "threshold": 1, "quantity": 2,
-      "lot": 100,
+      "lot": 41,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -433,7 +433,7 @@
       "name": "Reclipsen Tabs",
       "location": "Case 3",
       "threshold": 2, "quantity": 6,
-      "lot": 100,
+      "lot": 42,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -442,7 +442,7 @@
       "name": "Apri Tabs",
       "location": "Case 3",
       "threshold": 2, "quantity": 6,
-      "lot": 100,
+      "lot": 43,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -451,7 +451,7 @@
       "name": "Depo-Provera",
       "location": "Case 3",
       "threshold": 1, "quantity": 0,
-      "lot": 100,
+      "lot": 44,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -460,7 +460,7 @@
       "name": "Detrol LA (Tolterodin Tartate)",
       "location": "Case 3",
       "threshold": 30, "quantity": 0,
-      "lot": 100,
+      "lot": 45,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -471,7 +471,7 @@
       "location": "Refrigerator Closet",
       "threshold": 5,
       "quantity": 0,
-      "lot": 100,
+      "lot": 46,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -482,7 +482,7 @@
       "location": "Refrigerator Closet",
       "threshold": 5,
       "quantity": 0,
-      "lot": 100,
+      "lot": 47,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -492,7 +492,7 @@
       "location": "Case 1",
       "threshold": 2,
       "quantity": 3,
-      "lot": 100,
+      "lot": 48,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -502,17 +502,17 @@
       "location": "Case 1",
       "threshold": 1,
       "quantity": 1,
-      "lot": 100,
+      "lot": 49,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad"
+      "status": "ok"
     },
     { "medication": "Pulmonary",
       "name": "Steroid/Long Acting Beta Agonist (Child)",
       "location": "Case 1",
       "threshold": 1,
       "quantity": 2,
-      "lot": 100,
+      "lot": 50,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -523,7 +523,7 @@
       "location": "Case 5",
       "threshold": 30,
       "quantity": 120,
-      "lot": 100,
+      "lot": 51,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -533,7 +533,7 @@
       "location": "Case 5",
       "threshold": 50,
       "quantity": 200,
-      "lot": 100,
+      "lot": 52,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -544,7 +544,7 @@
       "location": "Case 5",
       "threshold": 50,
       "quantity": 200,
-      "lot": 100,
+      "lot": 53,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -554,7 +554,7 @@
       "location": "Case 5",
       "threshold": 14,
       "quantity": 57,
-      "lot": 100,
+      "lot": 54,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -564,7 +564,7 @@
       "location": "Case 5",
       "threshold": 14,
       "quantity": 0,
-      "lot": 100,
+      "lot": 55,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -574,7 +574,7 @@
       "location": "Case 6",
       "threshold": 50,
       "quantity": 210,
-      "lot": 100,
+      "lot": 56,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -584,7 +584,7 @@
       "location": "Refrigerator",
       "threshold": 50,
       "quantity": 0,
-      "lot": 100,
+      "lot": 57,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -594,7 +594,7 @@
       "location": "Refrigerator",
       "threshold": 50,
       "quantity": 0,
-      "lot": 100,
+      "lot": 58,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"
@@ -604,7 +604,7 @@
       "location": "Case 6",
       "threshold": 50,
       "quantity": 250,
-      "lot": 100,
+      "lot": 59,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good"
@@ -614,7 +614,7 @@
       "location": "Refrigerator",
       "threshold": 30,
       "quantity": 0,
-      "lot": 100,
+      "lot": 60,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad"

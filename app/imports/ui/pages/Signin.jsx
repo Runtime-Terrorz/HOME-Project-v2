@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Button, Container, Divider, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
@@ -54,11 +54,11 @@ const Signin = ({ location }) => {
     <Container id={PAGE_IDS.SIGN_IN} className="login-page">
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
         <Grid.Column width={6} style={{ backgroundColor: '#800000' }}>
-          <Header inverted as="h2" textAlign="center">
-            <p>Login to your account</p>
-          </Header>
-          <Form onSubmit={submit}>
-            <Segment stacked inverted style={{ backgroundColor: '#992E2E' }}>
+          <Segment stacked inverted style={{ backgroundColor: '#800000' }}>
+            <Header inverted as="h2" textAlign="center">
+              <p>Sign In to Your Account</p>
+            </Header>
+            <Form inverted onSubmit={submit}>
               <Form.Input
                 label="Email"
                 id={COMPONENT_IDS.SIGN_IN_FORM_EMAIL}
@@ -79,21 +79,23 @@ const Signin = ({ location }) => {
                 type="password"
                 onChange={handleChange}
               />
-              <Form.Button id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} content="Submit" color='blue'/>
-            </Segment>
-          </Form>
-          <Message floating>
-            <Link to="/signup">Click here to Register</Link>
-          </Message>
-          {error === '' ? (
-            ''
-          ) : (
-            <Message
-              error
-              header="Login was not successful"
-              content={error}
-            />
-          )}
+              <Form.Button id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} content="Sign In" color='blue' icon='sign in' style={{ marginLeft: '132px' }} />
+            </Form>
+            {error === '' ? (
+              ''
+            ) : (
+              <Message
+                error
+                header="Login was not successful"
+                content={error}
+              />
+            )}
+            <Divider inverted horizontal>OR</Divider>
+            <Header textAlign='center' as='h3'>Don&apos;t have an account?</Header>
+            <Link to="/signup">
+              <Button content="Sign Up" color='blue' icon='signup' style={{ marginLeft: '130px' }} />
+            </Link>
+          </Segment>
         </Grid.Column>
       </Grid>
     </Container>

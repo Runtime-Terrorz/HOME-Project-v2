@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid, Segment, Header, Form, Icon } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
@@ -37,20 +37,12 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const AddInventory = () => {
   const [startDate, setStartDate] = useState(new Date());
 
-  // Check the quantity against the threshold to determine the status
-  const checkAmount = (quantity, threshold) => {
-    if (quantity <= threshold) {
-      return 'bad';
-    }
-    return 'good';
-  };
-
   // On submit, insert the data.
   const submit = (data, formRef) => {
     const { medication, name, location, threshold, quantity, lot } = data;
     const owner = Meteor.user().username;
     const expiration = startDate;
-    const status = checkAmount(quantity, threshold);
+    const status = Inventories.checkStatus(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
     const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
 
