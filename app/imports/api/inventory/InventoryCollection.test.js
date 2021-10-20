@@ -4,7 +4,6 @@ import faker from 'faker';
 import fc from 'fast-check';
 import {
   Inventories,
-  inventoryStates,
   inventoryMedications,
   inventoryPublications,
   medLocations,
