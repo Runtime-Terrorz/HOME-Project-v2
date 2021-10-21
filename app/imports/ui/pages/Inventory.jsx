@@ -3,7 +3,7 @@ import { _ } from 'meteor/underscore';
 import { Container, Table, Header, Grid, Dropdown, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Inventories } from '../../api/inventory/InventoryCollection';
+import { Inventories, inventoryStates } from '../../api/inventory/InventoryCollection';
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
@@ -16,11 +16,14 @@ const Inventory = ({ ready, inventories }) => {
     setFilter(data.value);
   };
   if (ready) {
-    if (filter !== 'threshold') {
-      sorted = _.sortBy(inventories, filter);
+    if (filter === 'thresholdok') {
+      sorted = inventories.filter(inventory => inventory.status === inventoryStates.ok || inventory.status === inventoryStates.bad);
+    } else if (filter === 'thresholdbad') {
+      sorted = inventories.filter(inventory => inventory.status === inventoryStates.bad);
+    } else if (filter === 'quantity') {
+      sorted = _.sortBy(inventories, filter).reverse();
     } else {
-      sorted = _.filter(inventories, (inventory) => inventory.quantity < inventory.threshold);
-      sorted = _.sortBy(sorted, filter);
+      sorted = _.sortBy(inventories, filter);
     }
   }
   return ((ready) ? (
@@ -49,7 +52,8 @@ const Inventory = ({ ready, inventories }) => {
                 <Dropdown.Item onClick ={handleChange} value = 'medication'>Medicines</Dropdown.Item>
                 <Dropdown.Item onClick ={handleChange} value = 'expiration'>Expiration Date</Dropdown.Item>
                 <Dropdown.Item onClick ={handleChange} value = 'quantity'>Quantity</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'threshold'>Low Inventory</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value = 'thresholdok'>Low Inventory</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value = 'thresholdbad'>No Inventory</Dropdown.Item>
                 <Dropdown.Item onClick ={handleChange}>Category Tags</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
