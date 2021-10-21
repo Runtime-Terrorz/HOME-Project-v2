@@ -12,7 +12,7 @@ const LogHistory = ({ ready, inventories }) => ((ready) ? (
     <Grid container column={3}>
       <Grid.Row column={2}>
         <Grid.Column width={10}>
-          <Header as="h1" textAlign="center">Log History</Header>
+          <Header as="h1" textAlign="left">Log History</Header>
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -45,11 +45,11 @@ LogHistory.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to Inventory documents.
   const subscription = Inventories.subscribeInventory();
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents and sort them by name.
+  // Get the Inventory documents and sort them by name.
   const inventories = Inventories.find({}, { sort: { name: 1 } }).fetch();
   return {
     inventories,
