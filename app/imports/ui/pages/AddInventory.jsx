@@ -29,6 +29,7 @@ const formSchema = new SimpleSchema({
   threshold: Number,
   quantity: Number,
   lot: String,
+  note: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
@@ -39,12 +40,12 @@ const AddInventory = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, threshold, quantity, lot } = data;
+    const { medication, name, location, threshold, quantity, lot, note } = data;
     const owner = Meteor.user().username;
     const expiration = startDate;
     const status = Inventories.checkStatus(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
-    const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status };
+    const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status, note };
 
     // Generates QR Code for dispense page
     let qrCode;
@@ -117,6 +118,12 @@ const AddInventory = () => {
               name='location'
               id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
             />
+            <Form.Group widths={'equal'} >
+              <TextField
+                name='note'
+                id={COMPONENT_IDS.ADD_INVENTORY_NOTE}
+              />
+            </Form.Group>
             <Header as="h4" textAlign="center"><Message color={'blue'}>QRCode will be made available for dispensing after submission</Message></Header>
             <Form.Button id={COMPONENT_IDS.ADD_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
