@@ -37,6 +37,7 @@ class InventoryCollection extends BaseCollection {
       expiration: Date,
       owner: String,
       status: String,
+      note: String,
     }));
   }
 
@@ -51,9 +52,10 @@ class InventoryCollection extends BaseCollection {
    * @param expiration expiration date of the item.
    * @param owner owner of the inventory item
    * @param status determine whether the item is low in stock
+   * @param note any note about the medicine
    * @return {String} the docID of the new document.
    */
-  define({ medication, name, location, threshold, quantity, lot, expiration, owner, status }) {
+  define({ medication, name, location, threshold, quantity, lot, expiration, owner, status, note }) {
     const docID = this._collection.insert({
       medication,
       name,
@@ -64,6 +66,7 @@ class InventoryCollection extends BaseCollection {
       expiration,
       owner,
       status,
+      note,
     });
     return docID;
   }
@@ -77,8 +80,9 @@ class InventoryCollection extends BaseCollection {
    * @param quantity the number of items.
    * @param expiration expiration date of the item.
    * @param status current state of the item to update
+   * @param note any note about the medicine
    */
-  update(docID, { name, location, threshold, quantity, expiration, status }) {
+  update(docID, { name, location, threshold, quantity, expiration, status, note }) {
     const updateData = {};
     if (name) {
       updateData.name = name;
@@ -98,6 +102,9 @@ class InventoryCollection extends BaseCollection {
     }
     if (status) {
       updateData.status = status;
+    }
+    if (note) {
+      updateData.note = note;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -204,7 +211,8 @@ class InventoryCollection extends BaseCollection {
     const expiration = doc.expiration;
     const owner = doc.owner;
     const status = doc.status;
-    return { medication, name, threshold, quantity, lot, expiration, owner, status };
+    const note = doc.note;
+    return { medication, name, threshold, quantity, lot, expiration, owner, status, note };
   }
 }
 

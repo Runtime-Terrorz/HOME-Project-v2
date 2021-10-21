@@ -7,6 +7,7 @@ export const COMPONENT_IDS = {
   ADD_INVENTORY_EXPIRATION: 'expiration',
   ADD_INVENTORY_LOT: 'lot',
   ADD_INVENTORY_SUBMIT: 'add-inventory-submit',
+  ADD_INVENTORY_NOTE: 'add-inventory-note',
   EDIT_INVENTORY_MEDICATION: 'medication',
   EDIT_INVENTORY_NAME: 'name',
   EDIT_INVENTORY_LOCATION: 'location',
