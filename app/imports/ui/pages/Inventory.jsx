@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { _ } from 'meteor/underscore';
-import { Container, Table, Header, Grid, Dropdown, Loader } from 'semantic-ui-react';
+import { Container, Table, Header, Grid, Dropdown, Loader, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Inventories, inventoryStates } from '../../api/inventory/InventoryCollection';
@@ -9,21 +9,50 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => {
+  // State functions
   const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
+  // variable that allows the inventory to be changed via sort functions
   let sorted = inventories;
+  // handleChange to setFilter state to the value that is chosen in filter dropdown
   const handleChange = (e, data) => {
     e.preventDefault();
+    // set filter state to the filter value
     setFilter(data.value);
   };
+  // handleSearch to setSearch state to the value that is entered in the search bar
+  const handleSearch = (e, data) => {
+    e.preventDefault();
+    // set search state to the search value
+    setSearch(data.value);
+  };
+  // matches the search to the item that we are trying to search for
+  const medFind = (searchItem) => {
+    // set search value to lowercase
+    const lowerCase = search.toLowerCase();
+    // find the item that starts with the search value
+    return searchItem.name.toLowerCase().startsWith(lowerCase);
+  };
+
   if (ready) {
     if (filter === 'thresholdok') {
+      // set the sorted variable to the filtered inventory statuses ok or bad
       sorted = inventories.filter(inventory => inventory.status === inventoryStates.ok || inventory.status === inventoryStates.bad);
     } else if (filter === 'thresholdbad') {
+      // set the sorted variable to the filtered inventory statuses bad
       sorted = inventories.filter(inventory => inventory.status === inventoryStates.bad);
+      // set the sorted variable to the filtered inventory statuses ok or bad
     } else if (filter === 'quantity') {
+      // reverse the order of the quantities to show the greater items first
       sorted = _.sortBy(inventories, filter).reverse();
     } else {
+      // sort the items by the filter value
       sorted = _.sortBy(inventories, filter);
+    }
+    // if anything is typed in the search bar
+    if (search) {
+      // filter the inventory items by the search value and sort by the name of the item
+      sorted = _.sortBy(inventories.filter(inventory => medFind(inventory)), 'name');
     }
   }
   return ((ready) ? (
@@ -35,9 +64,11 @@ const Inventory = ({ ready, inventories }) => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={12}>
+          <Grid.Column floated='right' width={5}>
+            <Input type='text' size='large' placeholder='Search by name...' icon='search' fluid
+              onChange={handleSearch}/>
           </Grid.Column>
-          <Grid.Column width={4}>
+          <Grid.Column width={2}>
             <Dropdown
               text='Filter'
               icon='filter'
