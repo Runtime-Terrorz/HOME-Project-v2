@@ -37,14 +37,14 @@
 .top {
     box-shadow: none;
     border: none !important;
-    background-color: #800000 !important;
-    color: #FFFFFF !important;
+    background-color: #EAE1D0 !important;
+    color: #6C91A0 !important;
 }
 
 .navbar-item {
-   color: #FFFFFF !important;
+    color: #6C91A0 !important;
     font-family: "Kohinoor Bangla";
-    font-size: 18px;
+    font-size: 19px;
 }
 
 .homeButton {
@@ -101,7 +101,15 @@ h1.ui.header {
   font-family: "Kohinoor Bangla";
   font-size: 20px;
   letter-spacing: 0.2rem;
-  color: whitesmoke;
+  color: #6C91A0;
+  font-weight: lighter;
+}
+
+h4.ui.header {
+  font-family: "Kohinoor Bangla";
+  font-size: 6px;
+  color: #6C91A0;
+  font-weight: lighter;
 }
 
 .ui.grid.landing {

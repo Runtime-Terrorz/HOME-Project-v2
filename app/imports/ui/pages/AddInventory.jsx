@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Grid, Segment, Header, Form, Icon } from 'semantic-ui-react';
-import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { Grid, Segment, Header, Form, Icon, Message } from 'semantic-ui-react';
+import { AutoForm, ErrorsField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import DatePicker from 'react-datepicker';
@@ -69,24 +69,24 @@ const AddInventory = () => {
   return (
     <Grid id={PAGE_IDS.ADD_INVENTORY} container centered className="addinventory">
       <Grid.Column width={8}>
-        <Header inverted as="h1" textAlign="center">Add Inventory</Header>
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-          <Segment inverted style={{ backgroundColor: '#800000' }}>
+          <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
+            <Header as="h1" textAlign="center">Add Item to Inventory</Header>
             <SelectField
               name='medication'
               id={COMPONENT_IDS.ADD_INVENTORY_MEDICATION}
             />
             <TextField
               name='name'
+              icon={'medkit'}
               placeholder={'Diphenhydramine 50 mg/mL'}
               id={COMPONENT_IDS.ADD_INVENTORY_NAME}
             />
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'
-                placholder={'ABC123'}
                 id={COMPONENT_IDS.ADD_INVENTORY_LOT}
               />
               <Grid.Row>
@@ -102,13 +102,13 @@ const AddInventory = () => {
             <Form.Group widths={'equal'}>
               <NumField
                 name='threshold'
-                placeholder={'5'}
+                placeholder={'Ex: 5'}
                 decimal={false}
                 id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
               />
               <NumField
                 name='quantity'
-                placeholder={'10'}
+                placeholder={'Ex: 10'}
                 decimal={false}
                 id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
               />
@@ -117,10 +117,8 @@ const AddInventory = () => {
               name='location'
               id={COMPONENT_IDS.ADD_INVENTORY_LOCATION}
             />
-            <SubmitField
-              value='Submit'
-              id={COMPONENT_IDS.ADD_INVENTORY_SUBMIT}
-            />
+            <Header as="h4" textAlign="center"><Message color={'blue'}>QRCode will be made available for dispensing after submission</Message></Header>
+            <Form.Button id={COMPONENT_IDS.ADD_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
           </Segment>
         </AutoForm>
