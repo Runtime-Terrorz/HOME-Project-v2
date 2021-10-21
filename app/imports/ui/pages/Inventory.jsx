@@ -60,16 +60,16 @@ const Inventory = ({ ready, inventories }) => {
       <Grid container column={3}>
         <Grid.Row column={2} className="inventory">
           <Grid.Column width={10}>
-            <Header inverted as="h1" textAlign="left">Inventory</Header>
+            <Header as="h1" textAlign="left">Inventory</Header>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column floated='right' width={5}>
+          <Grid.Column floated='right' width={4}>
             <Input type='text' size='large' placeholder='Search by name...' icon='search' fluid
               onChange={handleSearch}/>
           </Grid.Column>
           <Grid.Column width={2}>
-            <Dropdown
+            <Dropdown style={{ backgroundColor: '#88a7b3' }}
               text='Filter'
               icon='filter'
               floating
@@ -77,7 +77,7 @@ const Inventory = ({ ready, inventories }) => {
               button
               className='icon'
             >
-              <Dropdown.Menu style={{ color: 'black !important' }}>
+              <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
                 <Dropdown.Header icon='tags' content='Filter by tag'/>
                 <Dropdown.Divider/>
                 <Dropdown.Item onClick ={handleChange} value = 'medication'>Medicines</Dropdown.Item>
@@ -91,7 +91,7 @@ const Inventory = ({ ready, inventories }) => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Table celled className="listcontainer">
+      <Table inverted celled className="listcontainer" style={{ backgroundColor: '#88a7b3' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Medication</Table.HeaderCell>
