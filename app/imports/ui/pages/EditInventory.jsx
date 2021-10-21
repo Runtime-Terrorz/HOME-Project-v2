@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Loader, Header, Segment, Form, Icon } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -34,9 +34,9 @@ const EditInventory = ({ doc, ready }) => {
   return (ready) ? (
     <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered className="editinventory">
       <Grid.Column width={8}>
-        <Header inverted as="h2" textAlign="center">Edit Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
-          <Segment inverted style={{ backgroundColor: '#800000' }}>
+          <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
+            <Header as="h1" textAlign="center">Edit Item</Header>
             <SelectField
               name='medication'
               id={COMPONENT_IDS.EDIT_INVENTORY_MEDICATION}
@@ -77,10 +77,7 @@ const EditInventory = ({ doc, ready }) => {
               name='location'
               id={COMPONENT_IDS.EDIT_INVENTORY_LOCATION}
             />
-            <SubmitField
-              value='Submit'
-              id={COMPONENT_IDS.EDIT_INVENTORY_SUBMIT}
-            />
+            <Form.Button id={COMPONENT_IDS.EDIT_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
             <HiddenField name='owner' />
           </Segment>

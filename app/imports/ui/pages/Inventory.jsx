@@ -27,15 +27,15 @@ const Inventory = ({ ready, inventories }) => {
     <Container id={PAGE_IDS.LIST_INVENTORY}>
       <Grid container column={3}>
         <Grid.Row column={2} className="inventory">
-          <Grid.Column width={10}>
-            <Header inverted as="h1" textAlign="left">Inventory</Header>
+          <Grid.Column width={6}>
+            <Header as="h1" textAlign="left">Inventory</Header>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column width={12}>
           </Grid.Column>
           <Grid.Column width={4}>
-            <Dropdown
+            <Dropdown style={{ backgroundColor: '#88a7b3' }}
               text='Filter'
               icon='filter'
               floating
@@ -43,7 +43,7 @@ const Inventory = ({ ready, inventories }) => {
               button
               className='icon'
             >
-              <Dropdown.Menu style={{ color: 'black !important' }}>
+              <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
                 <Dropdown.Header icon='tags' content='Filter by tag'/>
                 <Dropdown.Divider/>
                 <Dropdown.Item onClick ={handleChange} value = 'medication'>Medicines</Dropdown.Item>
@@ -56,8 +56,8 @@ const Inventory = ({ ready, inventories }) => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Table celled className="listcontainer">
-        <Table.Header>
+      <Table inverted celled className="listcontainer" style={{ backgroundColor: '#88a7b3' }}>
+        <Table.Header >
           <Table.Row>
             <Table.HeaderCell>Medication</Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>

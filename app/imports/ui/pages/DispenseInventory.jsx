@@ -31,9 +31,9 @@ const DispenseInventory = ({ doc, ready }) => {
   return (ready) ? (
     <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
       <Grid.Column width={8}>
-        <Header inverted as="h2" textAlign="center">Dispense Inventory</Header>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
-          <Segment inverted style={{ backgroundColor: '#800000' }}>
+          <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
+            <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
             <SelectField
               name='medication'
               disabled
@@ -56,7 +56,6 @@ const DispenseInventory = ({ doc, ready }) => {
                 name='quantity'
                 decimal={false}
                 min='0'
-                value={0}
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
               />
             </Form.Group>
@@ -67,10 +66,7 @@ const DispenseInventory = ({ doc, ready }) => {
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
               />
             </Form.Group>
-            <SubmitField
-              value='Submit'
-              id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT}
-            />
+            <Form.Button id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
             <HiddenField name='owner' />
           </Segment>

@@ -11,7 +11,7 @@ const InventoryItem = ({ inventory }) => {
   if (inventory.status === inventoryStates.bad) {
     quantity = <Table.Cell style={ { backgroundColor: '#D64242', color: '#FFFFFF' } }>{inventory.quantity}</Table.Cell>;
   } else if (inventory.status === inventoryStates.ok) {
-    quantity = <Table.Cell style={{ backgroundColor: '#FFEF4A' }}>{inventory.quantity}</Table.Cell>;
+    quantity = <Table.Cell style={{ backgroundColor: '#D0BE4E' }}>{inventory.quantity}</Table.Cell>;
   } else {
     quantity = <Table.Cell>{inventory.quantity}</Table.Cell>;
   }
@@ -25,14 +25,14 @@ const InventoryItem = ({ inventory }) => {
       <Table.Cell>{inventory.location}</Table.Cell>
       <Table.Cell>{inventory.lot}</Table.Cell>
       <Table.Cell>{inventory.expiration.toLocaleDateString()}</Table.Cell>
-      <Table.Cell>
+      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>
         <Link id={COMPONENT_IDS.LIST_INVENTORY_EDIT} to={`/edit/${inventory._id}`}>
-          <Icon name='edit outline'/>
+          <Icon inverted name='edit outline'/>
         </Link>
       </Table.Cell>
-      <Table.Cell>
+      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>
         <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}/${inventory.lot}`}>
-          <Icon name='recycle'/>
+          <Icon inverted name='recycle'/>
         </Link>
       </Table.Cell>
     </Table.Row>);
