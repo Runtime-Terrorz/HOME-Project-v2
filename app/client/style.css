@@ -43,13 +43,13 @@
 
 .navbar-item {
     color: #6C91A0 !important;
-    font-family: "Kohinoor Bangla";
+    font-family: "Lato", serif !important;
     font-size: 19px;
 }
 
 .navbar-home {
   color: #6C91A0 !important;
-  font-family: "Kohinoor Bangla";
+    font-family: "Lato", serif !important;
   font-size: 26px;
 }
 
@@ -70,7 +70,7 @@
     text-decoration: underline !important;
     text-decoration-color: #FFFFFF !important;
     text-underline-offset: 0.5em !important;
-    font-family: "Kohinoor Bangla";
+    font-family: "Lato", serif !important;
 
 }
 
@@ -104,7 +104,7 @@
 }
 
 h1.ui.header {
-  font-family: "Kohinoor Bangla";
+    font-family: "Lato", serif !important;
   font-size: 20px;
   letter-spacing: 0.2rem;
   color: #6C91A0;
@@ -112,7 +112,7 @@ h1.ui.header {
 }
 
 h4.ui.header {
-  font-family: "Kohinoor Bangla";
+    font-family: "Lato", serif !important;
   font-size: 6px;
   color: #6C91A0;
   font-weight: lighter;
