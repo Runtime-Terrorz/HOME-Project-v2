@@ -77,6 +77,12 @@ const EditInventory = ({ doc, ready }) => {
               name='location'
               id={COMPONENT_IDS.EDIT_INVENTORY_LOCATION}
             />
+            <Form.Group widths={'equal'} >
+              <TextField
+                name='note'
+                id={COMPONENT_IDS.ADD_INVENTORY_NOTE}
+              />
+            </Form.Group>
             <Form.Button id={COMPONENT_IDS.EDIT_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
             <HiddenField name='owner' />
