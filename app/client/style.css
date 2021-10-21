@@ -47,6 +47,12 @@
     font-size: 19px;
 }
 
+.navbar-home {
+  color: #6C91A0 !important;
+  font-family: "Kohinoor Bangla";
+  font-size: 26px;
+}
+
 .homeButton {
     color: #FFFFFF !important;
 }
