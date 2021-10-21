@@ -19,10 +19,11 @@ const DispenseInventory = ({ doc, ready }) => {
 
   // On successful submit, update the data
   const submit = (data) => {
-    const { medication, name, lot, _id } = data;
+    const { medication, name, lot, threshold, _id } = data;
     const collectionName = Inventories.getCollectionName();
     const quantity = doc.quantity - data.quantity;
-    const updateData = { id: _id, medication, name, quantity, lot };
+    const status = Inventories.checkStatus(quantity, threshold);
+    const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
@@ -49,6 +50,14 @@ const DispenseInventory = ({ doc, ready }) => {
                 name='lot'
                 disabled
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_LOT}
+              />
+            </Form.Group>
+            <Form.Group widths={'equal'}>
+              <NumField
+                name='threshold'
+                decimal={false}
+                disabled
+                id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
             </Form.Group>
             <Form.Group widths={'equal'}>
