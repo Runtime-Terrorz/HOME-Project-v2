@@ -53,8 +53,8 @@ const Signin = ({ location }) => {
   return (
     <Container id={PAGE_IDS.SIGN_IN} className="login-page">
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-        <Grid.Column width={6} style={{ backgroundColor: '#800000' }}>
-          <Segment stacked inverted style={{ backgroundColor: '#800000' }}>
+        <Grid.Column width={6} style={{ backgroundColor: '#b86d4e' }}>
+          <Segment stacked inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header inverted as="h2" textAlign="center">
               <p>Sign In to Your Account</p>
             </Header>

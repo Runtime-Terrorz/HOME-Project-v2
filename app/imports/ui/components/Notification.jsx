@@ -1,21 +1,18 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Card, Dropdown, Button } from 'semantic-ui-react';
+import { Card, Dropdown } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Inventories, inventoryStates } from '../../api/inventory/InventoryCollection';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import NotificationFeed from './NotificationFeed';
 
 const Notification = ({ lowInventory }) => (
-  <Dropdown id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key='notification' icon={'mail'} pointing="top left">
+  <Dropdown id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key='notification' icon={'mail'} pointing="top right">
     <Dropdown.Menu>
       <Card>
-        <Card.Content>
+        <Card.Content style={{ backgroundColor: '#eee7da' }}>
           <Card.Header>Notifications</Card.Header>
-          <Link to={'/bad'}>
-            <Button color='red' id={COMPONENT_IDS.GENERATE_REPORT_BUTTON}>Generate Report</Button>
-          </Link>
         </Card.Content>
         <Card.Content className='notificationItem'>
           {lowInventory.map((inventory) => <NotificationFeed key={inventory._id} inventory={inventory}/>)}

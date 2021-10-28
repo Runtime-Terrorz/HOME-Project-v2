@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Image } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import { ROLE } from '../../api/role/Role';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
@@ -14,12 +14,10 @@ const NavBar = ({ currentUser }) => {
   const menuStyle = { marginBottom: '60px' };
   return (
     <Menu style={menuStyle} attached="top" borderless>
-      <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/">
-        <Image width={'53px'} src="/images/logo2.jpg"/>
-      </Menu.Item>
+      <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/" className={'navbar-home'} >HOME</Menu.Item>
       {currentUser ? (
-        [<Menu.Item id={COMPONENT_IDS.NAVBAR_ADD_INVENTORY} as={NavLink} activeClassName="active" exact to="/add" key='add' className={'navbar-item'}>Add Order</Menu.Item>,
-          <Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY} as={NavLink} activeClassName="active" exact to="/list" key='list' className={'navbar-item'}>List Inventory</Menu.Item>,
+        [<Menu.Item id={COMPONENT_IDS.NAVBAR_ADD_INVENTORY} as={NavLink} activeClassName="active" exact to="/add" key='add' className={'navbar-item'} i><Icon name='add'/>Add Order</Menu.Item>,
+          <Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY} as={NavLink} activeClassName="active" exact to="/list" key='list' className={'navbar-item'}><Icon name='list alternate'/>List Inventory</Menu.Item>,
           <Menu.Item id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key ='notification'><Notification/></Menu.Item>]
       ) : ''}
       {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (

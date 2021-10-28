@@ -8,9 +8,9 @@ const Signout = () => {
   Meteor.logout();
   return (
     <Container className="signout-page">
-      <Header id={PAGE_IDS.SIGN_OUT} as="h2" textAlign="center" style={{ marginBottom: '100px' }} >
-        <p>You are signed out.</p>
-        <p>We hope to see you again!</p>
+      <Header id={PAGE_IDS.SIGN_OUT} as="h1" textAlign="center" style={{ marginBottom: '500px' }} >
+        You are signed out.
+        We hope to see you again!
       </Header>
     </Container>
   );

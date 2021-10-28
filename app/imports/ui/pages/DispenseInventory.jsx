@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Grid, Loader, Header, Segment, Form, Icon } from 'semantic-ui-react';
+import React from 'react';
+import { Grid, Loader, Header, Segment, Form, TextArea } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useParams } from 'react-router';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Inventories } from '../../api/inventory/InventoryCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
@@ -15,75 +14,68 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
-/** Renders the Page for editing a single document. */
-const EditInventory = ({ doc, ready }) => {
-  const [startDate, setStartDate] = useState(doc.expiration);
+/** Renders the Page for dispensing a single document. */
+const DispenseInventory = ({ doc, ready }) => {
 
-  // On successful submit, insert the data.
+  // On successful submit, update the data
   const submit = (data) => {
-    const { medication, name, location, threshold, quantity, lot, _id } = data;
-    const expiration = startDate;
-    const status = Inventories.checkStatus(quantity, threshold);
+    const { medication, name, lot, threshold, _id } = data;
     const collectionName = Inventories.getCollectionName();
-    const updateData = { id: _id, medication, name, location, threshold, quantity, lot, expiration, status };
+    const quantity = doc.quantity - data.quantity;
+    const status = Inventories.checkStatus(quantity, threshold);
+    const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
-      .then(() => swal('Success', 'Inventory updated successfully', 'success'));
+      .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
   };
 
   return (ready) ? (
-    <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered className="editinventory">
+    <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
       <Grid.Column width={8}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
-            <Header as="h1" textAlign="center">Edit Item</Header>
+            <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
             <SelectField
               name='medication'
-              id={COMPONENT_IDS.EDIT_INVENTORY_MEDICATION}
+              disabled
+              id={COMPONENT_IDS.DISPENSE_INVENTORY_MEDICATION}
             />
             <TextField
               name='name'
-              id={COMPONENT_IDS.EDIT_INVENTORY_NAME}
+              disabled
+              id={COMPONENT_IDS.DISPENSE_INVENTORY_NAME}
             />
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'
-                id={COMPONENT_IDS.EDIT_INVENTORY_LOT}
+                disabled
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_LOT}
               />
-              <Grid.Row>
-                  Expiration Date
-                <Icon name='calendar alternate outline'/>
-                <DatePicker
-                  name='expiration'
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  id={COMPONENT_IDS.EDIT_INVENTORY_EXPIRATION}
-                />
-              </Grid.Row>
             </Form.Group>
             <Form.Group widths={'equal'}>
               <NumField
                 name='threshold'
                 decimal={false}
+                disabled
                 id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
+            </Form.Group>
+            <Form.Group widths={'equal'}>
               <NumField
                 name='quantity'
                 decimal={false}
-                id={COMPONENT_IDS.EDIT_INVENTORY_QUANTITY}
+                min='0'
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
               />
             </Form.Group>
-            <SelectField
-              name='location'
-              id={COMPONENT_IDS.EDIT_INVENTORY_LOCATION}
-            />
-            <Form.Group widths={'equal'} >
-              <TextField
-                name='note'
-                id={COMPONENT_IDS.ADD_INVENTORY_NOTE}
+            <Form.Group>
+              <TextArea
+                placeholder='Notes'
+                rows={3}
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
               />
             </Form.Group>
-            <Form.Button id={COMPONENT_IDS.EDIT_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
+            <Form.Button id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
             <HiddenField name='owner' />
           </Segment>
@@ -94,7 +86,7 @@ const EditInventory = ({ doc, ready }) => {
 };
 
 // Require the presence of a Inventory document in the props object. Uniforms adds 'model' to the props, which we use.
-EditInventory.propTypes = {
+DispenseInventory.propTypes = {
   doc: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
@@ -114,4 +106,4 @@ export default withTracker(() => {
     doc,
     ready,
   };
-})(EditInventory);
+})(DispenseInventory);

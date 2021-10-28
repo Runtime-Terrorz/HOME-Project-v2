@@ -50,8 +50,8 @@ const Signup = ({ location }) => {
   return (
     <Container id={PAGE_IDS.SIGN_UP} className="logup-page">
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-        <Grid.Column width={6} style={{ backgroundColor: '#992E2E' }}>
-          <Segment stacked inverted style={{ backgroundColor: '#800000' }}>
+        <Grid.Column width={6} style={{ backgroundColor: '#b86d4e' }}>
+          <Segment stacked inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header inverted as="h2" textAlign="center">
               <p>Create a New Account</p>
             </Header>
