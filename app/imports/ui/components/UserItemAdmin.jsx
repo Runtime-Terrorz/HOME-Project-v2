@@ -31,7 +31,6 @@ const UserItemAdmin = ({ user }) => {
       const collectionName = AdminProfiles.getCollectionName();
       const oldCollectionName = UserProfiles.getCollectionName();
       const definitionData = { email, firstName, lastName };
-      console.log(oldCollectionName);
       removeItMethod.callPromise(oldCollectionName, user._id)
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {
@@ -55,7 +54,6 @@ const UserItemAdmin = ({ user }) => {
         const collectionName = UserProfiles.getCollectionName();
         const oldCollectionName = AdminProfiles.getCollectionName();
         const definitionData = { email, firstName, lastName };
-        console.log(oldCollectionName);
         removeItMethod.callPromise(oldCollectionName, user._id)
           .catch(error => swal('Error', error.message, 'error'))
           .then(() => {
