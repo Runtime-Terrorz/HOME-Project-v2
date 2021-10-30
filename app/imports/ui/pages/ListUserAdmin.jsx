@@ -18,6 +18,7 @@ const ListUserAdmin = ({ admins, users, ready }) => ((ready) ? (
           <Table.HeaderCell>LastName</Table.HeaderCell>
           <Table.HeaderCell>Email</Table.HeaderCell>
           <Table.HeaderCell>Role</Table.HeaderCell>
+          <Table.HeaderCell>Remove</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
