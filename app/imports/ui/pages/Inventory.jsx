@@ -64,7 +64,7 @@ const Inventory = ({ ready, inventories }) => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column floated='right' width={4}>
+          <Grid.Column floated='right' width={5}>
             <Input type='text' size='large' placeholder='Search by name...' icon='search' fluid
               onChange={handleSearch}/>
           </Grid.Column>

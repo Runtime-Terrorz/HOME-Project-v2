@@ -12,7 +12,7 @@ export const inventoryMedications = ['Allergy & Cold Medicines', 'Analgesics/Ant
 export const medLocations = ['Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Case 6', 'Case 7', 'Case 8',
   'Refrigerator', 'Refrigerator Closet', 'Freezer', 'Freezer-Derm', 'Drawer 2-2', 'Drawer 2-3', 'Emergency Kit'];
 
-export const medUnits = ['N/A', 'mL', 'L', 'mg', 'g', 'each', 'capsule', 'tablet'];
+export const medUnits = [' ', 'N/A', 'mL', 'L', 'mg', 'g', 'each', 'capsule', 'tablet'];
 
 export const inventoryPublications = {
   inventory: 'Inventory',
@@ -32,7 +32,7 @@ class InventoryCollection extends BaseCollection {
         type: String,
         optional: true,
         allowedValues: medUnits,
-        defaultValue: 'N/A',
+        defaultValue: ' ',
       },
       location: {
         type: String,

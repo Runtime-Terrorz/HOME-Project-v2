@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import QRCode from 'qrcode';
-import { Inventories, inventoryMedications, medLocations } from '../../api/inventory/InventoryCollection';
+import { Inventories, inventoryMedications, medLocations, medUnits } from '../../api/inventory/InventoryCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
@@ -21,6 +21,12 @@ const formSchema = new SimpleSchema({
     defaultValue: 'Allergy & Cold Medicines',
   },
   name: String,
+  unit: {
+    type: String,
+    allowedValues: medUnits,
+    optional: true,
+    defaultValue: ' ',
+  },
   location: {
     type: String,
     allowedValues: medLocations,
@@ -40,12 +46,12 @@ const AddInventory = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { medication, name, location, threshold, quantity, lot, note } = data;
+    const { medication, name, unit, location, threshold, quantity, lot, note } = data;
     const owner = Meteor.user().username;
     const expiration = startDate;
     const status = Inventories.checkStatus(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
-    const definitionData = { medication, name, location, threshold, quantity, lot, expiration, owner, status, note };
+    const definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, status, note };
 
     // Generates QR Code for dispense page
     let qrCode;
@@ -79,12 +85,20 @@ const AddInventory = () => {
               name='medication'
               id={COMPONENT_IDS.ADD_INVENTORY_MEDICATION}
             />
-            <TextField
-              name='name'
-              icon={'medkit'}
-              placeholder={'Diphenhydramine 50 mg/mL'}
-              id={COMPONENT_IDS.ADD_INVENTORY_NAME}
-            />
+            <Form.Group widths={'equal'}>
+              <TextField
+                name='name'
+                icon={'medkit'}
+                placeholder={'Diphenhydramine 50 mg/mL'}
+                id={COMPONENT_IDS.ADD_INVENTORY_NAME}
+              />
+              <Grid.Column widths={2}>
+                <SelectField
+                  name='unit'
+                  id={COMPONENT_IDS.ADD_INVENTORY_UNIT}
+                />
+              </Grid.Column>
+            </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'

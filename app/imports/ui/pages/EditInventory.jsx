@@ -41,10 +41,20 @@ const EditInventory = ({ doc, ready }) => {
               name='medication'
               id={COMPONENT_IDS.EDIT_INVENTORY_MEDICATION}
             />
-            <TextField
-              name='name'
-              id={COMPONENT_IDS.EDIT_INVENTORY_NAME}
-            />
+            <Form.Group widths={'equal'}>
+              <TextField
+                name='name'
+                icon={'medkit'}
+                placeholder={'Diphenhydramine 50 mg/mL'}
+                id={COMPONENT_IDS.EDIT_INVENTORY_NAME}
+              />
+              <Grid.Column widths={2}>
+                <SelectField
+                  name='unit'
+                  id={COMPONENT_IDS.EDIT_INVENTORY_UNIT}
+                />
+              </Grid.Column>
+            </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'
