@@ -20,6 +20,7 @@ const InventoryItem = ({ inventory }) => {
     <Table.Row>
       <Table.Cell>{inventory.medication}</Table.Cell>
       <Table.Cell>{inventory.name}</Table.Cell>
+      <Table.Cell>{inventory.unit}</Table.Cell>
       <Table.Cell>{inventory.threshold}</Table.Cell>
       {quantity}
       <Table.Cell>{inventory.location}</Table.Cell>
@@ -43,6 +44,7 @@ InventoryItem.propTypes = {
   inventory: PropTypes.shape({
     medication: PropTypes.string,
     name: PropTypes.string,
+    unit: PropTypes.string,
     threshold: PropTypes.number,
     quantity: PropTypes.number,
     location: PropTypes.string,

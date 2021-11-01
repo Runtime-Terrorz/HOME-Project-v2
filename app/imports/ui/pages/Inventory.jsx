@@ -96,6 +96,7 @@ const Inventory = ({ ready, inventories }) => {
           <Table.Row>
             <Table.HeaderCell>Medication</Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Unit</Table.HeaderCell>
             <Table.HeaderCell>Threshold</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
             <Table.HeaderCell>Storage Location</Table.HeaderCell>

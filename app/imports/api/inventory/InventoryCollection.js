@@ -12,6 +12,8 @@ export const inventoryMedications = ['Allergy & Cold Medicines', 'Analgesics/Ant
 export const medLocations = ['Case 1', 'Case 2', 'Case 3', 'Case 4', 'Case 5', 'Case 6', 'Case 7', 'Case 8',
   'Refrigerator', 'Refrigerator Closet', 'Freezer', 'Freezer-Derm', 'Drawer 2-2', 'Drawer 2-3', 'Emergency Kit'];
 
+export const medUnits = ['N/A', 'mL', 'L', 'mg', 'g', 'each', 'capsule', 'tablet'];
+
 export const inventoryPublications = {
   inventory: 'Inventory',
 };
@@ -26,6 +28,12 @@ class InventoryCollection extends BaseCollection {
         defaultValue: 'Allergy & Cold Medicines',
       },
       name: String,
+      unit: {
+        type: String,
+        optional: true,
+        allowedValues: medUnits,
+        defaultValue: 'N/A',
+      },
       location: {
         type: String,
         allowedValues: medLocations,
@@ -45,6 +53,7 @@ class InventoryCollection extends BaseCollection {
    * Defines a new Inventory item.
    * @param medication the classification of medicine.
    * @param name the name of the item.
+   * @param unit of the medication.
    * @param location the location of the item.
    * @param threshold the number of items that is recommended to have in stock.
    * @param quantity the number of items.
@@ -55,10 +64,11 @@ class InventoryCollection extends BaseCollection {
    * @param note any note about the medicine
    * @return {String} the docID of the new document.
    */
-  define({ medication, name, location, threshold, quantity, lot, expiration, owner, status, note }) {
+  define({ medication, name, unit, location, threshold, quantity, lot, expiration, owner, status, note }) {
     const docID = this._collection.insert({
       medication,
       name,
+      unit,
       location,
       threshold,
       quantity,
@@ -82,10 +92,13 @@ class InventoryCollection extends BaseCollection {
    * @param status current state of the item to update
    * @param note any note about the medicine
    */
-  update(docID, { name, location, threshold, quantity, expiration, status, note }) {
+  update(docID, { name, unit, location, threshold, quantity, expiration, status, note }) {
     const updateData = {};
     if (name) {
       updateData.name = name;
+    }
+    if (unit) {
+      updateData.unit = unit;
     }
     if (location) {
       updateData.location = location;
@@ -205,6 +218,7 @@ class InventoryCollection extends BaseCollection {
     const doc = this.findDoc(docID);
     const medication = doc.medication;
     const name = doc.name;
+    const unit = doc.unit;
     const threshold = doc.threshold;
     const quantity = doc.quantity;
     const lot = doc.lot;
@@ -212,7 +226,7 @@ class InventoryCollection extends BaseCollection {
     const owner = doc.owner;
     const status = doc.status;
     const note = doc.note;
-    return { medication, name, threshold, quantity, lot, expiration, owner, status, note };
+    return { medication, name, unit, threshold, quantity, lot, expiration, owner, status, note };
   }
 }
 

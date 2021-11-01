@@ -23,7 +23,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "capsule"
     },
     { "medication": "Allergy & Cold Medicines",
       "name": "Cetirizine Soln",
@@ -435,7 +436,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "N/A"
     },
     { "medication": "GI Meds",
       "name": "Lactulose Solution",
@@ -468,7 +470,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "N/A"
     },
     { "medication": "GYN Meds",
       "name": "Reclipsen Tabs",
@@ -478,7 +481,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "tablet"
     },
     { "medication": "GYN Meds",
       "name": "Apri Tabs",
@@ -488,7 +492,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "tablet"
     },
     { "medication": "GYN Meds",
       "name": "Depo-Provera",
@@ -554,7 +559,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "ok",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "N/A"
     },
     { "medication": "Pulmonary",
       "name": "Steroid/Long Acting Beta Agonist (Child)",
@@ -577,7 +583,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Smoking Cessation",
       "name": "Nicotine Gum 2 mg",
@@ -600,7 +607,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Smoking Cessation",
       "name": "Nicotine Patch 7 mg",
@@ -611,7 +619,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Smoking Cessation",
       "name": "Nicotine Patch 14 mg",
@@ -622,7 +631,8 @@
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
       "status": "bad",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Vitamins and Supplements",
       "name": "Multivitamins - Adult",
