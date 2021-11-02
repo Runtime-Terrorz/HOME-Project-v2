@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Loader, Header, Segment, Form, TextArea } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
@@ -17,6 +17,9 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 /** Renders the Page for dispensing a single document. */
 const DispenseInventory = ({ doc, ready }) => {
 
+  const [finalPatientID, setFinalPatientID] = useState('');
+  const [finalNote, setFinalNote] = useState('');
+
   // On successful submit, update the data
   const submit = (data) => {
     const { medication, name, lot, threshold, _id } = data;
@@ -31,10 +34,16 @@ const DispenseInventory = ({ doc, ready }) => {
 
   return (ready) ? (
     <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
-      <Grid.Column width={8}>
+      <Grid.Column width={12}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
+            <Form.Group>
+              <Form.Field width={16}>
+                <label>Patient ID</label>
+                <input placeholder='PatientID' value={finalPatientID} onChange={ e => setFinalPatientID(e.target.value)}/>
+              </Form.Field>
+            </Form.Group>
             <SelectField
               name='medication'
               disabled
@@ -68,12 +77,16 @@ const DispenseInventory = ({ doc, ready }) => {
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
               />
             </Form.Group>
-            <Form.Group>
-              <TextArea
-                placeholder='Notes'
-                rows={3}
-                id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
-              />
+            <Form.Group widths={'equal'}>
+              <Form.Field>
+                <label>Notes</label>
+                <TextArea
+                  placeholder='Notes'
+                  value={finalNote} onChange={ e => setFinalNote(e.target.value)}
+                  rows={3}
+                  id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
+                />
+              </Form.Field>
             </Form.Group>
             <Form.Button id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
