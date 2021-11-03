@@ -100,7 +100,7 @@ const Inventory = ({ ready, inventories }) => {
               labeled
               button
               className='icon'>
-              <Dropdown.Menu>
+              <Dropdown.Menu className='dispenseMenu'>
                 {inventories.map((inventory) => <DispenseMenu key={inventory._id} inventory={inventory}/>)}
               </Dropdown.Menu>
             </Dropdown>
