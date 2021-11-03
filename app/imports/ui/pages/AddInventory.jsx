@@ -75,7 +75,7 @@ const AddInventory = () => {
   let fRef = null;
   return (
     <Grid id={PAGE_IDS.ADD_INVENTORY} container centered className="addinventory">
-      <Grid.Column width={8}>
+      <Grid.Column width={12}>
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
