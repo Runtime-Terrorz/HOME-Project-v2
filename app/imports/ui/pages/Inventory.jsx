@@ -27,7 +27,7 @@ const Inventory = ({ ready, inventories }) => {
   /** matches the search to the item that we are trying to search for */
   const medFind = (searchItem) => {
     const lowerCase = search.toLowerCase();
-    return searchItem.name.toLowerCase().contains(lowerCase);
+    return searchItem.name.toLowerCase().includes(lowerCase);
   };
 
   if (ready) {
@@ -47,7 +47,7 @@ const Inventory = ({ ready, inventories }) => {
     }
     // If something is typed in search bar, sort and filter inventory
     if (search) {
-      sorted = _.sortBy(inventories.filter(inventory => medFind(inventory)), 'name');
+      sorted = _.sortBy(sorted.filter(inventory => medFind(inventory)), 'name');
     }
   }
   return ((ready) ? (
