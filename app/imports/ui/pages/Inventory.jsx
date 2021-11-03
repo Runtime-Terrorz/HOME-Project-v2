@@ -3,7 +3,7 @@ import { _ } from 'meteor/underscore';
 import { Container, Table, Header, Grid, Dropdown, Loader, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
+import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import DispenseMenu from '../components/DispenseMenu';
@@ -27,23 +27,27 @@ const Inventory = ({ ready, inventories }) => {
   /** matches the search to the item that we are trying to search for */
   const medFind = (searchItem) => {
     const lowerCase = search.toLowerCase();
-    return searchItem.name.toLowerCase().contains(lowerCase);
+    return searchItem.name.toLowerCase().includes(lowerCase);
   };
 
   if (ready) {
     // Check the filter state and filter the inventory
-    if (filter === 'inventoryok') {
-      sorted = inventories.filter(inventory => inventory.status === quantityStates.ok || inventory.status === quantityStates.bad);
-    } else if (filter === 'inventorybad') {
-      sorted = inventories.filter(inventory => inventory.status === quantityStates.bad);
+    if (filter === 'inventoryOk') {
+      sorted = inventories.filter(inventory => inventory.quantityStatus === quantityStates.ok || inventory.quantityStatus === quantityStates.bad);
+    } else if (filter === 'inventoryBad') {
+      sorted = inventories.filter(inventory => inventory.quantityStatus === quantityStates.bad);
     } else if (filter === 'quantity') {
       sorted = _.sortBy(inventories, filter).reverse();
+    } else if (filter === 'expired') {
+      sorted = inventories.filter(inventory => inventory.expirationStatus === expirationStates.expired);
+    } else if (filter === 'notExpired') {
+      sorted = inventories.filter(inventory => inventory.expirationStatus === expirationStates.good || inventory.expirationStatus === expirationStates.soon);
     } else {
       sorted = _.sortBy(inventories, filter);
     }
     // If something is typed in search bar, sort and filter inventory
     if (search) {
-      sorted = _.sortBy(inventories.filter(inventory => medFind(inventory)), 'name');
+      sorted = _.sortBy(sorted.filter(inventory => medFind(inventory)), 'name');
     }
   }
   return ((ready) ? (
@@ -72,11 +76,11 @@ const Inventory = ({ ready, inventories }) => {
                 <Dropdown.Header icon='tags' content='Filter by tag'/>
                 <Dropdown.Divider/>
                 <Dropdown.Item onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'expiration'>Expiration Date</Dropdown.Item>
                 <Dropdown.Item onClick ={handleFilter} value = 'quantity'>Quantity</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'inventoryok'>Low Inventory</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'inventorybad'>No Inventory</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter}>Category Tags</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'>Low Quantity</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'>No Quantity</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'expired'>Expired</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'notExpired'>Not Expired</Dropdown.Item>
 
               </Dropdown.Menu>
             </Dropdown>
