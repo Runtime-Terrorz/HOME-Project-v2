@@ -23,7 +23,7 @@ const EditInventory = ({ doc, ready }) => {
   const submit = (data) => {
     const { medication, name, location, threshold, quantity, lot, _id } = data;
     const expiration = startDate;
-    const status = Inventories.checkStatus(quantity, threshold);
+    const status = Inventories.checkQuantityStatus(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
     const updateData = { id: _id, medication, name, location, threshold, quantity, lot, expiration, status };
     updateMethod.callPromise({ collectionName, updateData })

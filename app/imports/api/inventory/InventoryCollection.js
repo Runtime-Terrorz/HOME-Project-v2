@@ -17,7 +17,8 @@ export const medUnits = [' ', 'N/A', 'mL', 'L', 'mg', 'g', 'each', 'capsule', 't
 export const inventoryPublications = {
   inventory: 'Inventory',
 };
-export const inventoryStates = { good: 'good', ok: 'ok', bad: 'bad' };
+export const quantityStates = { good: 'good', ok: 'ok', bad: 'bad' };
+export const expirationStates = { good: 'good', soon: 'soon', expired: 'expired' };
 
 class InventoryCollection extends BaseCollection {
   constructor() {
@@ -44,7 +45,8 @@ class InventoryCollection extends BaseCollection {
       lot: String,
       expiration: Date,
       owner: String,
-      status: String,
+      quantityStatus: String,
+      expirationStatus: String,
       note: String,
     }));
   }
@@ -64,7 +66,7 @@ class InventoryCollection extends BaseCollection {
    * @param note any note about the medicine
    * @return {String} the docID of the new document.
    */
-  define({ medication, name, unit, location, threshold, quantity, lot, expiration, owner, status, note }) {
+  define({ medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note }) {
     const docID = this._collection.insert({
       medication,
       name,
@@ -75,7 +77,8 @@ class InventoryCollection extends BaseCollection {
       lot,
       expiration,
       owner,
-      status,
+      quantityStatus,
+      expirationStatus,
       note,
     });
     return docID;
@@ -92,7 +95,7 @@ class InventoryCollection extends BaseCollection {
    * @param status current state of the item to update
    * @param note any note about the medicine
    */
-  update(docID, { name, unit, location, threshold, quantity, expiration, status, note }) {
+  update(docID, { name, unit, location, threshold, quantity, expiration, quantityStatus, expirationStatus, note }) {
     const updateData = {};
     if (name) {
       updateData.name = name;
@@ -113,8 +116,11 @@ class InventoryCollection extends BaseCollection {
     if (expiration) {
       updateData.expiration = expiration;
     }
-    if (status) {
-      updateData.status = status;
+    if (quantityStatus) {
+      updateData.quantityStatus = quantityStatus;
+    }
+    if (expirationStatus) {
+      updateData.expirationStatus = expirationStatus;
     }
     if (note) {
       updateData.note = note;
@@ -126,24 +132,38 @@ class InventoryCollection extends BaseCollection {
    * Compares the quantity vs the threshold and determines status
    * @param quantity the amount of the inventory left
    * @param threshold the amount that will determine that status
-   * @return the status of the item
+   * @return the quantity status of the item
    */
-  checkStatus(quantity, threshold) {
-    let status;
-    // if quantity is less than or equal to 0
+  checkQuantityStatus(quantity, threshold) {
+    let quantityStatus;
     if (quantity <= 0) {
-      // status is set to bad
-      status = inventoryStates.bad;
-      // if quantity is greater than zero, but less than or equal to thresh hold
+      quantityStatus = quantityStates.bad;
     } else if (quantity <= threshold && quantity > 0) {
-      // set status to ok
-      status = inventoryStates.ok;
+      quantityStatus = quantityStates.ok;
     } else {
-      // if quantity is greater than threshold
-      // set status to good
-      status = inventoryStates.good;
+      quantityStatus = quantityStates.good;
     }
-    return status;
+    return quantityStatus;
+  }
+
+  /**
+   * Compares the current date vs the expiration date and determines status
+   * @param expiration the expiration date that the medicine expires
+   * @return the expiration status of the item
+   */
+  checkExpirationStatus(expiration) {
+    const today = new Date();
+    const days = expiration - today;
+    const offset = (24 * 60 * 60 * 1000) * 7;
+    let expiredStatus;
+    if (days <= 0) {
+      expiredStatus = expirationStates.expired;
+    } else if (days <= offset && days > 0) {
+      expiredStatus = expirationStates.soon;
+    } else {
+      expiredStatus = expirationStates.good;
+    }
+    return expiredStatus;
   }
 
   /**
