@@ -137,3 +137,8 @@ h4.ui.header {
   margin-top: 180px;
   margin-bottom: 160px;
 }
+
+.dispenseMenu {
+    height: 500px;
+    overflow: scroll;
+}
