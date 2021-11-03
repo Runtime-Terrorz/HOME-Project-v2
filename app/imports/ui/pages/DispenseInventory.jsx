@@ -30,7 +30,7 @@ const DispenseInventory = ({ doc, ready }) => {
   };
 
   return (ready) ? (
-    <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
+    <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseInventory">
       <Grid.Column width={8}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment inverted style={{ backgroundColor: '#b86d4e' }}>

@@ -6,6 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Inventories, inventoryStates } from '../../api/inventory/InventoryCollection';
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import Dispense from '../components/Dispense';
 
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => {
@@ -70,7 +71,7 @@ const Inventory = ({ ready, inventories }) => {
           </Grid.Column>
           <Grid.Column width={2}>
             <Dropdown style={{ backgroundColor: '#88a7b3' }}
-              text='Filter'
+              text='Dispense'
               icon='filter'
               floating
               labeled
@@ -80,18 +81,21 @@ const Inventory = ({ ready, inventories }) => {
               <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
                 <Dropdown.Header icon='tags' content='Filter by tag'/>
                 <Dropdown.Divider/>
-                <Dropdown.Item onClick ={handleChange} value = 'medication'>Medicines</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'expiration'>Expiration Date</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'quantity'>Quantity</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'thresholdok'>Low Inventory</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'thresholdbad'>No Inventory</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value='medication'>Medicines</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value='expiration'>Expiration Date</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value='quantity'>Quantity</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value='thresholdok'>Low Inventory</Dropdown.Item>
+                <Dropdown.Item onClick ={handleChange} value='thresholdbad'>No Inventory</Dropdown.Item>
                 <Dropdown.Item onClick ={handleChange}>Category Tags</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>
+          <Grid.Column width={2}>
+            <Dispense/>
+          </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Table inverted celled className="listcontainer" style={{ backgroundColor: '#88a7b3' }}>
+      <Table inverted celled className="listContainer" style={{ backgroundColor: '#88a7b3' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Medication</Table.HeaderCell>
