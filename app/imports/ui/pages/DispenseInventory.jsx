@@ -22,14 +22,20 @@ const DispenseInventory = ({ doc, ready }) => {
 
   // On successful submit, update the data
   const submit = (data) => {
-    const { medication, name, lot, threshold, _id } = data;
-    const collectionName = Inventories.getCollectionName();
-    const quantity = doc.quantity - data.quantity;
-    const status = Inventories.checkStatus(quantity, threshold);
-    const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
-    updateMethod.callPromise({ collectionName, updateData })
-      .catch(error => swal('Error', error.message, 'error'))
-      .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
+    if (finalPatientID === '' || finalPatientID === null) {
+      swal('Error', 'Please enter a PatientID', 'error');
+    } else if (data.quantity > doc.quantity) {
+      swal('Error', 'Unable to dispense requested amount', 'error');
+    } else {
+      const { medication, name, lot, threshold, _id } = data;
+      const collectionName = Inventories.getCollectionName();
+      const quantity = doc.quantity - data.quantity;
+      const status = Inventories.checkQuantityStatus(quantity, threshold);
+      const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
+      updateMethod.callPromise({ collectionName, updateData })
+        .catch(error => swal('Error', error.message, 'error'))
+        .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
+    }
   };
 
   return (ready) ? (
@@ -41,19 +47,23 @@ const DispenseInventory = ({ doc, ready }) => {
             <Form.Group>
               <Form.Field width={16}>
                 <label>Patient ID</label>
-                <input placeholder='PatientID' value={finalPatientID} onChange={ e => setFinalPatientID(e.target.value)}/>
+                <input required placeholder='PatientID' value={finalPatientID} onChange={ e => setFinalPatientID(e.target.value)}/>
               </Form.Field>
             </Form.Group>
-            <SelectField
-              name='medication'
-              disabled
-              id={COMPONENT_IDS.DISPENSE_INVENTORY_MEDICATION}
-            />
-            <TextField
-              name='name'
-              disabled
-              id={COMPONENT_IDS.DISPENSE_INVENTORY_NAME}
-            />
+            <Form.Group widths={'equal'}>
+              <SelectField
+                name='medication'
+                disabled
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_MEDICATION}
+              />
+            </Form.Group>
+            <Form.Group widths={'equal'}>
+              <TextField
+                name='name'
+                disabled
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_NAME}
+              />
+            </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'
@@ -73,7 +83,7 @@ const DispenseInventory = ({ doc, ready }) => {
               <NumField
                 name='quantity'
                 decimal={false}
-                min='0'
+                min='1'
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
               />
             </Form.Group>
