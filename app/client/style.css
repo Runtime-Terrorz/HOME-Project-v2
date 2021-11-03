@@ -142,3 +142,8 @@ h4.ui.header {
     height: 250px;
     overflow: scroll;
 }
+
+.deleteButton {
+  left: 30.7em;
+  top: 1em;
+}
