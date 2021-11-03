@@ -31,7 +31,7 @@ const UserItemAdmin = ({ user }) => {
       const collectionName = AdminProfiles.getCollectionName();
       const oldCollectionName = UserProfiles.getCollectionName();
       const definitionData = { email, firstName, lastName };
-      removeItMethod.callPromise(oldCollectionName, user._id)
+      removeItMethod.callPromise({collectionName: oldCollectionName, instance: user._id})
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {
           swal({
@@ -54,7 +54,7 @@ const UserItemAdmin = ({ user }) => {
         const collectionName = UserProfiles.getCollectionName();
         const oldCollectionName = AdminProfiles.getCollectionName();
         const definitionData = { email, firstName, lastName };
-        removeItMethod.callPromise(oldCollectionName, user._id)
+        removeItMethod.callPromise({collectionName: oldCollectionName, instance: user._id})
           .catch(error => swal('Error', error.message, 'error'))
           .then(() => {
             swal({
@@ -75,7 +75,7 @@ const UserItemAdmin = ({ user }) => {
 
   const handleOnClick = () => {
     const collectionName = UserProfiles.getCollectionNameForProfile(user);
-    removeItMethod.callPromise(collectionName, user._id)
+    removeItMethod.callPromise({collectionName: collectionName, instance: user._id})
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'User Removed', 'success'));
   }
