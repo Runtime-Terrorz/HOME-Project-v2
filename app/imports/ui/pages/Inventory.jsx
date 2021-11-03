@@ -6,7 +6,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Inventories, inventoryStates } from '../../api/inventory/InventoryCollection';
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import DispenseMenu from '../components/DispenseMenu';
 
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
@@ -101,7 +100,7 @@ const Inventory = ({ ready, inventories }) => {
               button
               className='icon'>
               <Dropdown.Menu className='dispenseMenu'>
-                {inventories.map((inventory) => <DispenseMenu key={inventory._id} inventory={inventory}/>)}
+                {sorted.map((inventory) => <DispenseMenu key={inventory._id} inventory={inventory}/>)}
               </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>
