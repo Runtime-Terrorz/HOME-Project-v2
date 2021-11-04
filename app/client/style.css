@@ -146,5 +146,9 @@ h4.ui.header {
 .dispenseItem {
     height: 30px;
     width: 90px;
+}
 
+.deleteButton {
+  left: 30.7em;
+  top: 1em;
 }

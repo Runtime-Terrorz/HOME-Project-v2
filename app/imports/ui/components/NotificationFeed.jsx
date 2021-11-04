@@ -3,7 +3,7 @@ import { Card, Icon } from 'semantic-ui-react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NotificationFeed = ({ inventory }) => ((inventory.status === 'ok') ? (
+const NotificationFeed = ({ inventory }) => ((inventory.quantityStatus === 'ok') ? (
   <Card style={{ backgroundColor: '#eee7da' }}>
     <Card.Content>
       <Icon color='yellow' name='warning sign'/>
@@ -22,7 +22,7 @@ NotificationFeed.propTypes = {
     quantity: PropTypes.number,
     threshold: PropTypes.number,
     lot: PropTypes.string,
-    status: PropTypes.string,
+    quantityStatus: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
 };
