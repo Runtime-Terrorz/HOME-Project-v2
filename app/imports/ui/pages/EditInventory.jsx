@@ -95,11 +95,13 @@ const EditInventory = ({ doc, ready }) => {
               <NumField
                 name='threshold'
                 decimal={false}
+                min='0'
                 id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
               <NumField
                 name='quantity'
                 decimal={false}
+                min='0'
                 id={COMPONENT_IDS.EDIT_INVENTORY_QUANTITY}
               />
             </Form.Group>

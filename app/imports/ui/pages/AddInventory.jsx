@@ -120,11 +120,13 @@ const AddInventory = () => {
                 name='threshold'
                 placeholder={'Ex: 5'}
                 decimal={false}
+                min='0'
                 id={COMPONENT_IDS.ADD_INVENTORY_THRESHOLD}
               />
               <NumField
                 name='quantity'
                 placeholder={'Ex: 10'}
+                min='0'
                 decimal={false}
                 id={COMPONENT_IDS.ADD_INVENTORY_QUANTITY}
               />
