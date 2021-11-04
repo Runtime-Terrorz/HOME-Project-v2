@@ -112,7 +112,7 @@ const Inventory = ({ ready, inventories }) => {
             <Table.HeaderCell>Storage Location</Table.HeaderCell>
             <Table.HeaderCell>Lot #</Table.HeaderCell>
             <Table.HeaderCell>Expiration Date</Table.HeaderCell>
-            <Table.HeaderCell>Edit</Table.HeaderCell>
+            <Table.HeaderCell>Edit/Delete</Table.HeaderCell>
             <Table.HeaderCell>Dispense</Table.HeaderCell>
           </Table.Row>
         </Table.Header>

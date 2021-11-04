@@ -13,7 +13,6 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
-// export const locations = [' ', 'N/A', 'mL', 'L', 'mg', 'g', 'each', 'capsule', 'tablet'];
 
 /** Renders the Page for dispensing a single document. */
 const DispenseInventory = ({ doc, ready }) => {
