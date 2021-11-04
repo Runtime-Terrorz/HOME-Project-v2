@@ -142,3 +142,9 @@ h4.ui.header {
     height: 250px;
     overflow: scroll;
 }
+
+.dispenseItem {
+    height: 30px;
+    width: 90px;
+
+}
