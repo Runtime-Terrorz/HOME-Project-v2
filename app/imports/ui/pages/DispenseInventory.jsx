@@ -11,6 +11,7 @@ import { Inventories } from '../../api/inventory/InventoryCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { Redirect } from 'react-router-dom';
 
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
@@ -20,6 +21,7 @@ const DispenseInventory = ({ doc, ready }) => {
   const [finalPatientID, setFinalPatientID] = useState('');
   const [finalLocation, setFinalLocation] = useState('');
   const [finalNote, setFinalNote] = useState('');
+  const [redirectToReferer, setRedirectToReferer] = useState(false);
 
   // On successful submit, update the data
   const submit = (data) => {
@@ -35,9 +37,16 @@ const DispenseInventory = ({ doc, ready }) => {
       const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
       updateMethod.callPromise({ collectionName, updateData })
         .catch(error => swal('Error', error.message, 'error'))
-        .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
+        .then(() => {
+          swal('Success', 'Inventory dispensed successfully', 'success');
+          setRedirectToReferer(true);
+        });
     }
   };
+
+  if (redirectToReferer) {
+    return <Redirect to={'/list'}/>;
+  }
 
   return (ready) ? (
     <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">

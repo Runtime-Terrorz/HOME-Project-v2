@@ -32,6 +32,7 @@ const EditInventory = ({ doc, ready }) => {
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
         swal('Success', 'Inventory updated successfully', 'success', { timer: 2000 });
+        setRedirectToReferer(true);
       });
   };
 
