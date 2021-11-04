@@ -3,56 +3,51 @@ import { _ } from 'meteor/underscore';
 import { Container, Table, Header, Grid, Dropdown, Loader, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Inventories, inventoryStates } from '../../api/inventory/InventoryCollection';
+import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import DispenseMenu from '../components/DispenseMenu';
 
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => {
   // State functions
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
-  // variable that allows the inventory to be changed via sort functions
   let sorted = inventories;
-  // handleChange to setFilter state to the value that is chosen in filter dropdown
-  const handleChange = (e, data) => {
+  /** Set filter state to the value that is chosen in filter dropdown */
+  const handleFilter = (e, data) => {
     e.preventDefault();
-    // set filter state to the filter value
     setFilter(data.value);
   };
-  // handleSearch to setSearch state to the value that is entered in the search bar
+  /** Set search state to the value that is typed in the search bar */
   const handleSearch = (e, data) => {
     e.preventDefault();
-    // set search state to the search value
     setSearch(data.value);
   };
-  // matches the search to the item that we are trying to search for
+  /** matches the search to the item that we are trying to search for */
   const medFind = (searchItem) => {
-    // set search value to lowercase
     const lowerCase = search.toLowerCase();
-    // find the item that starts with the search value
-    return searchItem.name.toLowerCase().startsWith(lowerCase);
+    return searchItem.name.toLowerCase().includes(lowerCase);
   };
 
   if (ready) {
-    if (filter === 'thresholdok') {
-      // set the sorted variable to the filtered inventory statuses ok or bad
-      sorted = inventories.filter(inventory => inventory.status === inventoryStates.ok || inventory.status === inventoryStates.bad);
-    } else if (filter === 'thresholdbad') {
-      // set the sorted variable to the filtered inventory statuses bad
-      sorted = inventories.filter(inventory => inventory.status === inventoryStates.bad);
-      // set the sorted variable to the filtered inventory statuses ok or bad
+    // Check the filter state and filter the inventory
+    if (filter === 'inventoryOk') {
+      sorted = inventories.filter(inventory => inventory.quantityStatus === quantityStates.ok || inventory.quantityStatus === quantityStates.bad);
+    } else if (filter === 'inventoryBad') {
+      sorted = inventories.filter(inventory => inventory.quantityStatus === quantityStates.bad);
     } else if (filter === 'quantity') {
-      // reverse the order of the quantities to show the greater items first
       sorted = _.sortBy(inventories, filter).reverse();
+    } else if (filter === 'expired') {
+      sorted = inventories.filter(inventory => inventory.expirationStatus === expirationStates.expired);
+    } else if (filter === 'notExpired') {
+      sorted = inventories.filter(inventory => inventory.expirationStatus === expirationStates.good || inventory.expirationStatus === expirationStates.soon);
     } else {
-      // sort the items by the filter value
       sorted = _.sortBy(inventories, filter);
     }
-    // if anything is typed in the search bar
+    // If something is typed in search bar, sort and filter inventory
     if (search) {
-      // filter the inventory items by the search value and sort by the name of the item
-      sorted = _.sortBy(inventories.filter(inventory => medFind(inventory)), 'name');
+      sorted = _.sortBy(sorted.filter(inventory => medFind(inventory)), 'name');
     }
   }
   return ((ready) ? (
@@ -64,7 +59,7 @@ const Inventory = ({ ready, inventories }) => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column floated='right' width={4}>
+          <Grid.Column floated='right' width={5}>
             <Input type='text' size='large' placeholder='Search by name...' icon='search' fluid
               onChange={handleSearch}/>
           </Grid.Column>
@@ -80,28 +75,44 @@ const Inventory = ({ ready, inventories }) => {
               <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
                 <Dropdown.Header icon='tags' content='Filter by tag'/>
                 <Dropdown.Divider/>
-                <Dropdown.Item onClick ={handleChange} value = 'medication'>Medicines</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'expiration'>Expiration Date</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'quantity'>Quantity</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'thresholdok'>Low Inventory</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange} value = 'thresholdbad'>No Inventory</Dropdown.Item>
-                <Dropdown.Item onClick ={handleChange}>Category Tags</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'quantity'>Quantity</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'>Low Quantity</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'>No Quantity</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'expired'>Expired</Dropdown.Item>
+                <Dropdown.Item onClick ={handleFilter} value = 'notExpired'>Not Expired</Dropdown.Item>
+
+              </Dropdown.Menu>
+            </Dropdown>
+          </Grid.Column>
+          <Grid.Column width={2}>
+            <Dropdown style={{ backgroundColor: '#88a7b3' }}
+              key='dispense'
+              text='Dispense'
+              icon='recycle'
+              floating
+              labeled
+              button
+              className='icon'>
+              <Dropdown.Menu className='dispenseMenu'>
+                {sorted.map((inventory) => <DispenseMenu key={inventory._id} inventory={inventory}/>)}
               </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <Table inverted celled className="listcontainer" style={{ backgroundColor: '#88a7b3' }}>
+      <Table inverted celled className="listContainer" style={{ backgroundColor: '#88a7b3' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Medication</Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Unit</Table.HeaderCell>
             <Table.HeaderCell>Threshold</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
             <Table.HeaderCell>Storage Location</Table.HeaderCell>
             <Table.HeaderCell>Lot #</Table.HeaderCell>
             <Table.HeaderCell>Expiration Date</Table.HeaderCell>
-            <Table.HeaderCell>Edit</Table.HeaderCell>
+            <Table.HeaderCell>Edit/Delete</Table.HeaderCell>
             <Table.HeaderCell>Dispense</Table.HeaderCell>
           </Table.Row>
         </Table.Header>

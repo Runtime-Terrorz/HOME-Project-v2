@@ -10,7 +10,7 @@ import Landing from '../pages/Landing';
 import Inventory from '../pages/Inventory';
 import AddInventory from '../pages/AddInventory';
 import EditInventory from '../pages/EditInventory';
-import DispenseInventoy from '../pages/DispenseInventory';
+import DispenseInventory from '../pages/DispenseInventory';
 import BadInventory from '../pages/BadInventory';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -35,7 +35,7 @@ class App extends React.Component {
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/list" component={Inventory}/>
             <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
-            <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventoy}/>
+            <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventory}/>
             <ProtectedRoute path="/bad" component={BadInventory}/>
             <ProtectedRoute path="/add" component={AddInventory}/>
             <ProtectedRoute path="/log" component={LogHistory}/>

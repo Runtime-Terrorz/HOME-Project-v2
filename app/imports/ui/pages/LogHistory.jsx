@@ -3,7 +3,7 @@ import { Container, Table, Header, Grid, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { PAGE_IDS } from '../utilities/PageIDs';
-import InventoryItem from '../components/InventoryItem';
+import LogHistoryItem from '../components/LogHistoryItem';
 import { Inventories } from '../../api/inventory/InventoryCollection';
 
 /** Renders a table containing all of the past items added to the inventory table. */
@@ -11,7 +11,7 @@ const LogHistory = ({ ready, inventories }) => ((ready) ? (
   <Container id={PAGE_IDS.LOG_HISTORY}>
     <Grid container column={3}>
       <Grid.Row column={2}>
-        <Grid.Column width={10}>
+        <Grid.Column>
           <Header as="h1" textAlign="center">Log History</Header>
         </Grid.Column>
       </Grid.Row>
@@ -19,11 +19,10 @@ const LogHistory = ({ ready, inventories }) => ((ready) ? (
     <Table celled>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>Date Added</Table.HeaderCell>
           <Table.HeaderCell>Added By</Table.HeaderCell>
           <Table.HeaderCell>Medication</Table.HeaderCell>
           <Table.HeaderCell>Name</Table.HeaderCell>
-          <Table.HeaderCell>Threshold</Table.HeaderCell>
+          <Table.HeaderCell>Unit</Table.HeaderCell>
           <Table.HeaderCell>Quantity</Table.HeaderCell>
           <Table.HeaderCell>Storage Location</Table.HeaderCell>
           <Table.HeaderCell>Lot #</Table.HeaderCell>
@@ -31,7 +30,7 @@ const LogHistory = ({ ready, inventories }) => ((ready) ? (
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {inventories.map((inventory) => <InventoryItem key={inventory._id} inventory={inventory}/>)}
+        {inventories.map((inventory) => <LogHistoryItem key={inventory._id} inventory={inventory}/>)}
       </Table.Body>
     </Table>
   </Container>

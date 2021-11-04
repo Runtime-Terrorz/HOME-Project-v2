@@ -112,7 +112,7 @@ h1.ui.header {
 }
 
 h4.ui.header {
-    font-family: "Lato", serif !important;
+  font-family: "Lato", serif !important;
   font-size: 6px;
   color: #6C91A0;
   font-weight: lighter;
@@ -136,4 +136,19 @@ h4.ui.header {
 .logup-page {
   margin-top: 180px;
   margin-bottom: 160px;
+}
+
+.dispenseMenu {
+    height: 250px;
+    overflow: scroll;
+}
+
+.dispenseItem {
+    height: 30px;
+    width: 90px;
+}
+
+.deleteButton {
+  left: 30.7em;
+  top: 1em;
 }

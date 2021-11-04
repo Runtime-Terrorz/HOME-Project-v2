@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Loader, Header, Segment, Form, TextArea } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
@@ -17,34 +17,58 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 /** Renders the Page for dispensing a single document. */
 const DispenseInventory = ({ doc, ready }) => {
 
+  const [finalPatientID, setFinalPatientID] = useState('');
+  const [finalLocation, setFinalLocation] = useState('');
+  const [finalNote, setFinalNote] = useState('');
+
   // On successful submit, update the data
   const submit = (data) => {
-    const { medication, name, lot, threshold, _id } = data;
-    const collectionName = Inventories.getCollectionName();
-    const quantity = doc.quantity - data.quantity;
-    const status = Inventories.checkStatus(quantity, threshold);
-    const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
-    updateMethod.callPromise({ collectionName, updateData })
-      .catch(error => swal('Error', error.message, 'error'))
-      .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
+    if (finalPatientID === '' || finalPatientID === null) {
+      swal('Error', 'Please enter a PatientID', 'error');
+    } else if (data.quantity > doc.quantity) {
+      swal('Error', 'Unable to dispense requested amount', 'error');
+    } else {
+      const { medication, name, lot, threshold, _id } = data;
+      const collectionName = Inventories.getCollectionName();
+      const quantity = doc.quantity - data.quantity;
+      const status = Inventories.checkQuantityStatus(quantity, threshold);
+      const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
+      updateMethod.callPromise({ collectionName, updateData })
+        .catch(error => swal('Error', error.message, 'error'))
+        .then(() => swal('Success', 'Inventory dispensed successfully', 'success'));
+    }
   };
 
   return (ready) ? (
     <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
-      <Grid.Column width={8}>
+      <Grid.Column width={12}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
-            <SelectField
-              name='medication'
-              disabled
-              id={COMPONENT_IDS.DISPENSE_INVENTORY_MEDICATION}
-            />
-            <TextField
-              name='name'
-              disabled
-              id={COMPONENT_IDS.DISPENSE_INVENTORY_NAME}
-            />
+            <Form.Group>
+              <Form.Field width={8}>
+                <label>Patient ID</label>
+                <input required placeholder='PatientID' value={finalPatientID} onChange={ e => setFinalPatientID(e.target.value)}/>
+              </Form.Field>
+              <Form.Field width={12}>
+                <label>Location</label>
+                <input required placeholder='Ex: Pai’olu Kaiaulu Shelter (Waianae)' value={finalLocation} onChange={ e => setFinalLocation(e.target.value)}/>
+              </Form.Field>
+            </Form.Group>
+            <Form.Group widths={'equal'}>
+              <SelectField
+                name='medication'
+                disabled
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_MEDICATION}
+              />
+            </Form.Group>
+            <Form.Group widths={'equal'}>
+              <TextField
+                name='name'
+                disabled
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_NAME}
+              />
+            </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'
@@ -59,22 +83,22 @@ const DispenseInventory = ({ doc, ready }) => {
                 disabled
                 id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
-            </Form.Group>
-            <Form.Group widths={'equal'}>
               <NumField
                 name='quantity'
                 decimal={false}
-                min='0'
+                min='1'
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Field>
+              <label>Notes</label>
               <TextArea
-                placeholder='Notes'
+                placeholder='Write relevant information about this medication and directions on how to use it.'
+                value={finalNote} onChange={ e => setFinalNote(e.target.value)}
                 rows={3}
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
               />
-            </Form.Group>
+            </Form.Field>
             <Form.Button id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
             <HiddenField name='owner' />

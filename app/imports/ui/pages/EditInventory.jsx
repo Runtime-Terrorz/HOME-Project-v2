@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Grid, Loader, Header, Segment, Form, Icon } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Form, Icon, Button } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
+import { Redirect } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -9,7 +10,7 @@ import { useParams } from 'react-router';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Inventories } from '../../api/inventory/InventoryCollection';
-import { updateMethod } from '../../api/base/BaseCollection.methods';
+import { updateMethod, removeItMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
@@ -18,18 +19,37 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 /** Renders the Page for editing a single document. */
 const EditInventory = ({ doc, ready }) => {
   const [startDate, setStartDate] = useState(doc.expiration);
+  const [redirectToReferer, setRedirectToReferer] = useState(false);
 
   // On successful submit, insert the data.
   const submit = (data) => {
     const { medication, name, location, threshold, quantity, lot, _id } = data;
     const expiration = startDate;
-    const status = Inventories.checkStatus(quantity, threshold);
+    const status = Inventories.checkQuantityStatus(quantity, threshold);
     const collectionName = Inventories.getCollectionName();
     const updateData = { id: _id, medication, name, location, threshold, quantity, lot, expiration, status };
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
-      .then(() => swal('Success', 'Inventory updated successfully', 'success'));
+      .then(() => {
+        swal('Success', 'Inventory updated successfully', 'success', { timer: 2000 });
+      });
   };
+
+  // Delete item from inventory
+  const handleDelete = () => {
+    const collectionName = Inventories.getCollectionName();
+    const instance = doc._id;
+    removeItMethod.callPromise({ collectionName, instance })
+      .catch(error => swal('Error', error.message, 'error'))
+      .then(() => {
+        swal('Success', 'Item Removed', 'success', { timer: 2000 });
+        setRedirectToReferer(true);
+      });
+  };
+
+  if (redirectToReferer) {
+    return <Redirect to={'/list'}/>;
+  }
 
   return (ready) ? (
     <Grid id={PAGE_IDS.EDIT_INVENTORY} container centered className="editinventory">
@@ -41,10 +61,20 @@ const EditInventory = ({ doc, ready }) => {
               name='medication'
               id={COMPONENT_IDS.EDIT_INVENTORY_MEDICATION}
             />
-            <TextField
-              name='name'
-              id={COMPONENT_IDS.EDIT_INVENTORY_NAME}
-            />
+            <Form.Group widths={'equal'}>
+              <TextField
+                name='name'
+                icon={'medkit'}
+                placeholder={'Diphenhydramine 50 mg/mL'}
+                id={COMPONENT_IDS.EDIT_INVENTORY_NAME}
+              />
+              <Grid.Column widths={2}>
+                <SelectField
+                  name='unit'
+                  id={COMPONENT_IDS.EDIT_INVENTORY_UNIT}
+                />
+              </Grid.Column>
+            </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'
@@ -65,11 +95,13 @@ const EditInventory = ({ doc, ready }) => {
               <NumField
                 name='threshold'
                 decimal={false}
+                min='0'
                 id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
               <NumField
                 name='quantity'
                 decimal={false}
+                min='0'
                 id={COMPONENT_IDS.EDIT_INVENTORY_QUANTITY}
               />
             </Form.Group>
@@ -88,6 +120,7 @@ const EditInventory = ({ doc, ready }) => {
             <HiddenField name='owner' />
           </Segment>
         </AutoForm>
+        <Button className='deleteButton'onClick={handleDelete} content='Delete' icon='trash' labelPosition='left' color='red'/>
       </Grid.Column>
     </Grid>
   ) : <Loader active>Getting data</Loader>;

@@ -23,8 +23,10 @@
       "lot": 1,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "capsule"
     },
     { "medication": "Allergy & Cold Medicines",
       "name": "Cetirizine Soln",
@@ -34,7 +36,8 @@
       "lot": 2,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Allergy & Cold Medicines",
@@ -45,7 +48,8 @@
       "lot": 3,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Allergy & Cold Medicines",
@@ -56,7 +60,8 @@
       "lot": 4,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Allergy & Cold Medicines",
@@ -67,7 +72,8 @@
       "lot": 5,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -79,7 +85,8 @@
       "lot": 6,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Anti-microbial",
@@ -90,7 +97,8 @@
       "lot": 7,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Anti-microbial",
@@ -101,7 +109,8 @@
       "lot": 8,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Anti-microbial",
@@ -112,7 +121,8 @@
       "lot": 9,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Anti-microbial",
@@ -123,7 +133,8 @@
       "lot": 10,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -135,7 +146,8 @@
       "lot": 11,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Cardiac/Cholesterol",
@@ -146,7 +158,8 @@
       "lot": 12,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Cardiac/Cholesterol",
@@ -157,7 +170,8 @@
       "lot": 13,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Cardiac/Cholesterol",
@@ -168,7 +182,8 @@
       "lot": 14,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Cardiac/Cholesterol",
@@ -179,7 +194,8 @@
       "lot": 15,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -191,7 +207,8 @@
       "lot": 16,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Dermatological Preparations",
@@ -202,7 +219,8 @@
       "lot": 17,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Dermatological Preparations",
@@ -213,7 +231,8 @@
       "lot": 18,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Dermatological Preparations",
@@ -224,7 +243,8 @@
       "lot": 19,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Dermatological Preparations",
@@ -235,7 +255,8 @@
       "lot": 20,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -247,7 +268,8 @@
       "lot": 21,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Diabetes Meds",
@@ -258,7 +280,8 @@
       "lot": 22,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Diabetes Meds",
@@ -269,7 +292,8 @@
       "lot": 23,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Diabetes Meds",
@@ -280,7 +304,8 @@
       "lot": 24,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Diabetes Meds",
@@ -291,7 +316,8 @@
       "lot": 25,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -303,7 +329,8 @@
       "lot": 26,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Ear and Eye Preparations",
@@ -314,7 +341,8 @@
       "lot": 27,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Ear and Eye Preparations",
@@ -325,7 +353,8 @@
       "lot": 28,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Ear and Eye Preparations",
@@ -336,7 +365,8 @@
       "lot": 29,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Ear and Eye Preparations",
@@ -347,7 +377,8 @@
       "lot": 30,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Emergency Kit",
@@ -358,7 +389,8 @@
       "lot": 31,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Emergency Kit",
@@ -368,7 +400,8 @@
       "lot": 32,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Emergency Kit",
@@ -379,7 +412,8 @@
       "lot": 33,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Emergency Kit",
@@ -390,7 +424,8 @@
       "lot": 34,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Emergency Kit",
@@ -401,7 +436,8 @@
       "lot": 35,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -413,7 +449,8 @@
       "lot": 36,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "GI Meds",
@@ -424,7 +461,8 @@
       "lot": 37,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "GI Meds",
@@ -435,8 +473,10 @@
       "lot": 38,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "N/A"
     },
     { "medication": "GI Meds",
       "name": "Lactulose Solution",
@@ -446,7 +486,8 @@
       "lot": 39,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "GI Meds",
@@ -457,7 +498,8 @@
       "lot": 40,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -468,8 +510,10 @@
       "lot": 41,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "N/A"
     },
     { "medication": "GYN Meds",
       "name": "Reclipsen Tabs",
@@ -478,8 +522,10 @@
       "lot": 42,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "tablet"
     },
     { "medication": "GYN Meds",
       "name": "Apri Tabs",
@@ -488,8 +534,10 @@
       "lot": 43,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "tablet"
     },
     { "medication": "GYN Meds",
       "name": "Depo-Provera",
@@ -498,7 +546,8 @@
       "lot": 44,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "GYN Meds",
@@ -508,7 +557,8 @@
       "lot": 45,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -520,7 +570,8 @@
       "lot": 46,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -532,7 +583,8 @@
       "lot": 47,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Pulmonary",
@@ -543,7 +595,8 @@
       "lot": 48,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Pulmonary",
@@ -554,8 +607,10 @@
       "lot": 49,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "ok",
-      "note": "Three times a day"
+      "quantityStatus": "ok",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "N/A"
     },
     { "medication": "Pulmonary",
       "name": "Steroid/Long Acting Beta Agonist (Child)",
@@ -565,7 +620,8 @@
       "lot": 50,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -577,8 +633,10 @@
       "lot": 51,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Smoking Cessation",
       "name": "Nicotine Gum 2 mg",
@@ -588,7 +646,8 @@
       "lot": 52,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
 
@@ -600,8 +659,10 @@
       "lot": 53,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Smoking Cessation",
       "name": "Nicotine Patch 7 mg",
@@ -611,8 +672,10 @@
       "lot": 54,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
-      "note": "Three times a day"
+      "quantityStatus": "good",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Smoking Cessation",
       "name": "Nicotine Patch 14 mg",
@@ -622,8 +685,10 @@
       "lot": 55,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
-      "note": "Three times a day"
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Vitamins and Supplements",
       "name": "Multivitamins - Adult",
@@ -633,7 +698,8 @@
       "lot": 56,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Vitamins and Supplements",
@@ -644,7 +710,8 @@
       "lot": 57,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Vitamins and Supplements",
@@ -655,7 +722,8 @@
       "lot": 58,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Vitamins and Supplements",
@@ -666,7 +734,8 @@
       "lot": 59,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "good",
+      "quantityStatus": "good",
+      "expirationStatus": "good",
       "note": "Three times a day"
     },
     { "medication": "Vitamins and Supplements",
@@ -677,7 +746,8 @@
       "lot": 60,
       "expiration": "2021/10/14",
       "owner": "default@foo.com",
-      "status": "bad",
+      "quantityStatus": "bad",
+      "expirationStatus": "good",
       "note": "Three times a day"
     }
   ],
