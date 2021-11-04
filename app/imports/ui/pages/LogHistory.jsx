@@ -11,7 +11,7 @@ const LogHistory = ({ ready, inventories }) => ((ready) ? (
   <Container id={PAGE_IDS.LOG_HISTORY}>
     <Grid container column={3}>
       <Grid.Row column={2}>
-        <Grid.Column width={10}>
+        <Grid.Column>
           <Header as="h1" textAlign="center">Log History</Header>
         </Grid.Column>
       </Grid.Row>
@@ -19,7 +19,6 @@ const LogHistory = ({ ready, inventories }) => ((ready) ? (
     <Table celled>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>Date Added</Table.HeaderCell>
           <Table.HeaderCell>Added By</Table.HeaderCell>
           <Table.HeaderCell>Medication</Table.HeaderCell>
           <Table.HeaderCell>Name</Table.HeaderCell>

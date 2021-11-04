@@ -33,7 +33,6 @@ const LogHistory = ({ inventory }) => {
 
   return (
     <Table.Row>
-      {startDate}
       <Table.Cell>{inventory.owner}</Table.Cell>
       <Table.Cell>{inventory.medication}</Table.Cell>
       <Table.Cell>{inventory.name}</Table.Cell>
