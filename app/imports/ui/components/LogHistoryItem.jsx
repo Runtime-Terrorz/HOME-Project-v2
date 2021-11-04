@@ -37,7 +37,6 @@ const LogHistory = ({ inventory }) => {
       <Table.Cell>{inventory.medication}</Table.Cell>
       <Table.Cell>{inventory.name}</Table.Cell>
       <Table.Cell>{inventory.unit}</Table.Cell>
-      <Table.Cell>{inventory.threshold}</Table.Cell>
       {quantity}
       <Table.Cell>{inventory.location}</Table.Cell>
       <Table.Cell>{inventory.lot}</Table.Cell>
