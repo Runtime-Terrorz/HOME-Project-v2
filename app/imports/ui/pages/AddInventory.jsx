@@ -50,8 +50,9 @@ const AddInventory = () => {
     const owner = Meteor.user().username;
     const expiration = startDate;
     const quantityStatus = Inventories.checkQuantityStatus(quantity, threshold);
+    const expirationStatus = Inventories.checkExpirationStatus(expiration);
     const collectionName = Inventories.getCollectionName();
-    const definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, note };
+    const definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note };
 
     // Generates QR Code for dispense page
     let qrCode;
