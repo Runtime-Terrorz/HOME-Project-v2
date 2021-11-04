@@ -13,11 +13,13 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
+// export const locations = [' ', 'N/A', 'mL', 'L', 'mg', 'g', 'each', 'capsule', 'tablet'];
 
 /** Renders the Page for dispensing a single document. */
 const DispenseInventory = ({ doc, ready }) => {
 
   const [finalPatientID, setFinalPatientID] = useState('');
+  const [finalLocation, setFinalLocation] = useState('');
   const [finalNote, setFinalNote] = useState('');
 
   // On successful submit, update the data
@@ -45,9 +47,13 @@ const DispenseInventory = ({ doc, ready }) => {
           <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
             <Form.Group>
-              <Form.Field width={16}>
+              <Form.Field width={8}>
                 <label>Patient ID</label>
                 <input required placeholder='PatientID' value={finalPatientID} onChange={ e => setFinalPatientID(e.target.value)}/>
+              </Form.Field>
+              <Form.Field width={12}>
+                <label>Location</label>
+                <input required placeholder='Ex: Pai’olu Kaiaulu Shelter (Waianae)' value={finalLocation} onChange={ e => setFinalLocation(e.target.value)}/>
               </Form.Field>
             </Form.Group>
             <Form.Group widths={'equal'}>
@@ -78,8 +84,6 @@ const DispenseInventory = ({ doc, ready }) => {
                 disabled
                 id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
-            </Form.Group>
-            <Form.Group widths={'equal'}>
               <NumField
                 name='quantity'
                 decimal={false}
@@ -87,17 +91,15 @@ const DispenseInventory = ({ doc, ready }) => {
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
               />
             </Form.Group>
-            <Form.Group widths={'equal'}>
-              <Form.Field>
-                <label>Notes</label>
-                <TextArea
-                  placeholder='Notes'
-                  value={finalNote} onChange={ e => setFinalNote(e.target.value)}
-                  rows={3}
-                  id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
-                />
-              </Form.Field>
-            </Form.Group>
+            <Form.Field>
+              <label>Notes</label>
+              <TextArea
+                placeholder='Write relevant information about this medication and directions on how to use it.'
+                value={finalNote} onChange={ e => setFinalNote(e.target.value)}
+                rows={3}
+                id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
+              />
+            </Form.Field>
             <Form.Button id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
             <ErrorsField/>
             <HiddenField name='owner' />

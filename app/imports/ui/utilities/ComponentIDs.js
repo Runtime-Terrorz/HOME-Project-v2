@@ -20,6 +20,7 @@ export const COMPONENT_IDS = {
   EDIT_INVENTORY_SUBMIT: 'add-inventory-submit',
   DISPENSE: 'dispense',
   DISPENSE_INVENTORY_PATIENT_ID: 'patientID',
+  DISPENSE_INVENTORY_LOCATION: 'location',
   DISPENSE_INVENTORY_MEDICATION: 'medication',
   DISPENSE_INVENTORY_NAME: 'name',
   DISPENSE_INVENTORY_QUANTITY: 'quantity',
