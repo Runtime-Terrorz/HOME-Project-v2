@@ -31,7 +31,7 @@ const EditInventory = ({ doc, ready }) => {
     updateMethod.callPromise({ collectionName, updateData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
-        swal('Success', 'Inventory updated successfully', 'success', { timer: 1000 });
+        swal('Success', 'Inventory updated successfully', 'success', { timer: 2000 });
       });
   };
 
@@ -42,7 +42,7 @@ const EditInventory = ({ doc, ready }) => {
     removeItMethod.callPromise({ collectionName, instance })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
-        swal('Success', 'Item Removed', 'success', { timer: 1000 });
+        swal('Success', 'Item Removed', 'success', { timer: 2000 });
         setRedirectToReferer(true);
       });
   };
