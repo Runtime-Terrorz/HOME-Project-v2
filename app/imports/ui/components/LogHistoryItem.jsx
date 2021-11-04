@@ -9,7 +9,6 @@ import { updateMethod } from '../../api/base/BaseCollection.methods';
 const LogHistory = ({ inventory }) => {
   let quantity;
   let expiration;
-  let startDate;
   const expirationStatus = Inventories.checkExpirationStatus(inventory.expiration);
   const quantityStatus = Inventories.checkQuantityStatus(inventory.quantity, inventory.threshold);
   const collectionName = Inventories.getCollectionName();
@@ -56,7 +55,7 @@ LogHistory.propTypes = {
     location: PropTypes.string,
     lot: PropTypes.string,
     expiration: PropTypes.instanceOf(Date),
-    startDate: PropTypes.instanceOf(Date),
+    dateAdded: PropTypes.instanceOf(Date),
     quantityStatus: PropTypes.string,
     expirationStatus: PropTypes.string,
     _id: PropTypes.string,
