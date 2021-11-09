@@ -52,7 +52,7 @@ class App extends React.Component {
 
 /**
  * ProtectedRoute (see React Router v4 sample)
- * Checks for Meteor login before routing to the requested page, otherwise goes to signin page.
+ * Checks for Meteor login and user/super role before routing to the requested page, otherwise goes to signin page.
  * @param {any} { component: Component, ...rest }
  */
 const ProtectedRoute = ({ component: Component, ...rest }) => (
@@ -60,7 +60,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={(props) => {
       const isLogged = Meteor.userId() !== null;
-      return isLogged ?
+      const isUserOrSuper = Roles.userIsInRole(Meteor.userId(), [ ROLE.USER, ROLE.SUPER ]);
+      return (isLogged && isUserOrSuper) ?
         (<Component {...props} />) :
         (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
         );
@@ -70,7 +71,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 /**
  * AdminProtectedRoute (see React Router v4 sample)
- * Checks for Meteor login and admin role before routing to the requested page, otherwise goes to signin page.
+ * Checks for Meteor login and admin/super role before routing to the requested page, otherwise goes to signin page.
  * @param {any} { component: Component, ...rest }
  */
 const AdminProtectedRoute = ({ component: Component, ...rest }) => (
@@ -78,8 +79,8 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={(props) => {
       const isLogged = Meteor.userId() !== null;
-      const isAdmin = Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN);
-      return (isLogged && isAdmin) ?
+      const isAdminOrSuper = Roles.userIsInRole(Meteor.userId(), [ ROLE.ADMIN, ROLE.SUPER ]);
+      return (isLogged && isAdminOrSuper) ?
         (<Component {...props} />) :
         (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
         );

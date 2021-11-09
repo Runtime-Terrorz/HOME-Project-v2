@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { Meteor } from 'meteor/meteor';
 
 export const ROLE = {
+  SUPER: 'SUPER',
   ADMIN: 'ADMIN',
   USER: 'USER',
 };

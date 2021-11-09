@@ -4,17 +4,17 @@ import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
-export const adminProfilePublications = {
-  adminProfile: 'AdminProfile',
+export const superAdminProfilePublications = {
+  superAdminProfile: 'SuperAdminProfile',
 };
 
-class AdminProfileCollection extends BaseProfileCollection {
+class SuperAdminProfileCollection extends BaseProfileCollection {
   constructor() {
-    super('AdminProfile', new SimpleSchema({}));
+    super('SuperAdminProfile', new SimpleSchema({}));
   }
 
   /**
-   * Defines the profile associated with an Admin and the associated Meteor account.
+   * Defines the profile associated with a Super Admin and the associated Meteor account.
    * @param email The email associated with this profile. Will be the username.
    * @param password The password for this user.
    * @param firstName The first name.
@@ -25,7 +25,7 @@ class AdminProfileCollection extends BaseProfileCollection {
       const username = email;
       const user = this.findOne({ email, firstName, lastName });
       if (!user) {
-        const role = ROLE.ADMIN;
+        const role = ROLE.SUPER;
         const profileID = this._collection.insert({ email, firstName, lastName, userID: this.getFakeUserId(), role });
         const userID = Users.define({ username, role, password });
         this._collection.update(profileID, { $set: { userID } });
@@ -37,8 +37,8 @@ class AdminProfileCollection extends BaseProfileCollection {
   }
 
   /**
-   * Updates the AdminProfile. You cannot change the email or role.
-   * @param docID the id of the AdminProfile
+   * Updates the SuperAdminProfile. You cannot change the email or role.
+   * @param docID the id of the SuperAdminProfile
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
@@ -72,11 +72,11 @@ class AdminProfileCollection extends BaseProfileCollection {
    */
   publish() {
     if (Meteor.isServer) {
-      // get the AdminProfileCollection instance.
+      // get the SuperAdminProfileCollection instance.
       const instance = this;
-      /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-      Meteor.publish(adminProfilePublications.adminProfile, function publish() {
-        if (this.userId && Roles.userIsInRole(this.userId, [ROLE.ADMIN, ROLE.SUPER])) {
+      /** This subscription publishes all documents regardless of user, but only if the logged in user is the Super Admin. */
+      Meteor.publish(superAdminProfilePublications.superAdminProfile, function publish() {
+        if (this.userId && Roles.userIsInRole(this.userId, ROLE.SUPER)) {
           return instance._collection.find();
         }
         return this.ready();
@@ -88,9 +88,9 @@ class AdminProfileCollection extends BaseProfileCollection {
    * Subscription method for admin users.
    * It subscribes to the entire collection.
    */
-  subscribeAdminProfile() {
+  subscribeSuperAdminProfile() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(adminProfilePublications.adminProfile);
+      return Meteor.subscribe(superAdminProfilePublications.superAdminProfile);
     }
     return null;
   }
@@ -99,10 +99,10 @@ class AdminProfileCollection extends BaseProfileCollection {
    * Implementation of assertValidRoleForMethod. Asserts that userId is logged in as an Admin or Admin.
    * This is used in the define, update, and removeIt Meteor methods associated with each class.
    * @param userId The userId of the logged in user. Can be null or undefined
-   * @throws { Meteor.Error } If there is no logged in user, or the user is not an Admin or Admin.
+   * @throws { Meteor.Error } If there is no logged in user, or the user is not a Super Admin or Super Admin.
    */
   assertValidRoleForMethod(userId) {
-    this.assertRole(userId, [ROLE.ADMIN]);
+    this.assertRole(userId, [ROLE.SUPER]);
   }
 
   /**
@@ -114,16 +114,16 @@ class AdminProfileCollection extends BaseProfileCollection {
   checkIntegrity() {
     const problems = [];
     this.find().forEach((doc) => {
-      if (doc.role !== ROLE.ADMIN) {
-        problems.push(`AdminProfile instance does not have ROLE.ADMIN: ${doc}`);
+      if (doc.role !== ROLE.SUPER) {
+        problems.push(`SuperAdminProfile instance does not have ROLE.SUPER: ${doc}`);
       }
     });
     return problems;
   }
 
   /**
-   * Returns an object representing the AdminProfile docID in a format acceptable to define().
-   * @param docID The docID of a AdminProfile
+   * Returns an object representing the SuperAdminProfile docID in a format acceptable to define().
+   * @param docID The docID of a SuperAdminProfile
    * @returns { Object } An object representing the definition of docID.
    */
   dumpOne(docID) {
@@ -136,7 +136,7 @@ class AdminProfileCollection extends BaseProfileCollection {
 }
 
 /**
- * Profides the singleton instance of this class to all other entities.
- * @type {AdminProfileCollection}
+ * Profiles the singleton instance of this class to all other entities.
+ * @type {SuperAdminProfileCollection}
  */
-export const AdminProfiles = new AdminProfileCollection();
+export const SuperAdminProfiles = new SuperAdminProfileCollection();

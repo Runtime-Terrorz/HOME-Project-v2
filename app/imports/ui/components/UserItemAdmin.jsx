@@ -114,8 +114,8 @@ UserItemAdmin.propTypes = {
 
 export default withTracker(() => {
   // Get access to User and Admin profiles.
-  const subscriptionUser = UserProfiles.subscribeUserProfileAdmin();
-  const subscriptionAdmin = AdminProfiles.subscribeAdminProfileAdmin();
+  const subscriptionUser = UserProfiles.subscribeUserProfile();
+  const subscriptionAdmin = AdminProfiles.subscribeAdminProfile();
   // Determine if the subscription is ready
   const ready = subscriptionUser.ready() && subscriptionAdmin.ready();
   return {
