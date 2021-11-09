@@ -10,10 +10,12 @@ import { Inventories } from '../api/inventory/InventoryCollection';
 import { ROLE } from '../api/role/Role';
 import { AdminProfiles } from '../api/user/AdminProfileCollection';
 import { UserProfiles } from '../api/user/UserProfileCollection';
+import { SuperAdminProfiles } from '../api/user/SuperAdminProfileCollection';
 
 export function withSubscriptions() {
   return new Promise((resolve => {
     // Add the collections to subscribe to.
+    SuperAdminProfiles.subscribe();
     AdminProfiles.subscribe();
     Stuffs.subscribeStuff();
     Inventories.subscribeInventory();
@@ -26,6 +28,33 @@ export function withSubscriptions() {
     }, 200);
   }));
 }
+
+/**
+ * Defines a test super admin user.
+ * @type {ValidatedMethod}
+ */
+export const defineTestSuperAdminUser = new ValidatedMethod({
+  name: 'Test.defineSuperAdminUser',
+  mixins: [CallPromiseMixin],
+  validate: null,
+  run() {
+    // Only do this if in test or test-app.
+    if (Meteor.isTest || Meteor.isAppTest) {
+      const username = faker.internet.userName();
+      const email = faker.internet.email();
+      const password = faker.internet.password();
+      const users = Accounts.createUser({
+        username,
+        email,
+        password,
+      });
+      Roles.createRole(ROLE.SUPER, { unlessExists: true });
+      Roles.addUsersToRoles([users], [ROLE.SUPER]);
+      return { username, email, password };
+    }
+    throw new Meteor.Error('Need to be in test mode to call this method.');
+  },
+});
 
 /**
  * Defines a test admin user.

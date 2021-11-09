@@ -2,12 +2,15 @@ import { Meteor } from 'meteor/meteor';
 import { ROLE } from '../../api/role/Role';
 import { AdminProfiles } from '../../api/user/AdminProfileCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { SuperAdminProfiles } from '../../api/user/SuperAdminProfileCollection';
 
 /* eslint-disable no-console */
 
 function createUser(email, role, firstName, lastName, password) {
   console.log(`  Creating user ${email} with role ${role}.`);
-  if (role === ROLE.ADMIN) {
+  if (role === ROLE.SUPER) {
+    SuperAdminProfiles.define({ email, firstName, lastName, password });
+  } else if (role === ROLE.ADMIN) {
     AdminProfiles.define({ email, firstName, lastName, password });
   } else { // everyone else is just a user.
     UserProfiles.define({ email, firstName, lastName, password });

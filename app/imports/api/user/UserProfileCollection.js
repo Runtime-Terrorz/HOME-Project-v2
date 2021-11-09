@@ -5,7 +5,7 @@ import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
 export const userPublications = {
-  userAdmin: 'UserAdmin',
+  userProfile: 'userProfile',
 };
 
 class UserProfileCollection extends BaseProfileCollection {
@@ -75,8 +75,8 @@ class UserProfileCollection extends BaseProfileCollection {
       // get the UserProfileCollection instance.
       const instance = this;
       /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-      Meteor.publish(userPublications.userAdmin, function publish() {
-        if (this.userId && Roles.userIsInRole(this.userId, ROLE.ADMIN)) {
+      Meteor.publish(userPublications.userProfile, function publish() {
+        if (this.userId && Roles.userIsInRole(this.userId, [ROLE.ADMIN, ROLE.SUPER])) {
           return instance._collection.find();
         }
         return this.ready();
@@ -88,9 +88,9 @@ class UserProfileCollection extends BaseProfileCollection {
    * Subscription method for admin users.
    * It subscribes to the entire collection.
    */
-  subscribeUserProfileAdmin() {
+  subscribeUserProfile() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(userPublications.userAdmin);
+      return Meteor.subscribe(userPublications.userProfile);
     }
     return null;
   }

@@ -39,8 +39,8 @@ ListUserAdmin.propTypes = {
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
 export default withTracker(() => {
   // Get access to User and Admin profiles.
-  const subscriptionUser = UserProfiles.subscribeUserProfileAdmin();
-  const subscriptionAdmin = AdminProfiles.subscribeAdminProfileAdmin();
+  const subscriptionUser = UserProfiles.subscribeUserProfile();
+  const subscriptionAdmin = AdminProfiles.subscribeAdminProfile();
   // Determine if the subscription is ready
   const ready = subscriptionUser.ready() && subscriptionAdmin.ready();
   // Get the User and Admin profiles and sort by owner then name
