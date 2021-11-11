@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Loader, Header, Segment, Form, TextArea } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Form, TextArea, Select, Icon } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -7,13 +7,26 @@ import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useParams } from 'react-router';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Redirect } from 'react-router-dom';
 import { Inventories } from '../../api/inventory/InventoryCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import { Redirect } from 'react-router-dom';
 
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
+
+const countryOptions = [
+  { key: 'joint', value: 'joint', text: 'Joint Outreach Center' },
+  { key: 'kailua', value: 'kailua', text: 'Kailua YMCA' },
+  { key: 'post', value: 'post', text: 'POST – Ke’ehi Lagoon' },
+  { key: 'kaiaka', value: 'kaiaka', text: 'Kaiaka Bay Beach Park' },
+  { key: 'augustine', value: 'augustine', text: 'St. Augustine Church by the Sea' },
+  { key: 'onelauena', value: 'onelauena', text: 'Onelauena and Onemalu Shelters' },
+  { key: 'paiolu', value: 'paiolu', text: 'Pai’olu Kaiaulu Shelter' },
+  { key: 'weinberg', value: 'weinberg', text: 'Weinberg Village' },
+  { key: 'kakaako', value: 'kakaako', text: 'Kaka’ako Waterfront Park' },
+  { key: 'methodist', value: 'methodist', text: 'First United Methodist Church' },
+];
 
 /** Renders the Page for dispensing a single document. */
 const DispenseInventory = ({ doc, ready }) => {
@@ -59,9 +72,9 @@ const DispenseInventory = ({ doc, ready }) => {
                 <label>Patient ID</label>
                 <input required placeholder='PatientID' value={finalPatientID} onChange={ e => setFinalPatientID(e.target.value)}/>
               </Form.Field>
-              <Form.Field width={12}>
-                <label>Location</label>
-                <input required placeholder='Ex: Pai’olu Kaiaulu Shelter (Waianae)' value={finalLocation} onChange={ e => setFinalLocation(e.target.value)}/>
+              <Form.Field width={8}>
+                <label>Clinical Location <Icon name={'hospital outline'}/></label>
+                <Select placeholder='Select Location' options={countryOptions} value={finalLocation} onChange={ e => setFinalLocation(e.target.value)} />
               </Form.Field>
             </Form.Group>
             <Form.Group widths={'equal'}>
