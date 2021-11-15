@@ -80,7 +80,7 @@ const AddInventory = () => {
         <AutoForm ref={ref => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-          <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
+          <Segment padded='very' inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header as="h1" textAlign="center">Add Item to Inventory</Header>
             <SelectField
               name='medication'

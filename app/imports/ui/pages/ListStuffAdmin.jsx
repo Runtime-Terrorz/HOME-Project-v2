@@ -9,7 +9,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ListStuffAdmin = ({ stuffs, ready }) => ((ready) ? (
   <Container id={PAGE_IDS.LIST_STUFF_ADMIN}>
-    <Header as="h2" textAlign="center">List Stuff (Admin)</Header>
+    <Header as="h1" textAlign="center">List Stuff (Admin)</Header>
     <Table celled>
       <Table.Header>
         <Table.Row>

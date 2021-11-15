@@ -65,7 +65,7 @@ const DispenseInventory = ({ doc, ready }) => {
     <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
       <Grid.Column width={12}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
-          <Segment inverted style={{ backgroundColor: '#b86d4e' }}>
+          <Segment padded='very' inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
             <Form.Group>
               <Form.Field width={8}>

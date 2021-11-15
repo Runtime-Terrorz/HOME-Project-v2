@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
+import { Container, Table, Header, Loader, TableRow, TableCell } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
@@ -9,13 +9,13 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 /** Renders a table containing all of the User and Admin profiles. Use <UserItemAdmin> to render each row. */
 const ListUserAdmin = ({ admins, users, ready }) => ((ready) ? (
-  <Container id={PAGE_IDS.LIST_STUFF_ADMIN}>
-    <Header as="h2" textAlign="center">List Profiles</Header>
-    <Table celled>
+  <Container className="listUserAdmin" id={PAGE_IDS.LIST_STUFF_ADMIN}>
+    <Header as="h1" textAlign="center">Manage Accounts</Header>
+    <Table inverted style={{ backgroundColor: '#b86d4e' }}>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>FirstName</Table.HeaderCell>
-          <Table.HeaderCell>LastName</Table.HeaderCell>
+          <Table.HeaderCell>First Name</Table.HeaderCell>
+          <Table.HeaderCell>Last Name</Table.HeaderCell>
           <Table.HeaderCell>Email</Table.HeaderCell>
           <Table.HeaderCell>Role</Table.HeaderCell>
           <Table.HeaderCell>Remove</Table.HeaderCell>

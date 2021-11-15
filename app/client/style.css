@@ -49,8 +49,9 @@
 
 .navbar-home {
   color: #6C91A0 !important;
-    font-family: "Lato", serif !important;
+  font-family: "Lato", serif !important;
   font-size: 26px;
+  margin-bottom: 10px;
 }
 
 .homeButton {
@@ -151,4 +152,19 @@ h4.ui.header {
 .deleteButton {
   left: 30.7em;
   top: 1em;
+}
+
+.listUserAdmin {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.rolesNavbar, .logHistoryNavbar, .databaseNavbar {
+  color: #6C91A0 !important;
+  font-family: "Lato", serif !important;
+  font-size: 19px;
+}
+
+.rolesNavbar {
+  margin-left: 100px;
 }

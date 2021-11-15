@@ -21,9 +21,9 @@ const NavBar = ({ currentUser }) => {
           <Menu.Item id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key ='notification'><Notification/></Menu.Item>]
       ) : ''}
       {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN, ROLE.SUPER]) ? (
-        [<Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY_ADMIN} as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>,
-          <Menu.Item id={COMPONENT_IDS.NAVBAR_LOG_HISTORY} as={NavLink} activeClassName="active" exact to="/log" key='log'>Log History</Menu.Item>,
-          <Dropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} item text="Manage" key="manage-dropdown">
+        [<Menu.Item className="rolesNavbar" id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY_ADMIN} as={NavLink} activeClassName="active" exact to="/admin" key='admin'><Icon name='lock'/>Manage Accounts</Menu.Item>,
+          <Menu.Item className="logHistoryNavbar" id={COMPONENT_IDS.NAVBAR_LOG_HISTORY} as={NavLink} activeClassName="active" exact to="/log" key='log'><Icon name='history'/>Log History</Menu.Item>,
+          <Dropdown className="databaseNavbar" id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} item text="Manage" key="manage-dropdown">
             <Dropdown.Menu>
               <Dropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} exact to="/manage-database" content="Database" />
             </Dropdown.Menu>

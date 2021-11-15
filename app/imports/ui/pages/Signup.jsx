@@ -51,7 +51,7 @@ const Signup = ({ location }) => {
     <Container id={PAGE_IDS.SIGN_UP} className="logup-page">
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
         <Grid.Column width={8} style={{ backgroundColor: '#b86d4e' }}>
-          <Segment stacked inverted style={{ backgroundColor: '#b86d4e' }}>
+          <Segment padded='very' stacked inverted style={{ backgroundColor: '#b86d4e' }}>
             <Header inverted as="h2" textAlign="center">
               <p>Create a New Account</p>
             </Header>
@@ -96,7 +96,7 @@ const Signup = ({ location }) => {
                 type="password"
                 onChange={handleChange}
               />
-              <Form.Button id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} content="Sign Up" color='blue' icon='signup' style={{ marginLeft: '200px' }} />
+              <Form.Button id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} content="Sign Up" color='blue' icon='signup' style={{ marginLeft: '180px' }} />
             </Form>
             {error === '' ? (
               ''
@@ -110,7 +110,7 @@ const Signup = ({ location }) => {
             <Divider inverted horizontal>OR</Divider>
             <Header textAlign='center' as='h3'>Already have an account?</Header>
             <Link to="/signin">
-              <Button content="Sign In" color='blue' icon='sign in' style={{ marginLeft: '200px' }} />
+              <Button content="Sign In" color='blue' icon='sign in' style={{ marginLeft: '180px' }} />
             </Link>
           </Segment>
         </Grid.Column>
