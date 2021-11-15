@@ -54,6 +54,7 @@ const DispenseInventory = ({ doc, ready }) => {
       const owner = Meteor.user().username;
       const dispenseLocation = finalLocation;
       const patientID = finalPatientID;
+      const changeNotes = finalNote;
       const isDispenseChange = true;
       const today = new Date();
       const stringDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
@@ -62,7 +63,7 @@ const DispenseInventory = ({ doc, ready }) => {
       const collectionName2 = InventoryAudit.getCollectionName();
 
       const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
-      const definitionData = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, isDispenseChange };
+      const definitionData = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChange };
       updateMethod.callPromise({ collectionName, updateData })
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {

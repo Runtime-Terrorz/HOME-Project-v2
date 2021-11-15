@@ -54,6 +54,7 @@ const AddInventory = () => {
     // variables for log history
     const patientID = null;
     const dispenseLocation = null;
+    const changeNotes = data.note;
     const today = new Date();
     const stringDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
     const dateChanged = new Date(stringDate);
@@ -65,7 +66,7 @@ const AddInventory = () => {
     const collectionName = Inventories.getCollectionName();
     const collectionName2 = InventoryAudit.getCollectionName();
     const definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note };
-    const definitionData2 = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, isDispenseChange };
+    const definitionData2 = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChange };
 
     // Generates QR Code for dispense page
     let qrCode;

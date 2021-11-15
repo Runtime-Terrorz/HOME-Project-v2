@@ -20,6 +20,7 @@ class InventoryAuditLog extends BaseCollection {
       lot: String,
       quantityChanged: Number,
       dateChanged: Date,
+      changeNotes: String,
       isDispenseChange: Boolean,
     }));
   }
@@ -37,7 +38,7 @@ class InventoryAuditLog extends BaseCollection {
    * @param isDispenseChanged bit to disinguish between add/edit and dispense change
    * @return {String} the docID of the new document.
    */
-  define({ owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, isDispenseChanged }) {
+  define({ owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChanged }) {
     const docID = this._collection.insert({
       owner,
       medication,
@@ -47,6 +48,7 @@ class InventoryAuditLog extends BaseCollection {
       lot,
       quantityChanged,
       dateChanged,
+      changeNotes,
       isDispenseChanged,
     });
     return docID;
@@ -63,9 +65,8 @@ class InventoryAuditLog extends BaseCollection {
    * @param lot the lot number of the item.
    * @param quantityChanged the number of items changed.
    * @param dateChanged the date add/edit or dispense happened
-   * @param isDispenseChanged bit to disinguish between add/edit and dispense change
    */
-  update(docID, { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged }) {
+  update(docID, { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, changeNotes }) {
     const updateData = {};
     if (owner) {
       updateData.owner = owner;
@@ -85,12 +86,12 @@ class InventoryAuditLog extends BaseCollection {
     if (lot) {
       updateData.lot = lot;
     }
+    if (changeNotes) {
+      updateData.changeNotes = changeNotes;
+    }
     // if (quantityChanged) { NOTE: 0 is falsy so we need to check if the quantityChanged is a number.
     if (_.isNumber(quantityChanged)) {
       updateData.quantityChanged = quantityChanged;
-    }
-    if (dateChanged) {
-      updateData.dateChanged = dateChanged;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -173,8 +174,9 @@ class InventoryAuditLog extends BaseCollection {
     const lot = doc.lot;
     const quantityChanged = doc.quantityChanged;
     const dateChanged = doc.dateChanged;
+    const changeNotes = doc.changeNotes;
     const isDispenseChanged = doc.isDispenseChanged;
-    return { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, isDispenseChanged };
+    return { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChanged };
   }
 }
 
