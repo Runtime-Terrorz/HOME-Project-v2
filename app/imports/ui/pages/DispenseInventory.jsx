@@ -4,14 +4,16 @@ import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useParams } from 'react-router';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Redirect } from 'react-router-dom';
 import { Inventories } from '../../api/inventory/InventoryCollection';
-import { updateMethod } from '../../api/base/BaseCollection.methods';
+import { defineMethod, updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { InventoryAudit } from '../../api/InventoryAudit/InventoryAuditLog';
 
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
@@ -47,11 +49,30 @@ const DispenseInventory = ({ doc, ready }) => {
       const collectionName = Inventories.getCollectionName();
       const quantity = doc.quantity - data.quantity;
       const status = Inventories.checkQuantityStatus(quantity, threshold);
+
+      // variables for log history
+      const owner = Meteor.user().username;
+      const dispenseLocation = finalLocation;
+      const patientID = finalPatientID;
+      const isDispenseChange = true;
+      const today = new Date();
+      const stringDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
+      const quantityChanged = data.quantity * -1;
+      const dateChanged = new Date(stringDate);
+      const collectionName2 = InventoryAudit.getCollectionName();
+
       const updateData = { id: _id, medication, name, threshold, quantity, lot, status };
+      const definitionData = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, isDispenseChange };
       updateMethod.callPromise({ collectionName, updateData })
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {
           swal('Success', 'Inventory dispensed successfully', 'success');
+
+          defineMethod.callPromise({ collectionName2, definitionData })
+            .catch(error => swal('Error', error.message, 'error'))
+            .then(() => {
+            });
+
           setRedirectToReferer(true);
         });
     }
