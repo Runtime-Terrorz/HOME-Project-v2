@@ -180,18 +180,21 @@ class InventoryCollection extends BaseCollection {
 
   /**
    * Default publication method for entities.
-   * It publishes the entire collection and just the inventory associated to an owner.
+   * It publishes the entire collection for all users to see
    */
 
   publish() {
     if (Meteor.isServer) {
       // get the InventoryCollection instance.
       const instance = this;
-      /** This subscription publishes only the documents associated with the logged in user */
+      /** This subscription publishes documents associated with all users */
       Meteor.publish(inventoryPublications.inventory, function publish() {
         if (this.userId) {
-          const username = Meteor.users.findOne(this.userId).username;
-          return instance._collection.find({ owner: username });
+          // Find Users that have SUPER or USER as role as properties and push into array
+          const user = Meteor.users.find({}, { role: { $in: [ROLE.USER, ROLE.SUPER] } }).fetch();
+          const userArr = [];
+          user.forEach(obj => userArr.push(obj.username));
+          return instance._collection.find({ owner: { $in: userArr } });
         }
         return this.ready();
       });
@@ -226,7 +229,7 @@ class InventoryCollection extends BaseCollection {
    * @throws { Meteor.Error } If there is no logged in user, or the user is not an Admin or User.
    */
   assertValidRoleForMethod(userId) {
-    this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
+    this.assertRole(userId, [ROLE.SUPER, ROLE.ADMIN, ROLE.USER]);
   }
 
   /**
