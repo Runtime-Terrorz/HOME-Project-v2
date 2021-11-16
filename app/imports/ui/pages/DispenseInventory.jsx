@@ -80,21 +80,18 @@ const DispenseInventory = ({ doc, ready }) => {
             <Form.Group widths={'equal'}>
               <SelectField
                 name='medication'
-                disabled
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_MEDICATION}
               />
             </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField
                 name='name'
-                disabled
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_NAME}
               />
             </Form.Group>
             <Form.Group widths={'equal'}>
               <TextField
                 name='lot'
-                disabled
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_LOT}
               />
             </Form.Group>
@@ -102,7 +99,6 @@ const DispenseInventory = ({ doc, ready }) => {
               <NumField
                 name='threshold'
                 decimal={false}
-                disabled
                 id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
               <NumField

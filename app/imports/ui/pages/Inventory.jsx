@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { _ } from 'meteor/underscore';
-import { Container, Table, Header, Grid, Dropdown, Loader, Input } from 'semantic-ui-react';
+import {Container, Table, Header, Grid, Dropdown, Loader, Input, Checkbox, Button} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
@@ -50,8 +50,17 @@ const Inventory = ({ ready, inventories }) => {
       sorted = _.sortBy(sorted.filter(inventory => medFind(inventory)), 'name');
     }
   }
-  return ((ready) ? (
-    <Container id={PAGE_IDS.LIST_INVENTORY}>
+  const [selection, setSelection] = useState([]);
+
+  const takeValue = (e, { label, checked }) => {
+    if (checked) {
+      setSelection([...selection, label]);
+    } else {
+      setSelection(selection.filter(el => el !== label));
+    }
+  };
+
+  return ready ? <Container id={PAGE_IDS.LIST_INVENTORY}>
       <Grid container column={3}>
         <Grid.Row column={2} className="inventory">
           <Grid.Column width={10}>
@@ -81,23 +90,23 @@ const Inventory = ({ ready, inventories }) => {
                 <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'>No Quantity</Dropdown.Item>
                 <Dropdown.Item onClick ={handleFilter} value = 'expired'>Expired</Dropdown.Item>
                 <Dropdown.Item onClick ={handleFilter} value = 'notExpired'>Not Expired</Dropdown.Item>
-
               </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>
-          <Grid.Column width={2}>
-            <Dropdown style={{ backgroundColor: '#88a7b3' }}
-              key='dispense'
-              text='Dispense'
-              icon='recycle'
-              floating
-              labeled
-              button
-              className='icon'>
-              <Dropdown.Menu className='dispenseMenu'>
-                {sorted.map((inventory) => <DispenseMenu key={inventory._id} inventory={inventory}/>)}
-              </Dropdown.Menu>
-            </Dropdown>
+          <Grid.Column width={3}>
+            <div style={{display: 'flex'}}>
+              <Dropdown style={{ backgroundColor: '#88a7b3'}}
+                        key='dispense'
+                        text='Dispense'
+                        icon='recycle'
+                        floated labeled multiple selection button className='icon'>
+                <Dropdown.Menu className='dispenseMenu'>
+                  {sorted.map((inventory) => <Dropdown.Item key={inventory._id}>
+                    <Checkbox label={inventory.lot} onChange={takeValue} />
+                  </Dropdown.Item>)}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -120,8 +129,7 @@ const Inventory = ({ ready, inventories }) => {
           {sorted.map((inventory) => <InventoryItem key={inventory._id} inventory={inventory}/>)}
         </Table.Body>
       </Table>
-    </Container>
-  ) : <Loader active>Getting data</Loader>);
+    </Container> : <Loader active>Getting data</Loader>;
 };
 /** Require an array of Inventory documents in the props. */
 Inventory.propTypes = {
