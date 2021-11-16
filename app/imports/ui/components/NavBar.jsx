@@ -15,7 +15,7 @@ const NavBar = ({ currentUser }) => {
   return (
     <Menu style={menuStyle} attached="top" borderless>
       <Menu.Item id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} activeClassName="" exact to="/" className={'navbar-home'} >HOME</Menu.Item>
-      {currentUser ? (
+      {Roles.userIsInRole(Meteor.userId(), [ROLE.USER, ROLE.SUPER]) ? (
         [<Menu.Item id={COMPONENT_IDS.NAVBAR_ADD_INVENTORY} as={NavLink} activeClassName="active" exact to="/add" key='add' className={'navbar-item'} i><Icon name='add'/>Add Order</Menu.Item>,
           <Menu.Item id={COMPONENT_IDS.NAVBAR_LIST_INVENTORY} as={NavLink} activeClassName="active" exact to="/list" key='list' className={'navbar-item'}><Icon name='list alternate'/>List Inventory</Menu.Item>,
           <Menu.Item id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key ='notification'><Notification/></Menu.Item>]
