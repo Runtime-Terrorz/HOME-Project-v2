@@ -57,6 +57,17 @@ class BaseCollection {
     return true;
   }
 
+  removeMultiple(idArr) {
+    let size = 0;
+    idArr.forEach(id => {
+      const doc = this.findDoc(id);
+      check(doc, Object);
+      this._collection.remove(doc._id);
+      size++;
+    });
+    return size === idArr.size();
+  }
+
   /**
    * Runs find on this collection.
    * @see {@link http://docs.meteor.com/#/full/find|Meteor Docs on Mongo Find}
