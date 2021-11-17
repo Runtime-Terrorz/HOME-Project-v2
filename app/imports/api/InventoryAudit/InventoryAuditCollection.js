@@ -9,19 +9,27 @@ export const inventoryAuditPublications = {
   audit: 'audit',
 };
 
-class InventoryAuditLog extends BaseCollection {
+class InventoryAuditCollection extends BaseCollection {
   constructor() {
     super('InventoryAudit', new SimpleSchema({
       owner: String,
       medication: String,
-      patientID: String,
-      dispenseLocation: String,
+      patientID: {
+        type: String,
+        optional: true,
+        defaultValue: null,
+      },
+      dispenseLocation: {
+        type: String,
+        optional: true,
+        defaultValue: null,
+      },
       name: String,
       lot: String,
       quantityChanged: Number,
       dateChanged: Date,
       changeNotes: String,
-      isDispenseChange: Boolean,
+      isDispenseChanged: Boolean,
     }));
   }
 
@@ -159,6 +167,10 @@ class InventoryAuditLog extends BaseCollection {
     this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
   }
 
+  getLogs() {
+    return this._collection.find({}, {}).fetch();
+  }
+
   /**
    * Returns an object representing the definition of docID in a format appropriate to the restoreOne or define function.
    * @param docID
@@ -183,4 +195,4 @@ class InventoryAuditLog extends BaseCollection {
 /**
  * Provides the singleton instance of this class to all other entities.
  */
-export const InventoryAudit = new InventoryAuditLog();
+export const InventoryAudit = new InventoryAuditCollection();

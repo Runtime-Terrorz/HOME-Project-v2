@@ -12,7 +12,7 @@ import { Inventories, inventoryMedications, medLocations, medUnits } from '../..
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import { InventoryAudit } from '../../api/InventoryAudit/InventoryAuditLog';
+import { InventoryAudit } from '../../api/InventoryAudit/InventoryAuditCollection';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -59,14 +59,14 @@ const AddInventory = () => {
     const stringDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
     const dateChanged = new Date(stringDate);
     const quantityChanged = data.quantity;
-    const isDispenseChange = false;
+    const isDispenseChanged = false;
 
     const quantityStatus = Inventories.checkQuantityStatus(quantity, threshold);
     const expirationStatus = Inventories.checkExpirationStatus(expiration);
-    const collectionName = Inventories.getCollectionName();
+    let collectionName = Inventories.getCollectionName();
     const collectionName2 = InventoryAudit.getCollectionName();
-    const definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note };
-    const definitionData2 = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChange };
+    let definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note };
+    const definitionData2 = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChanged };
 
     // Generates QR Code for dispense page
     let qrCode;
@@ -84,7 +84,9 @@ const AddInventory = () => {
           icon: qrCode,
         });
 
-        defineMethod.callPromise({ collectionName2, definitionData2 })
+        collectionName = collectionName2;
+        definitionData = definitionData2;
+        defineMethod.callPromise({ collectionName, definitionData })
           .catch(error => swal('Error', error.message, 'error'))
           .then(() => {
           });
