@@ -102,7 +102,7 @@ const Inventory = ({ ready, inventories }) => {
                         floated labeled multiple selection button className='icon'>
                 <Dropdown.Menu className='dispenseMenu'>
                   {sorted.map((inventory) => <Dropdown.Item key={inventory._id}>
-                    <Checkbox label={inventory.lot} onChange={takeValue} />
+                    <Checkbox label={inventory.name} onChange={takeValue} />
                   </Dropdown.Item>)}
                 </Dropdown.Menu>
               </Dropdown>
