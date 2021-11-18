@@ -12,6 +12,7 @@ import { Inventories, inventoryMedications, medLocations, medUnits } from '../..
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { InventoryAudit } from '../../api/InventoryAudit/InventoryAuditCollection';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -49,10 +50,23 @@ const AddInventory = () => {
     const { medication, name, unit, location, threshold, quantity, lot, note } = data;
     const owner = Meteor.user().username;
     const expiration = startDate;
+
+    // variables for log history
+    const patientID = null;
+    const dispenseLocation = null;
+    const changeNotes = data.note;
+    const today = new Date();
+    const stringDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
+    const dateChanged = new Date(stringDate);
+    const quantityChanged = data.quantity;
+    const isDispenseChanged = false;
+
     const quantityStatus = Inventories.checkQuantityStatus(quantity, threshold);
     const expirationStatus = Inventories.checkExpirationStatus(expiration);
-    const collectionName = Inventories.getCollectionName();
-    const definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note };
+    let collectionName = Inventories.getCollectionName();
+    const collectionName2 = InventoryAudit.getCollectionName();
+    let definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note };
+    const definitionData2 = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChanged };
 
     // Generates QR Code for dispense page
     let qrCode;
@@ -69,6 +83,14 @@ const AddInventory = () => {
           text: 'Order added successfully. Save QRCode for dispensing.',
           icon: qrCode,
         });
+
+        collectionName = collectionName2;
+        definitionData = definitionData2;
+        defineMethod.callPromise({ collectionName, definitionData })
+          .catch(error => swal('Error', error.message, 'error'))
+          .then(() => {
+          });
+
         formRef.reset();
       });
   };
