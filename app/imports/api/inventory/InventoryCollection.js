@@ -178,6 +178,17 @@ class InventoryCollection extends BaseCollection {
     return true;
   }
 
+  removeMultiple(idArr) {
+    let size = 0;
+    idArr.forEach(id => {
+      const doc = this.findDoc(id);
+      check(doc, Object);
+      this._collection.remove(doc._id);
+      size++;
+    });
+    return size === idArr.length;
+  }
+
   /**
    * Default publication method for entities.
    * It publishes the entire collection for all users to see
