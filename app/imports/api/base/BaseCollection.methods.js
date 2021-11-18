@@ -56,6 +56,20 @@ export const removeItMethod = new ValidatedMethod({
   },
 });
 
+export const removeMultipleMethod = new ValidatedMethod({
+  name: 'BaseCollection.removeMultiple',
+  mixins: [CallPromiseMixin],
+  validate: null,
+  run({ collectionName, instance }) {
+    if (Meteor.isServer) {
+      const collection = MATRP.getCollection(collectionName);
+      collection.assertValidRoleForMethod(this.userId);
+      return collection.removeMultiple(instance);
+    }
+    return true;
+  },
+});
+
 export const dumpDatabaseMethod = new ValidatedMethod({
   name: 'base.dumpDatabase',
   mixins: [CallPromiseMixin],
