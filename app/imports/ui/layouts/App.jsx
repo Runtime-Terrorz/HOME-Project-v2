@@ -20,6 +20,7 @@ import ManageDatabase from '../pages/ManageDatabase';
 import LogHistory from '../pages/LogHistory';
 import { ROLE } from '../../api/role/Role';
 import ListUserAdmin from '../pages/ListUserAdmin';
+import UserProfile from '../pages/UserProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -33,6 +34,7 @@ class App extends React.Component {
             <Route path="/signin" component={Signin}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
+            <Route path="/profile" component={UserProfile}/>
             <ProtectedRoute path="/list" component={Inventory}/>
             <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
             <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventory}/>
