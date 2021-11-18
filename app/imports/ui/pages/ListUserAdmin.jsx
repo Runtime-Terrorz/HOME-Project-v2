@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Table, Header, Loader, Icon, Grid } from 'semantic-ui-react';
+import { Container, Table, Header, Loader, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { AdminProfiles } from '../../api/user/AdminProfileCollection';
 import UserItemAdmin from '../components/UserItemAdmin';
@@ -50,14 +51,17 @@ export default withTracker(() => {
   // Get access to User and Admin profiles.
   const subscriptionUser = UserProfiles.subscribeUserProfile();
   const subscriptionAdmin = AdminProfiles.subscribeAdminProfile();
+  const test = Meteor.subscribe('userList');
   // Determine if the subscription is ready
-  const ready = subscriptionUser.ready() && subscriptionAdmin.ready();
+  const ready = subscriptionUser.ready() && subscriptionAdmin.ready() && test.ready();
   // Get the User and Admin profiles and sort by owner then name
   const admins = AdminProfiles.find({}, { sort: { owner: 1, name: 1 } }).fetch();
   const users = UserProfiles.find({}, { sort: { owner: 1, name: 1 } }).fetch();
+  const publication = Meteor.users.find({}).fetch();
   return {
     admins,
     users,
+    publication,
     ready,
   };
 })(ListUserAdmin);
