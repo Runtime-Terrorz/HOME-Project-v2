@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Dropdown, Icon, Segment, Table } from 'semantic-ui-react';
+import { Button, Dropdown, Icon, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
 import { withTracker } from 'meteor/react-meteor-data';

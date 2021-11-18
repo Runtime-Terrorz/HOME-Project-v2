@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Table, Header, Grid, Loader } from 'semantic-ui-react';
+import { Container, Table, Header, Grid, Loader, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -12,20 +12,20 @@ const LogHistory = ({ ready, inventories }) => ((ready) ? (
     <Grid container column={3}>
       <Grid.Row column={2}>
         <Grid.Column>
-          <Header as="h1" textAlign="center">Log History</Header>
+          <Header as="h2" textAlign="center">Log History</Header>
         </Grid.Column>
       </Grid.Row>
     </Grid>
-    <Table celled>
+    <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>Added By</Table.HeaderCell>
+          <Table.HeaderCell><Icon name={'user'}/> Added By</Table.HeaderCell>
           <Table.HeaderCell>Medication</Table.HeaderCell>
           <Table.HeaderCell>Name</Table.HeaderCell>
           <Table.HeaderCell>Unit</Table.HeaderCell>
           <Table.HeaderCell>Quantity</Table.HeaderCell>
           <Table.HeaderCell>Storage Location</Table.HeaderCell>
-          <Table.HeaderCell>Lot #</Table.HeaderCell>
+          <Table.HeaderCell>Lot Number</Table.HeaderCell>
           <Table.HeaderCell>Expiration Date</Table.HeaderCell>
         </Table.Row>
       </Table.Header>

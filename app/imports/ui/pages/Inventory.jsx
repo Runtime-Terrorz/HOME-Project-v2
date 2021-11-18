@@ -51,10 +51,12 @@ const Inventory = ({ ready, inventories }) => {
     }
   }
   return ((ready) ? (
-    <Container style={{ backgroundColor: '#88a7b3' }} id={PAGE_IDS.LIST_INVENTORY}>
+    <Container style={{ backgroundColor: '#88a7b3', marginTop: '-20px' }} id={PAGE_IDS.LIST_INVENTORY}>
       <Grid container centered>
-        <br/>
-        <Header as="h1">Inventory</Header>
+        <br/><Header as="h1">Inventory</Header>
+        <Grid.Row>
+          <Header as="h3"><em>Medications and Medical Supplies</em></Header>
+        </Grid.Row>
         <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
           <Table.Row>
             <Table.Cell width={2}>

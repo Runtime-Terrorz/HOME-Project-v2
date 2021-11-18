@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Grid, Header, Image } from 'semantic-ui-react';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 /** After the user clicks the "Signout" link in the NavBar, log them out and display this page. */
@@ -8,10 +8,15 @@ const Signout = () => {
   Meteor.logout();
   return (
     <Container className="signout-page">
-      <Header id={PAGE_IDS.SIGN_OUT} as="h1" textAlign="center" style={{ marginBottom: '500px' }} >
-        You are signed out.
-        We hope to see you again!
-      </Header>
+      <Grid.Column width={8}>
+        <Image centered width={'450px'} src="/images/aeneas.jpg"/>
+        <Header id={PAGE_IDS.SIGN_OUT} as="h2" textAlign="center">
+          <em>
+            <p>You are signed out.</p>
+            <p>We hope to see you again!</p>
+          </em>
+        </Header>
+      </Grid.Column>
     </Container>
   );
 };

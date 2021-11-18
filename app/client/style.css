@@ -104,7 +104,7 @@
   margin-bottom: 90px;
 }
 
-h1.ui.header {
+h1.ui.header, h3.ui.header {
   font-family: "Lato", serif !important;
   font-size: 20px;
   letter-spacing: 0.2rem;
@@ -112,9 +112,14 @@ h1.ui.header {
   font-weight: lighter;
 }
 
-h4.ui.header {
+h5.ui.header {
   font-family: "Lato", serif !important;
-  font-size: 6px;
+  color: whitesmoke;
+  font-weight: lighter;
+}
+
+h2.ui.header, .p {
+  font-family: "Lato", serif !important;
   color: #6C91A0;
   font-weight: lighter;
 }
@@ -125,8 +130,8 @@ h4.ui.header {
 }
 
 .signout-page {
-  margin-top: 276px;
-  margin-bottom: 310px;
+  margin-top: 160px;
+  margin-bottom: 20px;
 }
 
 .login-page {
@@ -153,7 +158,6 @@ h4.ui.header {
   left: 30.7em;
   top: 1em;
 }
-
 .listUserAdmin {
   padding-top: 120px;
   padding-bottom: 120px;

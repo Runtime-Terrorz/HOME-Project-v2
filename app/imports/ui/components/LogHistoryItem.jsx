@@ -32,7 +32,7 @@ const LogHistory = ({ inventory }) => {
 
   return (
     <Table.Row>
-      <Table.Cell>{inventory.owner}</Table.Cell>
+      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>{inventory.owner}</Table.Cell>
       <Table.Cell>{inventory.medication}</Table.Cell>
       <Table.Cell>{inventory.name}</Table.Cell>
       <Table.Cell>{inventory.unit}</Table.Cell>
