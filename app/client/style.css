@@ -105,10 +105,10 @@
 }
 
 h1.ui.header {
-    font-family: "Lato", serif !important;
+  font-family: "Lato", serif !important;
   font-size: 20px;
   letter-spacing: 0.2rem;
-  color: #6C91A0;
+  color: whitesmoke;
   font-weight: lighter;
 }
 

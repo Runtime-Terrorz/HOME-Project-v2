@@ -51,55 +51,51 @@ const Inventory = ({ ready, inventories }) => {
     }
   }
   return ((ready) ? (
-    <Container id={PAGE_IDS.LIST_INVENTORY}>
-      <Grid container column={3}>
-        <Grid.Row column={2} className="inventory">
-          <Grid.Column width={10}>
-            <Header as="h1" textAlign="left">Inventory</Header>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column floated='right' width={5}>
-            <Input type='text' size='large' placeholder='Search by name...' icon='search' fluid
-              onChange={handleSearch}/>
-          </Grid.Column>
-          <Grid.Column width={2}>
-            <Dropdown style={{ backgroundColor: '#88a7b3' }}
-              text='Filter'
-              icon='filter'
-              floating
-              labeled
-              button
-              className='icon'
-            >
-              <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
-                <Dropdown.Header icon='tags' content='Filter by tag'/>
-                <Dropdown.Divider/>
-                <Dropdown.Item onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'quantity'>Quantity</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'>Low Quantity</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'>No Quantity</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'expired'>Expired</Dropdown.Item>
-                <Dropdown.Item onClick ={handleFilter} value = 'notExpired'>Not Expired</Dropdown.Item>
-
-              </Dropdown.Menu>
-            </Dropdown>
-          </Grid.Column>
-          <Grid.Column width={2}>
-            <Dropdown style={{ backgroundColor: '#88a7b3' }}
-              key='dispense'
-              text='Dispense'
-              icon='recycle'
-              floating
-              labeled
-              button
-              className='icon'>
-              <Dropdown.Menu className='dispenseMenu'>
-                {sorted.map((inventory) => <DispenseMenu key={inventory._id} inventory={inventory}/>)}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Grid.Column>
-        </Grid.Row>
+    <Container style={{ backgroundColor: '#88a7b3' }} id={PAGE_IDS.LIST_INVENTORY}>
+      <Grid container centered>
+        <br/>
+        <Header as="h1">Inventory</Header>
+        <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
+          <Table.Row>
+            <Table.Cell width={2}>
+              <Dropdown style={{ backgroundColor: '#97B9C7', color: 'white' }}
+                text='Filter'
+                icon='filter'
+                labeled
+                button
+                className='icon'
+              >
+                <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
+                  <Dropdown.Header icon='tags' content='Filter by tag'/>
+                  <Dropdown.Divider/>
+                  <Dropdown.Item onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
+                  <Dropdown.Item onClick ={handleFilter} value = 'quantity'>Quantity</Dropdown.Item>
+                  <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'>Low Quantity</Dropdown.Item>
+                  <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'>No Quantity</Dropdown.Item>
+                  <Dropdown.Item onClick ={handleFilter} value = 'expired'>Expired</Dropdown.Item>
+                  <Dropdown.Item onClick ={handleFilter} value = 'notExpired'>Not Expired</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Table.Cell>
+            <Table.Cell width={12}>
+              <Input type='text' size='large' placeholder='Search by name...' icon='search' fluid
+                onChange={handleSearch}/>
+            </Table.Cell>
+            <Table.Cell width={3}>
+              <Dropdown style={{ backgroundColor: '#97B9C7', color: 'white' }}
+                key='dispense'
+                text='Dispense'
+                icon='recycle'
+                labeled
+                button
+                className='icon'>
+                <Dropdown.Menu className='dispenseMenu'>
+                  {sorted.map((inventory) => <DispenseMenu key={inventory._id} inventory={inventory}/>)}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Table.Cell>
+          </Table.Row>
+        </Table>
       </Grid>
       <Table inverted celled className="listContainer" style={{ backgroundColor: '#88a7b3' }}>
         <Table.Header>
@@ -110,7 +106,7 @@ const Inventory = ({ ready, inventories }) => {
             <Table.HeaderCell>Threshold</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
             <Table.HeaderCell>Storage Location</Table.HeaderCell>
-            <Table.HeaderCell>Lot #</Table.HeaderCell>
+            <Table.HeaderCell>Lot Number</Table.HeaderCell>
             <Table.HeaderCell>Expiration Date</Table.HeaderCell>
             <Table.HeaderCell>Edit/Delete</Table.HeaderCell>
             <Table.HeaderCell>Dispense</Table.HeaderCell>
