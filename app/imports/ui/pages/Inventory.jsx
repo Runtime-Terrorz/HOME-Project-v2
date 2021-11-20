@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { _ } from 'meteor/underscore';
-import { Container, Table, Header, Grid, Dropdown, Loader, Input, Checkbox } from 'semantic-ui-react';
+import { Container, Table, Header, Grid, Dropdown, Loader, Input, Checkbox, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
@@ -75,14 +75,26 @@ const Inventory = ({ ready, inventories }) => {
                 className='icon'
               >
                 <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
-                  <Dropdown.Header icon='tags' content='Filter by tag'/>
+                  <Dropdown.Header icon='tags' content='Filter medicine by tag'/>
                   <Dropdown.Divider/>
                   <Dropdown.Item onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
-                  <Dropdown.Item onClick ={handleFilter} value = 'quantity'>Quantity (High-Low)</Dropdown.Item>
-                  <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'>Quantity (Low-High)</Dropdown.Item>
-                  <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'>No Quantity</Dropdown.Item>
-                  <Dropdown.Item onClick ={handleFilter} value = 'expired'>Expired</Dropdown.Item>
-                  <Dropdown.Item onClick ={handleFilter} value = 'notExpired'>Not Expired</Dropdown.Item>
+                  <Dropdown.Item>
+                    <Dropdown icon='chevron right' text='Medication Quantity '>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'><Icon name={'sort numeric down'}/>Quantity (Low-High)</Dropdown.Item>
+                        <Dropdown.Item onClick ={handleFilter} value = 'quantity'><Icon name={'sort numeric up'}/>Quantity (High-Low)</Dropdown.Item>
+                        <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'><Icon name={'ban'}/>No Quantity</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Dropdown icon='chevron right' text='Expiration Date '>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick ={handleFilter} value = 'expired'><Icon name={'calendar times'}/>Expired</Dropdown.Item>
+                        <Dropdown.Item onClick ={handleFilter} value = 'notExpired'><Icon name={'calendar check'}/>Not Expired</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Table.Cell>
