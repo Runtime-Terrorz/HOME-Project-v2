@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { _ } from 'meteor/underscore';
-import {Container, Table, Header, Grid, Dropdown, Loader, Input, Checkbox} from 'semantic-ui-react';
+import { Container, Table, Header, Grid, Dropdown, Loader, Input, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
@@ -78,8 +78,8 @@ const Inventory = ({ ready, inventories }) => {
                   <Dropdown.Header icon='tags' content='Filter by tag'/>
                   <Dropdown.Divider/>
                   <Dropdown.Item onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
-                  <Dropdown.Item onClick ={handleFilter} value = 'quantity'>Quantity</Dropdown.Item>
-                  <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'>Low Quantity</Dropdown.Item>
+                  <Dropdown.Item onClick ={handleFilter} value = 'quantity'>Quantity (High-Low)</Dropdown.Item>
+                  <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'>Quantity (Low-High)</Dropdown.Item>
                   <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'>No Quantity</Dropdown.Item>
                   <Dropdown.Item onClick ={handleFilter} value = 'expired'>Expired</Dropdown.Item>
                   <Dropdown.Item onClick ={handleFilter} value = 'notExpired'>Not Expired</Dropdown.Item>
@@ -91,11 +91,11 @@ const Inventory = ({ ready, inventories }) => {
                 onChange={handleSearch}/>
             </Table.Cell>
             <Table.Cell width={3}>
-              <Dropdown style={{ backgroundColor: '#88a7b3', color: 'white'}}
-                        key='dispense'
-                        text='Dispense'
-                        icon='recycle'
-                        floated labeled multiple selection button className='icon'>
+              <Dropdown style={{ backgroundColor: '#88a7b3', color: 'white' }}
+                key='dispense'
+                text='Dispense'
+                icon='recycle'
+                floated labeled multiple selection button className='icon'>
                 <Dropdown.Menu className='dispenseMenu' style={{ backgroundColor: '#88a7b3' }}>
                   {sorted.map((inventory) => <Dropdown.Item key={inventory._id}>
                     <Checkbox label={inventory.name} onChange={takeValue} />
