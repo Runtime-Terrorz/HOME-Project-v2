@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Loader, Header, Segment, Form, Icon, Button } from 'semantic-ui-react';
+import { Grid, Loader, Header, Segment, Form, Icon, Button, Modal } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import { Redirect } from 'react-router-dom';
@@ -18,6 +18,7 @@ const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
 /** Renders the Page for editing a single document. */
 const EditInventory = ({ doc, ready }) => {
+  const [open, setOpen] = React.useState(false);
   const [startDate, setStartDate] = useState(doc.expiration);
   const [redirectToReferer, setRedirectToReferer] = useState(false);
 
@@ -121,7 +122,33 @@ const EditInventory = ({ doc, ready }) => {
             <HiddenField name='owner' />
           </Segment>
         </AutoForm>
-        <Button className='deleteButton' onClick={handleDelete} content='Delete' icon='trash' labelPosition='left' color='red'/>
+        <Modal
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+          open={open}
+          trigger={<Button className='deleteButton' content='Delete' icon='trash' labelPosition='left' color='red'/>}
+        >
+          <Modal.Content style={{ backgroundColor: '#b86d4e', color: 'white' }}>
+            <Modal.Description>
+              <Header as={'h3'}>Are you sure you want to delete this item?</Header>
+              <p><em>This item will be deleted permanently. You cannot undo this action.</em></p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions style={{ backgroundColor: '#EEE7DA', color: 'white' }}>
+            <Button color='green' inverted onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              color='red'
+              inverted
+              content="Delete"
+              labelPosition='right'
+              icon='x'
+              onClick={handleDelete}
+              positive
+            />
+          </Modal.Actions>
+        </Modal>
       </Grid.Column>
     </Grid>
   ) : <Loader active>Getting data</Loader>;

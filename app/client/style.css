@@ -107,12 +107,12 @@
 h1.ui.header, h3.ui.header {
   font-family: "Lato", serif !important;
   font-size: 20px;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   color: whitesmoke;
   font-weight: lighter;
 }
 
-h5.ui.header {
+h4.ui.header, h5.ui.header {
   font-family: "Lato", serif !important;
   color: whitesmoke;
   font-weight: lighter;
