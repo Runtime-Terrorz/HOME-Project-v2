@@ -43,8 +43,10 @@ const Inventory = ({ ready, inventories }) => {
       sorted = inventories.filter(inventory => inventory.quantityStatus === quantityStates.ok || inventory.quantityStatus === quantityStates.bad);
     } else if (filter === 'inventoryBad') {
       sorted = inventories.filter(inventory => inventory.quantityStatus === quantityStates.bad);
-    } else if (filter === 'quantity') {
-      sorted = _.sortBy(inventories, filter).reverse();
+    } else if (filter === 'high') {
+      sorted = _.sortBy(inventories, 'quantity').reverse();
+    } else if (filter === 'low') {
+      sorted = _.sortBy(inventories, 'quantity');
     } else if (filter === 'expired') {
       sorted = inventories.filter(inventory => inventory.expirationStatus === expirationStates.expired);
     } else if (filter === 'notExpired') {
@@ -81,8 +83,8 @@ const Inventory = ({ ready, inventories }) => {
                   <Dropdown.Item>
                     <Dropdown icon='chevron right' text='Medication Quantity '>
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick ={handleFilter} value = 'inventoryOk'><Icon name={'sort numeric down'}/>Quantity (Low-High)</Dropdown.Item>
-                        <Dropdown.Item onClick ={handleFilter} value = 'quantity'><Icon name={'sort numeric up'}/>Quantity (High-Low)</Dropdown.Item>
+                        <Dropdown.Item onClick ={handleFilter} value = 'low'><Icon name={'sort numeric down'}/>Quantity (Low-High)</Dropdown.Item>
+                        <Dropdown.Item onClick ={handleFilter} value = 'high'><Icon name={'sort numeric up'}/>Quantity (High-Low)</Dropdown.Item>
                         <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'><Icon name={'ban'}/>No Quantity</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
