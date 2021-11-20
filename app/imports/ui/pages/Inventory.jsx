@@ -76,24 +76,24 @@ const Inventory = ({ ready, inventories }) => {
                 button
                 className='icon'
               >
-                <Dropdown.Menu style={{ color: 'black !important', backgroundColor: '#88a7b3' }}>
-                  <Dropdown.Header icon='tags' content='Filter medicine by tag'/>
+                <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+                  <Dropdown.Header icon='tags' style={{ color: 'white' }} content='Filter medicine by tag'/>
                   <Dropdown.Divider/>
-                  <Dropdown.Item onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
+                  <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
                   <Dropdown.Item>
-                    <Dropdown icon='chevron right' text='Medication Quantity '>
-                      <Dropdown.Menu>
-                        <Dropdown.Item onClick ={handleFilter} value = 'low'><Icon name={'sort numeric down'}/>Quantity (Low-High)</Dropdown.Item>
-                        <Dropdown.Item onClick ={handleFilter} value = 'high'><Icon name={'sort numeric up'}/>Quantity (High-Low)</Dropdown.Item>
-                        <Dropdown.Item onClick ={handleFilter} value = 'inventoryBad'><Icon name={'ban'}/>No Quantity</Dropdown.Item>
+                    <Dropdown icon='chevron right' style={{ color: 'white' }} text='Medication Quantity '>
+                      <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+                        <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'low'><Icon name={'sort numeric down'}/>Quantity (Low-High)</Dropdown.Item>
+                        <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'high'><Icon name={'sort numeric up'}/>Quantity (High-Low)</Dropdown.Item>
+                        <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'inventoryBad'><Icon name={'ban'}/>No Quantity</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </Dropdown.Item>
                   <Dropdown.Item>
-                    <Dropdown icon='chevron right' text='Expiration Date '>
-                      <Dropdown.Menu>
-                        <Dropdown.Item onClick ={handleFilter} value = 'expired'><Icon name={'calendar times'}/>Expired</Dropdown.Item>
-                        <Dropdown.Item onClick ={handleFilter} value = 'notExpired'><Icon name={'calendar check'}/>Not Expired</Dropdown.Item>
+                    <Dropdown icon='chevron right' text='Expiration Date ' style={{ color: 'white' }}>
+                      <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+                        <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'expired'><Icon name={'calendar times'}/>Expired</Dropdown.Item>
+                        <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'notExpired'><Icon name={'calendar check'}/>Not Expired</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </Dropdown.Item>
