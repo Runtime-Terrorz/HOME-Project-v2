@@ -6,7 +6,7 @@ export const PAGE_IDS = {
   LANDING: 'landing',
   LIST_INVENTORY: 'list-inventory',
   DISPENSE_INVENTORY: 'dispense-inventory',
-  LIST_STUFF_ADMIN: 'list-stuff-admin',
+  LIST_USER_ADMIN: 'list-user-admin',
   LOG_HISTORY: 'log-history',
   MANAGE_DATABASE: 'manage-database',
   NOT_FOUND: 'not-found',

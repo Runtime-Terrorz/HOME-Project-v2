@@ -102,7 +102,7 @@ class AdminProfileCollection extends BaseProfileCollection {
    * @throws { Meteor.Error } If there is no logged in user, or the user is not an Admin or Admin.
    */
   assertValidRoleForMethod(userId) {
-    this.assertRole(userId, [ROLE.ADMIN,ROLE.SUPER]);
+    this.assertRole(userId, [ROLE.ADMIN, ROLE.SUPER]);
   }
 
   /**
