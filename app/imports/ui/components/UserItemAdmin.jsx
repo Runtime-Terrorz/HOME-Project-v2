@@ -34,15 +34,14 @@ const UserItemAdmin = ({ user }) => {
   const lastName = user.lastName;
   const oldCollectionName = UserProfiles.getCollectionNameForProfile(user);
   let collectionName;
-  let definitionData;
+  const definitionData = { email, firstName, lastName };
   // On change, remove user from previous role and add to selected role.
   const handleOnChange = (e, data) => {
+    removeItMethod.callPromise({ collectionName: oldCollectionName, instance: user._id })
+      .catch(error => swal('Error', error.message, 'error'))
+      .then(() => {});
     if (data.value == ROLE.ADMIN) {
       collectionName = AdminProfiles.getCollectionName();
-      definitionData = { email, firstName, lastName };
-      removeItMethod.callPromise({ collectionName: oldCollectionName, instance: user._id })
-        .catch(error => swal('Error', error.message, 'error'))
-        .then(() => {});
       defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {
@@ -53,10 +52,6 @@ const UserItemAdmin = ({ user }) => {
         });
     } else if (data.value == ROLE.USER) {
       collectionName = UserProfiles.getCollectionName();
-      definitionData = { email, firstName, lastName };
-      removeItMethod.callPromise({ collectionName: oldCollectionName, instance: user._id })
-        .catch(error => swal('Error', error.message, 'error'))
-        .then(() => {});
       defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {

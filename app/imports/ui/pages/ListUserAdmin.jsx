@@ -8,7 +8,7 @@ import UserItemAdmin from '../components/UserItemAdmin';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import { SuperAdminProfiles } from '../../api/user/SuperAdminProfileCollection';
 
-/** Renders a table containing all of the User and Admin profiles. Use <UserItemAdmin> to render each row. */
+/** Renders a table containing all of the profiles. Use <UserItemAdmin> to render each row. */
 const ListUserAdmin = ({ supers, admins, users, ready }) => ((ready) ? (
   <Container className="listUserAdmin" id={PAGE_IDS.LIST_USER_ADMIN}>
     <Table inverted style={{ backgroundColor: '#b86d4e' }}>

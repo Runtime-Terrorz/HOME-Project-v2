@@ -6,6 +6,7 @@ import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
 const rolesToCollectionNames = {};
+rolesToCollectionNames[ROLE.SUPER] = 'SuperAdminProfileCollection';
 rolesToCollectionNames[ROLE.ADMIN] = 'AdminProfileCollection';
 rolesToCollectionNames[ROLE.USER] = 'UserProfileCollection';
 
