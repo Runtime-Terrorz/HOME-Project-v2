@@ -5,7 +5,7 @@ import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
 
 export const userPublications = {
-  userProfile: 'userProfile',
+  userProfile: 'UserProfile',
 };
 
 class UserProfileCollection extends BaseProfileCollection {
