@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LogHistoryItem from '../components/LogHistoryItem';
-import { Inventories } from '../../api/inventory/InventoryCollection';
+import { InventoryAudit } from '../../api/InventoryAudit/InventoryAuditCollection';
 
 /** Renders a table containing all of the past items added to the inventory table. */
-const LogHistory = ({ ready, inventories }) => {
+const LogHistory = ({ ready, audit }) => {
   const [search, setSearch] = useState('');
-  let sorted = inventories;
+  let sorted = audit;
 
   /** Set search state to the value that is typed in the search bar */
   const handleSearch = (e, data) => {
@@ -43,17 +43,17 @@ const LogHistory = ({ ready, inventories }) => {
           </Table.Cell>
           <Table.Row>
             <Table.HeaderCell><Icon name={'user'}/> Added By</Table.HeaderCell>
+            <Table.HeaderCell>PatientID</Table.HeaderCell>
+            <Table.HeaderCell>Dispense Location</Table.HeaderCell>
             <Table.HeaderCell>Medication</Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Unit</Table.HeaderCell>
-            <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell>Storage Location</Table.HeaderCell>
+            <Table.HeaderCell>Quantity Added/Changed</Table.HeaderCell>
             <Table.HeaderCell>Lot Number</Table.HeaderCell>
-            <Table.HeaderCell>Expiration Date</Table.HeaderCell>
+            <Table.HeaderCell>Date Changed</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {sorted.map((inventory) => <LogHistoryItem key={inventory._id} inventory={inventory}/>)}
+          {sorted.map((audits) => <LogHistoryItem key={audits._id} audit={audits}/>)}
         </Table.Body>
       </Table>
     </Container>
@@ -61,20 +61,20 @@ const LogHistory = ({ ready, inventories }) => {
 };
 /** Require an array of Inventory documents in the props. */
 LogHistory.propTypes = {
-  inventories: PropTypes.array.isRequired,
+  audit: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
-  const subscription = Inventories.subscribeInventory();
+  // Get access to aduit documents.
+  const subscription = InventoryAudit.subscribeInventoryAdmin();
   // Determine if the subscription is ready
   const ready = subscription.ready();
-  // Get the Stuff documents and sort them by name.
-  const inventories = Inventories.find({}, { sort: { name: 1 } }).fetch();
+  // Get the audit documents and sort them by name.
+  const audit = InventoryAudit.getLogs();
   return {
-    inventories,
+    audit,
     ready,
   };
 })(LogHistory);

@@ -59,6 +59,7 @@ const AddInventory = () => {
     const stringDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
     const dateChanged = new Date(stringDate);
     const quantityChanged = data.quantity;
+    const expirationDate = data.expiration;
     const isDispenseChanged = false;
 
     const quantityStatus = Inventories.checkQuantityStatus(quantity, threshold);
@@ -66,7 +67,7 @@ const AddInventory = () => {
     let collectionName = Inventories.getCollectionName();
     const collectionName2 = InventoryAudit.getCollectionName();
     let definitionData = { medication, name, unit, location, threshold, quantity, lot, expiration, owner, quantityStatus, expirationStatus, note };
-    const definitionData2 = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChanged };
+    const definitionData2 = { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, expirationDate, changeNotes, isDispenseChanged };
 
     // Generates QR Code for dispense page
     let qrCode;

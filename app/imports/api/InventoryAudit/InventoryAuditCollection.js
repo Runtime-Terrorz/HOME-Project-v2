@@ -7,6 +7,7 @@ import { ROLE } from '../role/Role';
 
 export const inventoryAuditPublications = {
   audit: 'audit',
+  auditAdmin: 'auditAdmin',
 };
 
 class InventoryAuditCollection extends BaseCollection {
@@ -28,6 +29,7 @@ class InventoryAuditCollection extends BaseCollection {
       lot: String,
       quantityChanged: Number,
       dateChanged: Date,
+      expirationDate: Date,
       changeNotes: String,
       isDispenseChanged: Boolean,
     }));
@@ -133,6 +135,13 @@ class InventoryAuditCollection extends BaseCollection {
         }
         return this.ready();
       });
+      Meteor.publish(inventoryAuditPublications.auditAdmin, function publish() {
+        if (this.userId) {
+          // const username = Meteor.users.findOne(this.userId).username;
+          return instance._collection.find();
+        }
+        return this.ready();
+      });
     }
   }
 
@@ -152,7 +161,7 @@ class InventoryAuditCollection extends BaseCollection {
    */
   subscribeInventoryAdmin() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(inventoryAuditPublications.audit);
+      return Meteor.subscribe(inventoryAuditPublications.auditAdmin);
     }
     return null;
   }
