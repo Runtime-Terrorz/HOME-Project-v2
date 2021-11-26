@@ -43,13 +43,15 @@ const LogHistory = ({ ready, audit }) => {
           </Table.Cell>
           <Table.Row>
             <Table.HeaderCell><Icon name={'user'}/> Added By</Table.HeaderCell>
+            <Table.HeaderCell>Date Changed</Table.HeaderCell>
             <Table.HeaderCell>PatientID</Table.HeaderCell>
             <Table.HeaderCell>Dispense Location</Table.HeaderCell>
             <Table.HeaderCell>Medication</Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>
             <Table.HeaderCell>Quantity Added/Changed</Table.HeaderCell>
             <Table.HeaderCell>Lot Number</Table.HeaderCell>
-            <Table.HeaderCell>Date Changed</Table.HeaderCell>
+            <Table.HeaderCell>Expiration Date</Table.HeaderCell>
+            <Table.HeaderCell>Notes</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>

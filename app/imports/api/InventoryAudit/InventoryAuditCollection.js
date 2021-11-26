@@ -4,6 +4,7 @@ import { check } from 'meteor/check';
 import { _ } from 'meteor/underscore';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
+import { expirationStates } from '../inventory/InventoryCollection';
 
 export const inventoryAuditPublications = {
   audit: 'audit',
@@ -18,19 +19,24 @@ class InventoryAuditCollection extends BaseCollection {
       patientID: {
         type: String,
         optional: true,
-        defaultValue: null,
+        defaultValue: 'N/A',
       },
       dispenseLocation: {
         type: String,
         optional: true,
-        defaultValue: null,
+        defaultValue: 'N/A',
       },
       name: String,
       lot: String,
       quantityChanged: Number,
       dateChanged: Date,
       expirationDate: Date,
-      changeNotes: String,
+      expirationStatus: String,
+      changeNotes: {
+        type: String,
+        optional: true,
+        defaultValue: 'N/A',
+      },
       isDispenseChanged: Boolean,
     }));
   }
@@ -48,7 +54,7 @@ class InventoryAuditCollection extends BaseCollection {
    * @param isDispenseChanged bit to disinguish between add/edit and dispense change
    * @return {String} the docID of the new document.
    */
-  define({ owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChanged }) {
+  define({ owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, expirationDate, expirationStatus, changeNotes, isDispenseChanged }) {
     const docID = this._collection.insert({
       owner,
       medication,
@@ -58,6 +64,8 @@ class InventoryAuditCollection extends BaseCollection {
       lot,
       quantityChanged,
       dateChanged,
+      expirationDate,
+      expirationStatus,
       changeNotes,
       isDispenseChanged,
     });
@@ -76,7 +84,7 @@ class InventoryAuditCollection extends BaseCollection {
    * @param quantityChanged the number of items changed.
    * @param dateChanged the date add/edit or dispense happened
    */
-  update(docID, { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, changeNotes }) {
+  update(docID, { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, expirationStatus, changeNotes }) {
     const updateData = {};
     if (owner) {
       updateData.owner = owner;
@@ -99,11 +107,34 @@ class InventoryAuditCollection extends BaseCollection {
     if (changeNotes) {
       updateData.changeNotes = changeNotes;
     }
+    if (expirationStatus) {
+      updateData.expirationStatus = expirationStatus;
+    }
     // if (quantityChanged) { NOTE: 0 is falsy so we need to check if the quantityChanged is a number.
     if (_.isNumber(quantityChanged)) {
       updateData.quantityChanged = quantityChanged;
     }
     this._collection.update(docID, { $set: updateData });
+  }
+
+  /**
+   * Compares the current date vs the expiration date and determines status
+   * @param expiration the expiration date that the medicine expires
+   * @return the expiration status of the item
+   */
+  checkExpirationStatus(expiration) {
+    const today = new Date();
+    const days = expiration - today;
+    const offset = (24 * 60 * 60 * 1000) * 7;
+    let expiredStatus;
+    if (days <= 0) {
+      expiredStatus = expirationStates.expired;
+    } else if (days <= offset && days > 0) {
+      expiredStatus = expirationStates.soon;
+    } else {
+      expiredStatus = expirationStates.good;
+    }
+    return expiredStatus;
   }
 
   /**
@@ -176,6 +207,9 @@ class InventoryAuditCollection extends BaseCollection {
     this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
   }
 
+  /**
+  * Gets all records from the collection
+  */
   getLogs() {
     return this._collection.find({}, {}).fetch();
   }
@@ -195,9 +229,11 @@ class InventoryAuditCollection extends BaseCollection {
     const lot = doc.lot;
     const quantityChanged = doc.quantityChanged;
     const dateChanged = doc.dateChanged;
+    const expirationDate = doc.expirationDate;
+    const expirationStatus = doc.expirationStatus;
     const changeNotes = doc.changeNotes;
     const isDispenseChanged = doc.isDispenseChanged;
-    return { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, changeNotes, isDispenseChanged };
+    return { owner, medication, patientID, dispenseLocation, name, lot, quantityChanged, dateChanged, expirationDate, expirationStatus, changeNotes, isDispenseChanged };
   }
 }
 
