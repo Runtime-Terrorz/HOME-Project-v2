@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
+import { Roles } from 'meteor/alanning:roles';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
@@ -76,7 +77,7 @@ class SuperAdminProfileCollection extends BaseProfileCollection {
       const instance = this;
       /** This subscription publishes all documents regardless of user, but only if the logged in user is the Super Admin. */
       Meteor.publish(superAdminProfilePublications.superAdminProfile, function publish() {
-        if (this.userId && Roles.userIsInRole(this.userId, ROLE.SUPER)) {
+        if (this.userId && Roles.userIsInRole(this.userId, [ROLE.ADMIN, ROLE.SUPER])) {
           return instance._collection.find();
         }
         return this.ready();
@@ -102,7 +103,7 @@ class SuperAdminProfileCollection extends BaseProfileCollection {
    * @throws { Meteor.Error } If there is no logged in user, or the user is not a Super Admin or Super Admin.
    */
   assertValidRoleForMethod(userId) {
-    this.assertRole(userId, [ROLE.SUPER]);
+    this.assertRole(userId, [ROLE.ADMIN, ROLE.SUPER]);
   }
 
   /**
