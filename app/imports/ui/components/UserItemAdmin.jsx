@@ -60,6 +60,16 @@ const UserItemAdmin = ({ user }) => {
             text: 'Role Updated',
           });
         });
+    } else if (data.value == ROLE.SUPER) {
+      collectionName = SuperAdminProfiles.getCollectionName();
+      defineMethod.callPromise({ collectionName, definitionData })
+        .catch(error => swal('Error', error.message, 'error'))
+        .then(() => {
+          swal({
+            title: 'Success',
+            text: 'Role Updated',
+          });
+        });
     }
   };
 
