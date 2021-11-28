@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Table, Header, Grid, Loader, Icon, Input } from 'semantic-ui-react';
+import { Container, Table, Header, Grid, Loader, Icon, Input, Dropdown } from 'semantic-ui-react';
 import { _ } from 'meteor/underscore';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -9,8 +9,15 @@ import { InventoryAudit } from '../../api/InventoryAudit/InventoryAuditCollectio
 
 /** Renders a table containing all of the past items added to the inventory table. */
 const LogHistory = ({ ready, audit }) => {
+  const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
   let sorted = audit;
+
+  /** Set filter state to the value that is chosen in filter dropdown */
+  const handleFilter = (e, data) => {
+    e.preventDefault();
+    setFilter(data.value);
+  };
 
   /** Set search state to the value that is typed in the search bar */
   const handleSearch = (e, data) => {
@@ -26,21 +33,52 @@ const LogHistory = ({ ready, audit }) => {
   if (search) {
     sorted = _.sortBy(sorted.filter(inventory => emailFind(inventory)), 'owner');
   }
+
+  if (ready) {
+    // Check the filter state and filter the inventory
+    if (filter === 'all') {
+      sorted = _.sortBy(audit, filter);
+    } else if (filter === 'isAddChange') {
+      sorted = audit.filter(audits => audits.isDispenseChanged === false);
+    } else if (filter === 'isDispenseChange') {
+      sorted = audit.filter(audits => audits.isDispenseChanged === true);
+    }
+  }
   return ((ready) ? (
-    <Container id={PAGE_IDS.LOG_HISTORY}>
-      <Grid container column={3}>
-        <Grid.Row column={2}>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Log History</Header>
-          </Grid.Column>
+    <Container style={{ backgroundColor: '#88a7b3', marginTop: '-20px' }} id={PAGE_IDS.LOG_HISTORY}>
+      <Grid container centered>
+        <br/><Header as="h1">Log History</Header>
+        <Grid.Row>
+          <Header as="h3"><em>Audit</em></Header>
         </Grid.Row>
       </Grid>
       <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
-        <Table.Header>
-          <Table.Cell width={12}>
+        <Table.Row>
+          <Table.Cell>
+            <Dropdown style={{ backgroundColor: '#97B9C7', color: 'white' }}
+              text='Filter'
+              icon='filter'
+              labeled
+              button
+              className='icon'
+            >
+              <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+                <Dropdown.Header icon='tags' style={{ color: 'white' }} content='Filter medicine by tag'/>
+                <Dropdown.Divider/>
+                <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'all'><Icon name={'list ol'}/>List All</Dropdown.Item>
+                <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'isAddChange'><Icon name={'plus square'}/>Add Change</Dropdown.Item>
+                <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'isDispenseChange'><Icon name={'minus square'}/>Dispense Change</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Table.Cell>
+          <Table.Cell width={5}>
             <Input type='text' size='large' placeholder='Search by e-mail...' icon='search' fluid
               onChange={handleSearch}/>
           </Table.Cell>
+        </Table.Row>
+      </Table>
+      <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
+        <Table.Header>
           <Table.Row>
             <Table.HeaderCell><Icon name={'user'}/> Added By</Table.HeaderCell>
             <Table.HeaderCell>Date Changed</Table.HeaderCell>
@@ -48,7 +86,7 @@ const LogHistory = ({ ready, audit }) => {
             <Table.HeaderCell>Dispense Location</Table.HeaderCell>
             <Table.HeaderCell>Medication</Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Quantity Added/Changed</Table.HeaderCell>
+            <Table.HeaderCell>Quantity Changed</Table.HeaderCell>
             <Table.HeaderCell>Lot Number</Table.HeaderCell>
             <Table.HeaderCell>Expiration Date</Table.HeaderCell>
             <Table.HeaderCell>Notes</Table.HeaderCell>
