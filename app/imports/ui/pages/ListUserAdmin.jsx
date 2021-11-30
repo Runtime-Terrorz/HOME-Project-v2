@@ -15,7 +15,7 @@ const ListUserAdmin = ({ supers, admins, users, ready }) => ((ready) ? (
       <Table.Header>
         <Table.Cell>
           <Table.Row>
-            <Header as="h1" textAlign="center">Manage Accounts</Header>
+            <Header as="h3" textAlign="center">Manage Accounts</Header>
           </Table.Row>
         </Table.Cell>
         <Table.Row>

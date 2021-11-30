@@ -44,13 +44,13 @@
 .navbar-item {
     color: #6C91A0 !important;
     font-family: "Lato", serif !important;
-    font-size: 19px;
+    font-size: 15px;
 }
 
 .navbar-home {
   color: #6C91A0 !important;
   font-family: "Lato", serif !important;
-  font-size: 26px;
+  font-size: 24px;
   margin-bottom: 10px;
 }
 
@@ -106,7 +106,7 @@
 
 h1.ui.header, h3.ui.header {
   font-family: "Lato", serif !important;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 0.1rem;
   color: whitesmoke;
   font-weight: lighter;
@@ -135,12 +135,12 @@ h2.ui.header, .p {
 }
 
 .login-page {
-  margin-top: 180px;
+  margin-top: 120px;
   margin-bottom: 160px;
 }
 
 .logup-page {
-  margin-top: 180px;
+  margin-top: 120px;
   margin-bottom: 160px;
 }
 
@@ -166,7 +166,7 @@ h2.ui.header, .p {
 .rolesNavbar, .logHistoryNavbar, .databaseNavbar {
   color: #6C91A0 !important;
   font-family: "Lato", serif !important;
-  font-size: 19px;
+  font-size: 15px;
 }
 
 .rolesNavbar {

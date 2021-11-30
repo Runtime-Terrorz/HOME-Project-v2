@@ -40,7 +40,7 @@ const UserItemAdmin = ({ user }) => {
     removeItMethod.callPromise({ collectionName: oldCollectionName, instance: user._id })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {});
-    if (data.value == ROLE.ADMIN) {
+    if (data.value === ROLE.ADMIN) {
       collectionName = AdminProfiles.getCollectionName();
       defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
@@ -50,7 +50,7 @@ const UserItemAdmin = ({ user }) => {
             text: 'Role Updated',
           });
         });
-    } else if (data.value == ROLE.USER) {
+    } else if (data.value === ROLE.USER) {
       collectionName = UserProfiles.getCollectionName();
       defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
@@ -60,7 +60,7 @@ const UserItemAdmin = ({ user }) => {
             text: 'Role Updated',
           });
         });
-    } else if (data.value == ROLE.SUPER) {
+    } else if (data.value === ROLE.SUPER) {
       collectionName = SuperAdminProfiles.getCollectionName();
       defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
