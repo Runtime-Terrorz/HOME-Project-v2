@@ -2,65 +2,53 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
-import { updateMethod } from '../../api/base/BaseCollection.methods';
+import { expirationStates } from '../../api/inventory/InventoryCollection';
 
-/** Renders a single row in the LogHistory table. See pages/ListStuff.jsx. */
-const LogHistory = ({ inventory }) => {
-  let quantity;
+/** Renders a single row in the LogHistory table. See pages/LogHistory.jsx. */
+const LogHistoryItem = ({ audit }) => {
   let expiration;
-  const expirationStatus = Inventories.checkExpirationStatus(inventory.expiration);
-  const quantityStatus = Inventories.checkQuantityStatus(inventory.quantity, inventory.threshold);
-  const collectionName = Inventories.getCollectionName();
-  const updateData = { id: inventory._id, expirationStatus, quantityStatus };
-  updateMethod.callPromise({ collectionName, updateData });
 
-  if (inventory.quantityStatus === quantityStates.bad) {
-    quantity = <Table.Cell style={ { backgroundColor: '#D64242', color: '#FFFFFF' } }>{inventory.quantity}</Table.Cell>;
-  } else if (inventory.quantityStatus === quantityStates.ok) {
-    quantity = <Table.Cell style={{ backgroundColor: '#D0BE4E' }}>{inventory.quantity}</Table.Cell>;
+  if (audit.expirationStatus === expirationStates.expired) {
+    expiration = <Table.Cell style={ { backgroundColor: '#D64242', color: '#FFFFFF' } }>{audit.expirationDate.toLocaleDateString()}</Table.Cell>;
+  } else if (audit.expirationStatus === expirationStates.soon) {
+    expiration = <Table.Cell style={{ backgroundColor: '#D0BE4E' }}>{audit.expirationDate.toLocaleDateString()}</Table.Cell>;
   } else {
-    quantity = <Table.Cell>{inventory.quantity}</Table.Cell>;
-  }
-  if (inventory.expirationStatus === expirationStates.expired) {
-    expiration = <Table.Cell style={ { backgroundColor: '#D64242', color: '#FFFFFF' } }>{inventory.expiration.toLocaleDateString()}</Table.Cell>;
-  } else if (inventory.expirationStatus === expirationStates.soon) {
-    expiration = <Table.Cell style={{ backgroundColor: '#D0BE4E' }}>{inventory.expiration.toLocaleDateString()}</Table.Cell>;
-  } else {
-    expiration = <Table.Cell>{inventory.expiration.toLocaleDateString()}</Table.Cell>;
+    expiration = <Table.Cell>{audit.expirationDate.toLocaleDateString()}</Table.Cell>;
   }
 
   return (
     <Table.Row>
-      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>{inventory.owner}</Table.Cell>
-      <Table.Cell>{inventory.medication}</Table.Cell>
-      <Table.Cell>{inventory.name}</Table.Cell>
-      <Table.Cell>{inventory.unit}</Table.Cell>
-      {quantity}
-      <Table.Cell>{inventory.location}</Table.Cell>
-      <Table.Cell>{inventory.lot}</Table.Cell>
+      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>{audit.owner}</Table.Cell>
+      <Table.Cell>{audit.dateChanged.toLocaleDateString()}</Table.Cell>
+      <Table.Cell>{audit.patientID}</Table.Cell>
+      <Table.Cell>{audit.dispenseLocation}</Table.Cell>
+      <Table.Cell>{audit.medication}</Table.Cell>
+      <Table.Cell>{audit.name}</Table.Cell>
+      <Table.Cell>{audit.quantityChanged}</Table.Cell>
+      <Table.Cell>{audit.lot}</Table.Cell>
       {expiration}
+      <Table.Cell>{audit.changeNotes}</Table.Cell>
     </Table.Row>);
 };
 
 /** Require a document to be passed to this component. */
-LogHistory.propTypes = {
-  inventory: PropTypes.shape({
+LogHistoryItem.propTypes = {
+  audit: PropTypes.shape({
     owner: PropTypes.string,
     medication: PropTypes.string,
+    patientID: PropTypes.string,
+    dispenseLocation: PropTypes.string,
     name: PropTypes.string,
-    unit: PropTypes.string,
-    threshold: PropTypes.number,
-    quantity: PropTypes.number,
-    location: PropTypes.string,
     lot: PropTypes.string,
-    expiration: PropTypes.instanceOf(Date),
-    dateAdded: PropTypes.instanceOf(Date),
-    quantityStatus: PropTypes.string,
+    quantityChanged: PropTypes.number,
+    dateChanged: PropTypes.instanceOf(Date),
+    expirationDate: PropTypes.instanceOf(Date),
     expirationStatus: PropTypes.string,
+    changeNotes: PropTypes.string,
+    isDispenseChanged: PropTypes.bool,
     _id: PropTypes.string,
   }).isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(LogHistory);
+export default withRouter(LogHistoryItem);

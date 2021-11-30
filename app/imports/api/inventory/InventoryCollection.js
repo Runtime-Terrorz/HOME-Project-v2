@@ -47,7 +47,11 @@ class InventoryCollection extends BaseCollection {
       owner: String,
       quantityStatus: String,
       expirationStatus: String,
-      note: String,
+      note: {
+        type: String,
+        optional: true,
+        defaultValue: 'N/A',
+      },
     }));
   }
 
