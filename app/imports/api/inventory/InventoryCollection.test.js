@@ -14,7 +14,7 @@ import { removeAllEntities } from '../base/BaseUtilities';
 /* eslint-env mocha */
 
 if (Meteor.isServer) {
-  describe('StuffCollection', function testSuite() {
+  describe('InventoryCollection', function testSuite() {
     before(function setup() {
       removeAllEntities();
     });

@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Stuffs } from '../stuff/StuffCollection';
 import { Inventories } from '../inventory/InventoryCollection';
 import { InventoryAudit } from '../InventoryAudit/InventoryAuditCollection';
 import { AdminProfiles } from '../user/AdminProfileCollection';
@@ -19,7 +18,6 @@ class MATRPClass {
       AdminProfiles,
       Inventories,
       InventoryAudit,
-      Stuffs,
       UserProfiles,
       SuperAdminProfiles,
     ];
@@ -31,7 +29,6 @@ class MATRPClass {
       Inventories,
       InventoryAudit,
       UserProfiles,
-      Stuffs,
       SuperAdminProfiles,
     ];
 
