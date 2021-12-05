@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import { _ } from 'meteor/underscore';
-import { Container, Table, Header, Grid, Dropdown, Loader, Input, Checkbox, Icon } from 'semantic-ui-react';
+import {
+  Container,
+  Table,
+  Header,
+  Grid,
+  Dropdown,
+  Loader,
+  Input,
+  Checkbox,
+  Icon,
+  Button,
+  Modal, List,
+} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
@@ -37,6 +49,10 @@ const Inventory = ({ ready, inventories }) => {
       setSelection(selection.filter(el => el !== label));
     }
   };
+
+  /** Sets the modal to open or closed state */
+  const [open, setOpen] = React.useState(false);
+
   if (ready) {
     // Check the filter state and filter the inventory
     if (filter === 'inventoryOk') {
@@ -105,17 +121,34 @@ const Inventory = ({ ready, inventories }) => {
                 onChange={handleSearch}/>
             </Table.Cell>
             <Table.Cell width={3}>
-              <Dropdown style={{ backgroundColor: '#88a7b3', color: 'white' }}
-                key='dispense'
-                text='Dispense'
-                icon='recycle'
-                floated labeled multiple selection button className='icon'>
-                <Dropdown.Menu className='dispenseMenu' style={{ backgroundColor: '#88a7b3' }}>
-                  {sorted.map((inventory) => <Dropdown.Item key={inventory._id}>
-                    <Checkbox label={inventory.name} onChange={takeValue} />
-                  </Dropdown.Item>)}
-                </Dropdown.Menu>
-              </Dropdown>
+              <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}
+                size={'large'}
+                trigger={<Button floated labeled inverted style={{ backgroundColor: '#88a7b3', color: 'white' }}>Multi Dispense</Button>}
+              >
+                <Modal.Header>Select Items to Dispense</Modal.Header>
+                <Modal.Content scrolling>
+                  <List>
+                    {sorted.map((inventory) => <List.Item key={inventory._id}>
+                      <Checkbox label={inventory.name} onChange={takeValue} />
+                    </List.Item>)}
+                  </List>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button color='black' onClick={() => setOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button
+                    content="Dispense"
+                    labelPosition='right'
+                    icon='checkmark'
+                    onClick={() => setOpen(false)}
+                    positive
+                  />
+                </Modal.Actions>
+              </Modal>
             </Table.Cell>
           </Table.Row>
         </Table>
