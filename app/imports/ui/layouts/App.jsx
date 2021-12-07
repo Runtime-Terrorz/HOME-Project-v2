@@ -35,7 +35,7 @@ class App extends React.Component {
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/list" component={Inventory}/>
             <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
-            <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventory}/>
+            <ProtectedRoute path="/dispense/:_id/" component={DispenseInventory}/>
             <ProtectedRoute path="/bad" component={BadInventory}/>
             <ProtectedRoute path="/add" component={AddInventory}/>
             <AdminProtectedRoute path="/log" component={LogHistory}/>
@@ -60,7 +60,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={(props) => {
       const isLogged = Meteor.userId() !== null;
-      const isUserOrSuper = Roles.userIsInRole(Meteor.userId(), [ ROLE.USER, ROLE.SUPER ]);
+      const isUserOrSuper = Roles.userIsInRole(Meteor.userId(), [ROLE.USER, ROLE.SUPER]);
       return (isLogged && isUserOrSuper) ?
         (<Component {...props} />) :
         (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
@@ -79,7 +79,7 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={(props) => {
       const isLogged = Meteor.userId() !== null;
-      const isAdminOrSuper = Roles.userIsInRole(Meteor.userId(), [ ROLE.ADMIN, ROLE.SUPER ]);
+      const isAdminOrSuper = Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN, ROLE.SUPER]);
       return (isLogged && isAdminOrSuper) ?
         (<Component {...props} />) :
         (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>

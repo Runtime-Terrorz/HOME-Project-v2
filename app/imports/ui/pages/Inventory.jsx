@@ -19,12 +19,15 @@ import { expirationStates, Inventories, quantityStates } from '../../api/invento
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
+const dispenseArr = [];
+
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => {
   // State functions
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
   let sorted = inventories;
+
   /** Set filter state to the value that is chosen in filter dropdown */
   const handleFilter = (e, data) => {
     e.preventDefault();
@@ -45,13 +48,21 @@ const Inventory = ({ ready, inventories }) => {
   const takeValue = (e, { label, checked }) => {
     if (checked) {
       setSelection([...selection, label]);
+      dispenseArr.push(inventories.filter(inventory => inventory.name === label));
+      console.log(dispenseArr);
     } else {
       setSelection(selection.filter(el => el !== label));
+      dispenseArr.splice(dispenseArr.indexOf(inventories.filter(inventory => inventory.name === label)), 1);
     }
   };
 
   /** Sets the modal to open or closed state */
   const [open, setOpen] = React.useState(false);
+
+  const cancelButton = (e, data) => {
+    dispenseArr.splice(0, dispenseArr.length);
+    setOpen(false);
+  };
 
   if (ready) {
     // Check the filter state and filter the inventory
@@ -75,6 +86,7 @@ const Inventory = ({ ready, inventories }) => {
       sorted = _.sortBy(sorted.filter(inventory => medFind(inventory)), 'name');
     }
   }
+
   return ((ready) ? (
     <Container style={{ backgroundColor: '#88a7b3', marginTop: '-20px' }} id={PAGE_IDS.LIST_INVENTORY}>
       <Grid container centered>
@@ -125,6 +137,7 @@ const Inventory = ({ ready, inventories }) => {
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
+                closeOnDimmerClick={false}
                 size={'large'}
                 trigger={<Button floated labeled inverted style={{ backgroundColor: '#88a7b3', color: 'white' }}>Multi Dispense</Button>}
               >
@@ -132,12 +145,12 @@ const Inventory = ({ ready, inventories }) => {
                 <Modal.Content scrolling>
                   <List>
                     {sorted.map((inventory) => <List.Item key={inventory._id}>
-                      <Checkbox label={inventory.name} onChange={takeValue} />
+                      <Checkbox label={inventory.name} onChange={takeValue}/>
                     </List.Item>)}
                   </List>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button color='black' onClick={() => setOpen(false)}>
+                  <Button color='black' onClick={cancelButton}>
                     Cancel
                   </Button>
                   <Button
