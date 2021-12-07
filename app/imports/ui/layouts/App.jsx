@@ -36,8 +36,8 @@ class App extends React.Component {
             <ProtectedRoute path="/list" component={Inventory}/>
             <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
             <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventory}/>
-            <ProtectedRoute path="/bad" component={BadInventory}/>
             <ProtectedRoute path="/add" component={AddInventory}/>
+            <ProtectedRoute path="/report" component={BadInventory}/>
             <AdminProtectedRoute path="/log" component={LogHistory}/>
             <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
             <AdminProtectedRoute path="/admin" component={ListUserAdmin}/>
