@@ -21,14 +21,17 @@ import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import DispenseComponent from '../components/DispenseComponent';
 
-let dispenseArr = [];
-
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => {
   // State functions
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
   const [dispense, setDispense] = useState([]);
+
+  /** Sets the modal to open or closed state */
+  const [firstOpen, setFirstOpen] = React.useState(false);
+  const [secondOpen, setSecondOpen] = React.useState(false);
+
   let sorted = inventories;
 
   /** Set filter state to the value that is chosen in filter dropdown */
@@ -51,33 +54,28 @@ const Inventory = ({ ready, inventories }) => {
   const [selection, setSelection] = useState([]);
   const takeValue = (e, { label, checked }) => {
     if (checked) {
-      setSelection([...selection, label]);
       const save = inventories.filter(inventory => inventory.name === label);
+      setSelection([...selection, label]);
       setDispense([...dispense, save[0]._id]);
-      // dispenseArr.push(save[0]._id);
     } else {
       const save = inventories.filter(inventory => inventory.name === label);
-      // dispenseArr.splice(dispenseArr.indexOf(save[0]._id), 1);
       setSelection(selection.filter(el => el !== label));
       setDispense(dispense.filter(el => el !== save[0]._id));
     }
   };
 
-  /** Sets the modal to open or closed state */
-  const [firstOpen, setFirstOpen] = React.useState(false);
-  const [secondOpen, setSecondOpen] = React.useState(false);
-
+  /** Cancel Button used for both Modals */
   const cancelButton = (e, data) => {
     setDispense([]);
     setFirstOpen(false);
     setSecondOpen(false);
   };
 
+  /** Submit button used for first modal */
   const submitButton = (e, data) => {
     if (dispense.length === 0) {
       swal('Error', 'Please Select Item to Dispense', 'error');
     } else {
-      dispenseArr = dispense;
       setSecondOpen(true);
     }
   };
@@ -172,7 +170,7 @@ const Inventory = ({ ready, inventories }) => {
                     Cancel
                   </Button>
                   <Button
-                    content="Dispense"
+                    content="Multi Dispense"
                     labelPosition='right'
                     icon='checkmark'
                     onClick={submitButton}
@@ -188,7 +186,7 @@ const Inventory = ({ ready, inventories }) => {
                 >
                   <Modal.Header>Dispense</Modal.Header>
                   <Modal.Content>
-                    {dispenseArr.map((toBeDispense) => <DispenseComponent key={toBeDispense} dispense={toBeDispense} inventories={inventories}/>)}
+                    {dispense.map((toBeDispense) => <DispenseComponent key={toBeDispense} dispense={toBeDispense} inventories={inventories}/>)}
                   </Modal.Content>
                   <Modal.Actions>
                     <Button color='black' onClick={cancelButton}>

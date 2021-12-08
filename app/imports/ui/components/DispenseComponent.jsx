@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Loader, Header, Segment, Form, TextArea, Select, Icon } from 'semantic-ui-react';
+import { Grid, Header, Segment, Form, TextArea, Select, Icon } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
@@ -30,13 +30,13 @@ const countryOptions = [
 
 const DispenseComponent = ({ dispense, inventories }) => {
 
-  console.log(dispense);
-
   const [finalPatientID, setFinalPatientID] = useState('');
   const [finalLocation, setFinalLocation] = useState('');
   const [finalNote, setFinalNote] = useState('');
+  const [finalQuantity, setFinalQuantity] = useState(0);
   const [disable, setDisable] = useState(false);
 
+  // Gets the item in Inventory Collection
   let doc = inventories.filter(inventory => inventory._id === dispense);
   doc = doc[0];
 
@@ -48,12 +48,12 @@ const DispenseComponent = ({ dispense, inventories }) => {
   const submit = (data) => {
     if (finalPatientID === '' || finalPatientID === null) {
       swal('Error', 'Please enter a PatientID', 'error');
-    } else if (data.quantity > doc.quantity) {
+    } else if (finalQuantity > doc.quantity) {
       swal('Error', 'Unable to dispense requested amount', 'error');
     } else {
       const { medication, name, lot, threshold, _id } = data;
       let collectionName = Inventories.getCollectionName();
-      const quantity = doc.quantity - data.quantity;
+      const quantity = doc.quantity - finalQuantity;
       const status = Inventories.checkQuantityStatus(quantity, threshold);
 
       // variables for log history
@@ -64,7 +64,7 @@ const DispenseComponent = ({ dispense, inventories }) => {
       const isDispenseChanged = true;
       const today = new Date();
       const stringDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-      const quantityChanged = data.quantity * -1;
+      const quantityChanged = finalQuantity * -1;
       const expirationDate = data.expiration;
       const expirationStatus = InventoryAudit.checkExpirationStatus(expirationDate);
       const dateChanged = new Date(stringDate);
@@ -132,12 +132,10 @@ const DispenseComponent = ({ dispense, inventories }) => {
                 disabled
                 id={COMPONENT_IDS.EDIT_INVENTORY_THRESHOLD}
               />
-              <NumField
-                name='quantity'
-                decimal={false}
-                min='1'
-                id={COMPONENT_IDS.DISPENSE_INVENTORY_QUANTITY}
-              />
+              <Form.Field>
+                <label>Quantity</label>
+                <input required type="number" placeholder='0' value={finalQuantity} onChange={ e => setFinalQuantity(e.target.value)}/>
+              </Form.Field>
             </Form.Group>
             <Form.Field>
               <label>Notes</label>
