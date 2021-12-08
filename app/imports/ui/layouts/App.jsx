@@ -42,7 +42,7 @@ class App extends React.Component {
   }
 
   updatePredicate() {
-    this.setState({ isDesktop: window.innerWidth > 850 });
+    this.setState({ isDesktop: window.innerWidth > 900 });
   }
 
   render() {
