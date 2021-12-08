@@ -15,6 +15,7 @@ const BadInventory = ({ ready, badInventory }) => {
   const badId = [];
   const changeFields =
       ({ medication, name, location, quantity, lot, expiration, quantityStatus, expirationStatus }) => ({ medication, name, location, quantity, lot, expiration, quantityStatus, expirationStatus });
+  // Filter the Bad Inventory fields to be exported to csv
   const csvObj = badInventory.map(obj => changeFields(obj));
   const collectionName = Inventories.getCollectionName();
   const today = new Date();
