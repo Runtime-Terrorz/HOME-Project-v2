@@ -8,7 +8,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import NotificationFeed from './NotificationFeed';
 
 const Notification = ({ lowInventory }) => (
-  <Dropdown id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key='notification' icon={'mail'} pointing="top right">
+  <Dropdown id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key='notification' icon={'mail'} pointing="top left">
     <Dropdown.Menu>
       <Card>
         <Card.Content style={{ backgroundColor: '#eee7da' }}>
@@ -23,7 +23,6 @@ const Notification = ({ lowInventory }) => (
       </Card>
     </Dropdown.Menu>
   </Dropdown>);
-
 
 Notification.propTypes = {
   lowInventory: PropTypes.array,
