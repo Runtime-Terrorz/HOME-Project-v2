@@ -15,17 +15,20 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import swal from 'sweetalert';
 import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
 import InventoryItem from '../components/InventoryItem';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import DispenseComponent from '../components/DispenseComponent';
 
-const dispenseArr = [];
+let dispenseArr = [];
 
 /** Renders a table containing all of the Inventory documents. Use <InventoryItem> to render each row. */
 const Inventory = ({ ready, inventories }) => {
   // State functions
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
+  const [dispense, setDispense] = useState([]);
   let sorted = inventories;
 
   /** Set filter state to the value that is chosen in filter dropdown */
@@ -43,25 +46,40 @@ const Inventory = ({ ready, inventories }) => {
     const lowerCase = search.toLowerCase();
     return searchItem.name.toLowerCase().includes(lowerCase);
   };
+
   /** saves the name of what was selected for dispense */
   const [selection, setSelection] = useState([]);
   const takeValue = (e, { label, checked }) => {
     if (checked) {
       setSelection([...selection, label]);
-      dispenseArr.push(inventories.filter(inventory => inventory.name === label));
-      console.log(dispenseArr);
+      const save = inventories.filter(inventory => inventory.name === label);
+      setDispense([...dispense, save[0]._id]);
+      // dispenseArr.push(save[0]._id);
     } else {
+      const save = inventories.filter(inventory => inventory.name === label);
+      // dispenseArr.splice(dispenseArr.indexOf(save[0]._id), 1);
       setSelection(selection.filter(el => el !== label));
-      dispenseArr.splice(dispenseArr.indexOf(inventories.filter(inventory => inventory.name === label)), 1);
+      setDispense(dispense.filter(el => el !== save[0]._id));
     }
   };
 
   /** Sets the modal to open or closed state */
-  const [open, setOpen] = React.useState(false);
+  const [firstOpen, setFirstOpen] = React.useState(false);
+  const [secondOpen, setSecondOpen] = React.useState(false);
 
   const cancelButton = (e, data) => {
-    dispenseArr.splice(0, dispenseArr.length);
-    setOpen(false);
+    setDispense([]);
+    setFirstOpen(false);
+    setSecondOpen(false);
+  };
+
+  const submitButton = (e, data) => {
+    if (dispense.length === 0) {
+      swal('Error', 'Please Select Item to Dispense', 'error');
+    } else {
+      dispenseArr = dispense;
+      setSecondOpen(true);
+    }
   };
 
   if (ready) {
@@ -134,9 +152,9 @@ const Inventory = ({ ready, inventories }) => {
             </Table.Cell>
             <Table.Cell width={3}>
               <Modal
-                onClose={() => setOpen(false)}
-                onOpen={() => setOpen(true)}
-                open={open}
+                onClose={() => setFirstOpen(false)}
+                onOpen={() => setFirstOpen(true)}
+                open={firstOpen}
                 closeOnDimmerClick={false}
                 size={'large'}
                 trigger={<Button floated labeled inverted style={{ backgroundColor: '#88a7b3', color: 'white' }}>Multi Dispense</Button>}
@@ -157,10 +175,28 @@ const Inventory = ({ ready, inventories }) => {
                     content="Dispense"
                     labelPosition='right'
                     icon='checkmark'
-                    onClick={() => setOpen(false)}
+                    onClick={submitButton}
                     positive
                   />
                 </Modal.Actions>
+
+                <Modal
+                  onClose={() => setSecondOpen(false)}
+                  closeOnDimmerClick={false}
+                  open={secondOpen}
+                  size='medium'
+                >
+                  <Modal.Header>Dispense</Modal.Header>
+                  <Modal.Content>
+                    {dispenseArr.map((toBeDispense) => <DispenseComponent key={toBeDispense} dispense={toBeDispense} inventories={inventories}/>)}
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='black' onClick={cancelButton}>
+                      Cancel
+                    </Button>
+                  </Modal.Actions>
+                </Modal>
+
               </Modal>
             </Table.Cell>
           </Table.Row>
