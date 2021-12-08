@@ -24,6 +24,7 @@ const Notification = ({ lowInventory }) => (
     </Dropdown.Menu>
   </Dropdown>);
 
+
 Notification.propTypes = {
   lowInventory: PropTypes.array,
 };

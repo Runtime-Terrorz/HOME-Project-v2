@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { Stuffs } from '../stuff/StuffCollection';
 import { Inventories } from '../inventory/InventoryCollection';
 import { InventoryAudit } from '../InventoryAudit/InventoryAuditCollection';
 import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
+import { SuperAdminProfiles } from '../user/SuperAdminProfileCollection';
 
 class MATRPClass {
   collections;
@@ -18,8 +18,8 @@ class MATRPClass {
       AdminProfiles,
       Inventories,
       InventoryAudit,
-      Stuffs,
       UserProfiles,
+      SuperAdminProfiles,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -29,7 +29,7 @@ class MATRPClass {
       Inventories,
       InventoryAudit,
       UserProfiles,
-      Stuffs,
+      SuperAdminProfiles,
     ];
 
     /*

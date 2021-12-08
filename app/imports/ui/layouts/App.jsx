@@ -20,30 +20,66 @@ import ManageDatabase from '../pages/ManageDatabase';
 import LogHistory from '../pages/LogHistory';
 import { ROLE } from '../../api/role/Role';
 import ListUserAdmin from '../pages/ListUserAdmin';
+import SideBar from "../components/SideBar";
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDesktop: false,
+    };
+    this.updatePredicate = this.updatePredicate.bind(this);
+  }
+
+  componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener('resize', this.updatePredicate);
+  }
+
+  componentWillMount() {
+    window.removeEventListener('resize', this.updatePredicate);
+  }
+
+  updatePredicate() {
+    this.setState({ isDesktop: window.innerWidth > 850 });
+  }
+
   render() {
+    const isDesktop = this.state.isDesktop;
+    const routes = () => (
+      <Switch>
+        <Route exact path="/" component={Landing}/>
+        <Route path="/signin" component={Signin}/>
+        <Route path="/signup" component={Signup}/>
+        <Route path="/signout" component={Signout}/>
+        <ProtectedRoute path="/list" component={Inventory}/>
+        <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
+        <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventory}/>
+        <ProtectedRoute path="/report" component={BadInventory}/>
+        <ProtectedRoute path="/add" component={AddInventory}/>
+        <AdminProtectedRoute path="/log" component={LogHistory}/>
+        <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
+        <AdminProtectedRoute path="/admin" component={ListUserAdmin}/>
+        <Route component={NotFound}/>
+      </Switch>
+    );
     return (
       <Router>
         <div>
-          <NavBar/>
-          <Switch>
-            <Route exact path="/" component={Landing}/>
-            <Route path="/signin" component={Signin}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/signout" component={Signout}/>
-            <ProtectedRoute path="/list" component={Inventory}/>
-            <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
-            <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventory}/>
-            <ProtectedRoute path="/add" component={AddInventory}/>
-            <ProtectedRoute path="/report" component={BadInventory}/>
-            <AdminProtectedRoute path="/log" component={LogHistory}/>
-            <AdminProtectedRoute path="/manage-database" component={ManageDatabase}/>
-            <AdminProtectedRoute path="/admin" component={ListUserAdmin}/>
-            <Route component={NotFound}/>
-          </Switch>
-          <Footer/>
+          {isDesktop ? (
+            <div>
+              <NavBar/>
+              {routes()}
+              <Footer/>
+            </div>
+          ) : (
+            <div>
+              <SideBar/>
+              {routes()}
+              <Footer/>
+            </div>
+          )}
         </div>
       </Router>
     );
@@ -60,7 +96,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={(props) => {
       const isLogged = Meteor.userId() !== null;
-      const isUserOrSuper = Roles.userIsInRole(Meteor.userId(), [ ROLE.USER, ROLE.SUPER ]);
+      const isUserOrSuper = Roles.userIsInRole(Meteor.userId(), [ROLE.USER, ROLE.SUPER]);
       return (isLogged && isUserOrSuper) ?
         (<Component {...props} />) :
         (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
@@ -79,7 +115,7 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={(props) => {
       const isLogged = Meteor.userId() !== null;
-      const isAdminOrSuper = Roles.userIsInRole(Meteor.userId(), [ ROLE.ADMIN, ROLE.SUPER ]);
+      const isAdminOrSuper = Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN, ROLE.SUPER]);
       return (isLogged && isAdminOrSuper) ?
         (<Component {...props} />) :
         (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
