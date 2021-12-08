@@ -47,7 +47,7 @@ const InventoryItem = ({ inventory }) => {
         </Link>
       </Table.Cell>
       <Table.Cell style={{ backgroundColor: '#97B9C7' }}>
-        <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}/${inventory.lot}`}>
+        <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}`}>
           <Icon style={{ marginLeft: '20px' }} inverted name='recycle'/>
         </Link>
       </Table.Cell>

@@ -6,7 +6,7 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const DispenseMenu = ({ inventory }) => (
   <Dropdown.Item>
-    <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}/${inventory.lot}`}>
+    <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}`}>
       <p className='dispenseItem'>
         {inventory.lot}
       </p>

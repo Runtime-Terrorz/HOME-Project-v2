@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Grid, Loader, Header, Segment, Form, TextArea, Select, Icon } from 'semantic-ui-react';
+import { Grid, Header, Segment, Form, TextArea, Select, Icon } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
-import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import { useParams } from 'react-router';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Redirect } from 'react-router-dom';
 import { Inventories } from '../../api/inventory/InventoryCollection';
 import { defineMethod, updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -31,13 +28,17 @@ const countryOptions = [
 ];
 /** Renders the Page for dispensing a single document. */
 
-const DispenseInventory = ({ doc, ready }) => {
+const DispenseComponent = ({ dispense, inventories }) => {
 
   const [finalPatientID, setFinalPatientID] = useState('');
   const [finalLocation, setFinalLocation] = useState('');
   const [finalNote, setFinalNote] = useState('');
   const [finalQuantity, setFinalQuantity] = useState(0);
-  const [redirectToReferer, setRedirectToReferer] = useState(false);
+  const [disable, setDisable] = useState(false);
+
+  // Gets the item in Inventory Collection
+  let doc = inventories.filter(inventory => inventory._id === dispense);
+  doc = doc[0];
 
   const handleDropdown = (event, data) => {
     setFinalLocation(data.value);
@@ -81,17 +82,13 @@ const DispenseInventory = ({ doc, ready }) => {
             .catch(error => swal('Error', error.message, 'error'))
             .then(() => {
             });
-
-          setRedirectToReferer(true);
         });
+
+      setDisable(true);
     }
   };
 
-  if (redirectToReferer) {
-    return <Redirect to={'/list'}/>;
-  }
-
-  return (ready) ? (
+  return (
     <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
       <Grid.Column width={12}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
@@ -149,35 +146,23 @@ const DispenseInventory = ({ doc, ready }) => {
                 id={COMPONENT_IDS.DISPENSE_INVENTORY_NOTES}
               />
             </Form.Field>
-            <Form.Button id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT} content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }} />
+            <Form.Button id={COMPONENT_IDS.DISPENSE_INVENTORY_SUBMIT}
+              content="Submit" style={{ backgroundColor: '#779AA8', color: 'white' }}
+              disabled={disable}/>
             <ErrorsField/>
             <HiddenField name='owner' />
           </Segment>
         </AutoForm>
       </Grid.Column>
     </Grid>
-  ) : <Loader active>Getting data</Loader>;
+  );
 };
 
 // Require the presence of a Inventory document in the props object. Uniforms adds 'model' to the props, which we use.
-DispenseInventory.propTypes = {
-  doc: PropTypes.object,
-  ready: PropTypes.bool.isRequired,
+DispenseComponent.propTypes = {
+  dispense: PropTypes.string,
+  inventories: PropTypes.array,
 };
 
 // withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-export default withTracker(() => {
-  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const { _id } = useParams();
-  const documentId = _id;
-  // Get access to Inventory documents.
-  const subscription = Inventories.subscribeInventory();
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  // Get the document
-  const doc = Inventories.findDoc(documentId);
-  return {
-    doc,
-    ready,
-  };
-})(DispenseInventory);
+export default DispenseComponent;
