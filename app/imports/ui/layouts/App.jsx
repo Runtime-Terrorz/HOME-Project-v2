@@ -20,7 +20,7 @@ import ManageDatabase from '../pages/ManageDatabase';
 import LogHistory from '../pages/LogHistory';
 import { ROLE } from '../../api/role/Role';
 import ListUserAdmin from '../pages/ListUserAdmin';
-import SideBar from "../components/SideBar";
+import SideBar from '../components/SideBar';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -55,7 +55,7 @@ class App extends React.Component {
         <Route path="/signout" component={Signout}/>
         <ProtectedRoute path="/list" component={Inventory}/>
         <ProtectedRoute path="/edit/:_id" component={EditInventory}/>
-        <ProtectedRoute path="/dispense/:_id/:lot" component={DispenseInventory}/>
+        <ProtectedRoute path="/dispense/:_id" component={DispenseInventory}/>
         <ProtectedRoute path="/report" component={BadInventory}/>
         <ProtectedRoute path="/add" component={AddInventory}/>
         <AdminProtectedRoute path="/log" component={LogHistory}/>
