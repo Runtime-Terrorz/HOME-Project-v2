@@ -96,7 +96,11 @@ const Signup = ({ location }) => {
                 type="password"
                 onChange={handleChange}
               />
-              <Form.Button id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} content="Sign Up" color='blue' icon='signup' style={{ marginLeft: '180px' }} />
+              <Grid>
+                <Grid.Column textAlign="center">
+                  <Form.Button id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} content="Sign Up" color='blue' icon='signup'/>
+                </Grid.Column>
+              </Grid>
             </Form>
             {error === '' ? (
               ''
@@ -109,9 +113,13 @@ const Signup = ({ location }) => {
             )}
             <Divider inverted horizontal>OR</Divider>
             <Header textAlign='center' as='h3'>Already have an account?</Header>
-            <Link to="/signin">
-              <Button content="Sign In" color='blue' icon='sign in' style={{ marginLeft: '180px' }} />
-            </Link>
+            <Grid>
+              <Grid.Column textAlign="center">
+                <Link to="/signin">
+                  <Button content="Sign In" color='blue' icon='sign in'/>
+                </Link>
+              </Grid.Column>
+            </Grid>
           </Segment>
         </Grid.Column>
       </Grid>

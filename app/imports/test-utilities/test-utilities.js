@@ -5,7 +5,6 @@ import faker from 'faker';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
-import { Stuffs } from '../api/stuff/StuffCollection';
 import { Inventories } from '../api/inventory/InventoryCollection';
 import { ROLE } from '../api/role/Role';
 import { AdminProfiles } from '../api/user/AdminProfileCollection';
@@ -17,7 +16,6 @@ export function withSubscriptions() {
     // Add the collections to subscribe to.
     SuperAdminProfiles.subscribe();
     AdminProfiles.subscribe();
-    Stuffs.subscribeStuff();
     Inventories.subscribeInventory();
     UserProfiles.subscribe();
     const poll = Meteor.setInterval(() => {

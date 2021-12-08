@@ -3,7 +3,6 @@ import { Container, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { AdminProfiles } from '../../api/user/AdminProfileCollection';
-import { Stuffs } from '../../api/stuff/StuffCollection';
 import { Inventories } from '../../api/inventory/InventoryCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import UploadFixture from '../components/UploadFixture';
@@ -21,7 +20,7 @@ ManageDatabase.propTypes = {
 };
 
 export default withTracker(() => {
-  const ready = AdminProfiles.subscribe().ready() && Inventories.subscribeStuffAdmin().ready() && Stuffs.subscribeStuffAdmin().ready() && UserProfiles.subscribe().ready();
+  const ready = AdminProfiles.subscribe().ready() && Inventories.subscribeStuffAdmin().ready() && UserProfiles.subscribe().ready();
   return {
     ready,
   };

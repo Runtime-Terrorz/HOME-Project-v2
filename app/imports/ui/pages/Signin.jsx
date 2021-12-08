@@ -79,7 +79,11 @@ const Signin = ({ location }) => {
                 type="password"
                 onChange={handleChange}
               />
-              <Form.Button id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} content="Sign In" color='blue' icon='sign in' style={{ marginLeft: '132px' }} />
+              <Grid>
+                <Grid.Column textAlign="center">
+                  <Form.Button id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} content="Sign In" color='blue' icon='sign in' style={{ marginLeft: 'auto', marginRight: 'auto' }} />
+                </Grid.Column>
+              </Grid>
             </Form>
             {error === '' ? (
               ''
@@ -92,9 +96,13 @@ const Signin = ({ location }) => {
             )}
             <Divider inverted horizontal>OR</Divider>
             <Header textAlign='center' as='h3'>Don&apos;t have an account?</Header>
-            <Link to="/signup">
-              <Button content="Sign Up" color='blue' icon='signup' style={{ marginLeft: '130px' }} />
-            </Link>
+            <Grid>
+              <Grid.Column textAlign="center">
+                <Link to="/signup">
+                  <Button content="Sign Up" color='blue' icon='signup' style={{ marginLeft: 'auto', marginRight: 'auto' }} />
+                </Link>
+              </Grid.Column>
+            </Grid>
           </Segment>
         </Grid.Column>
       </Grid>

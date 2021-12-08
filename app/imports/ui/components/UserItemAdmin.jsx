@@ -7,6 +7,7 @@ import { ROLE } from '../../api/role/Role';
 import { AdminProfiles } from '../../api/user/AdminProfileCollection';
 import { defineMethod, removeItMethod } from '../../api/base/BaseCollection.methods';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { SuperAdminProfiles } from '../../api/user/SuperAdminProfileCollection';
 
 const roleOptions = [
   {
@@ -19,26 +20,28 @@ const roleOptions = [
     text: 'USER',
     value: ROLE.USER,
   },
+  {
+    key: 'SUPER',
+    text: 'SUPER',
+    value: ROLE.SUPER,
+  },
 ];
 
 /** Renders a single row in the List User (Admin) table. See pages/ListUserAdmin.jsx. */
 const UserItemAdmin = ({ user }) => {
+  const email = user.email;
+  const firstName = user.firstName;
+  const lastName = user.lastName;
+  const oldCollectionName = UserProfiles.getCollectionNameForProfile(user);
+  let collectionName;
+  const definitionData = { email, firstName, lastName };
+  // On change, remove user from previous role and add to selected role.
   const handleOnChange = (e, data) => {
+    removeItMethod.callPromise({ collectionName: oldCollectionName, instance: user._id })
+      .catch(error => swal('Error', error.message, 'error'))
+      .then(() => {});
     if (data.value === ROLE.ADMIN) {
-      const email = user.email;
-      const firstName = user.firstName;
-      const lastName = user.lastName;
-      const collectionName = AdminProfiles.getCollectionName();
-      const oldCollectionName = UserProfiles.getCollectionName();
-      const definitionData = { email, firstName, lastName };
-      removeItMethod.callPromise({ collectionName: oldCollectionName, instance: user._id })
-        .catch(error => swal('Error', error.message, 'error'))
-        .then(() => {
-          swal({
-            title: 'Success',
-            text: 'Role Removed',
-          });
-        });
+      collectionName = AdminProfiles.getCollectionName();
       defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {
@@ -48,20 +51,17 @@ const UserItemAdmin = ({ user }) => {
           });
         });
     } else if (data.value === ROLE.USER) {
-      const email = user.email;
-      const firstName = user.firstName;
-      const lastName = user.lastName;
-      const collectionName = UserProfiles.getCollectionName();
-      const oldCollectionName = AdminProfiles.getCollectionName();
-      const definitionData = { email, firstName, lastName };
-      removeItMethod.callPromise({ collectionName: oldCollectionName, instance: user._id })
+      collectionName = UserProfiles.getCollectionName();
+      defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {
           swal({
             title: 'Success',
-            text: 'Role Removed',
+            text: 'Role Updated',
           });
         });
+    } else if (data.value === ROLE.SUPER) {
+      collectionName = SuperAdminProfiles.getCollectionName();
       defineMethod.callPromise({ collectionName, definitionData })
         .catch(error => swal('Error', error.message, 'error'))
         .then(() => {
@@ -74,7 +74,7 @@ const UserItemAdmin = ({ user }) => {
   };
 
   const handleOnClick = () => {
-    const collectionName = UserProfiles.getCollectionNameForProfile(user);
+    collectionName = UserProfiles.getCollectionNameForProfile(user);
     removeItMethod.callPromise({ collectionName: collectionName, instance: user._id })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', 'User Removed', 'success'));
@@ -116,8 +116,9 @@ export default withTracker(() => {
   // Get access to User and Admin profiles.
   const subscriptionUser = UserProfiles.subscribeUserProfile();
   const subscriptionAdmin = AdminProfiles.subscribeAdminProfile();
+  const subscriptionSuper = SuperAdminProfiles.subscribeSuperAdminProfile();
   // Determine if the subscription is ready
-  const ready = subscriptionUser.ready() && subscriptionAdmin.ready();
+  const ready = subscriptionUser.ready() && subscriptionAdmin.ready() && subscriptionSuper.ready();
   return {
     ready,
   };
