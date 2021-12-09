@@ -55,7 +55,7 @@ const Signin = ({ location }) => {
       <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
         <Grid.Column width={6} style={{ backgroundColor: '#b86d4e' }}>
           <Segment stacked inverted style={{ backgroundColor: '#b86d4e' }}>
-            <Header inverted as="h2" textAlign="center">
+            <Header inverted as="h3" textAlign="center">
               <p>Sign In to Your Account</p>
             </Header>
             <Form inverted onSubmit={submit}>
@@ -95,7 +95,7 @@ const Signin = ({ location }) => {
               />
             )}
             <Divider inverted horizontal>OR</Divider>
-            <Header textAlign='center' as='h3'>Don&apos;t have an account?</Header>
+            <Header textAlign='center' as='h4'>Don&apos;t have an account?</Header>
             <Grid>
               <Grid.Column textAlign="center">
                 <Link to="/signup">

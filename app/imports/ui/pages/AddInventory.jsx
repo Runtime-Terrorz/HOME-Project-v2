@@ -101,7 +101,7 @@ const AddInventory = () => {
           fRef = ref;
         }} schema={bridge} onSubmit={data => submit(data, fRef)}>
           <Segment padded='very' inverted style={{ backgroundColor: '#b86d4e' }}>
-            <Header as="h1" textAlign="center">Add Item to Inventory</Header>
+            <Header as="h2" textAlign="center">Add Item to Inventory</Header>
             <SelectField
               name='medication'
               id={COMPONENT_IDS.ADD_INVENTORY_MEDICATION}

@@ -62,7 +62,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Allergy & Cold Medicines",
       "name": "Diphenhydramine Soln",
@@ -87,7 +88,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Anti-microbial",
       "name": "Amoxicillin 125 mg/5ml Susp",
@@ -135,7 +137,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
 
     { "medication": "Cardiac/Cholesterol",
@@ -148,7 +151,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "bad",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Cardiac/Cholesterol",
       "name": "Simvastatin 10 mg",
@@ -160,7 +164,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Cardiac/Cholesterol",
       "name": "Simvastatin 20 mg",
@@ -172,7 +177,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Cardiac/Cholesterol",
       "name": "Simvastatin 40 mg",
@@ -184,7 +190,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Cardiac/Cholesterol",
       "name": "Nitroglycerin 0.4 mg tabs",
@@ -196,7 +203,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
 
     { "medication": "Dermatological Preparations",
@@ -209,7 +217,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "ok",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Dermatological Preparations",
       "name": "Bacitracin Ointment packets",
@@ -270,7 +279,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "ok",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Diabetes Meds",
       "name": "Glipizide 10 mg",
@@ -282,7 +292,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Diabetes Meds",
       "name": "Glucose Tablets",
@@ -294,7 +305,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "tablet"
     },
     { "medication": "Diabetes Meds",
       "name": "Metformin ER 500 mg tabs",
@@ -306,7 +318,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
     { "medication": "Diabetes Meds",
       "name": "SGLT2 Inhibitors (Dapagliflozin 5 mg)",
@@ -318,7 +331,8 @@
       "owner": "default@foo.com",
       "quantityStatus": "good",
       "expirationStatus": "good",
-      "note": "Three times a day"
+      "note": "Three times a day",
+      "unit": "mg"
     },
 
     { "medication": "Ear and Eye Preparations",

@@ -83,8 +83,8 @@ const LogHistory = ({ ready, audit }) => {
                 <Dropdown.Header icon='tags' style={{ color: 'white' }} content='Filter medicine by tag'/>
                 <Dropdown.Divider/>
                 <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'all'><Icon name={'list ol'}/>List All</Dropdown.Item>
-                <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'isAddChange'><Icon name={'plus square'}/>Add Change</Dropdown.Item>
-                <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'isDispenseChange'><Icon name={'minus square'}/>Dispense Change</Dropdown.Item>
+                <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'isAddChange'><Icon name={'plus square'}/>Items Added</Dropdown.Item>
+                <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'isDispenseChange'><Icon name={'minus square'}/>Items Dispensed</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Table.Cell>
@@ -103,12 +103,12 @@ const LogHistory = ({ ready, audit }) => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell><Icon name={'user'}/> Added By</Table.HeaderCell>
-            <Table.HeaderCell>Date Changed</Table.HeaderCell>
+            <Table.HeaderCell>Last Modified</Table.HeaderCell>
             <Table.HeaderCell>PatientID</Table.HeaderCell>
             <Table.HeaderCell>Dispense Location</Table.HeaderCell>
             <Table.HeaderCell>Medication</Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Quantity Changed</Table.HeaderCell>
+            <Table.HeaderCell>Quantity Used</Table.HeaderCell>
             <Table.HeaderCell>Lot Number</Table.HeaderCell>
             <Table.HeaderCell>Expiration Date</Table.HeaderCell>
             <Table.HeaderCell>Notes</Table.HeaderCell>

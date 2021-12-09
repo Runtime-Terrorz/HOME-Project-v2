@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Card, Dropdown, Button, Icon } from 'semantic-ui-react';
+import { Card, Dropdown } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { expirationStates, Inventories, quantityStates } from '../../api/inventory/InventoryCollection';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
@@ -13,9 +13,6 @@ const Notification = ({ lowInventory }) => (
       <Card>
         <Card.Content style={{ backgroundColor: '#eee7da' }}>
           <Card.Header>Notifications</Card.Header>
-          <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={'/report'}>
-            <Button icon color='yellow' labelPosition='left' ><Icon name='warning'/>Generate Report</Button>
-          </Link>
         </Card.Content>
         <Card.Content className='notificationItem'>
           {lowInventory.map((inventory) => <NotificationFeed key={inventory._id} inventory={inventory}/>)}

@@ -58,7 +58,7 @@ const EditInventory = ({ doc, ready }) => {
       <Grid.Column width={8}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment padded='very' inverted style={{ backgroundColor: '#b86d4e' }}>
-            <Header as="h1" textAlign="center">Edit Item</Header>
+            <Header as="h2" textAlign="center">Edit Item</Header>
             <SelectField
               name='medication'
               id={COMPONENT_IDS.EDIT_INVENTORY_MEDICATION}

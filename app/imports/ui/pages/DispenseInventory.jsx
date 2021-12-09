@@ -18,16 +18,16 @@ import { InventoryAudit } from '../../api/InventoryAudit/InventoryAuditCollectio
 const bridge = new SimpleSchema2Bridge(Inventories._schema);
 
 const countryOptions = [
-  { key: 'joint', value: 'joint', text: 'Joint Outreach Center' },
-  { key: 'kailua', value: 'kailua', text: 'Kailua YMCA' },
-  { key: 'post', value: 'post', text: 'POST – Ke’ehi Lagoon' },
-  { key: 'kaiaka', value: 'kaiaka', text: 'Kaiaka Bay Beach Park' },
-  { key: 'augustine', value: 'augustine', text: 'St. Augustine Church by the Sea' },
-  { key: 'onelauena', value: 'onelauena', text: 'Onelauena and Onemalu Shelters' },
-  { key: 'paiolu', value: 'paiolu', text: 'Pai’olu Kaiaulu Shelter' },
-  { key: 'weinberg', value: 'weinberg', text: 'Weinberg Village' },
-  { key: 'kakaako', value: 'kakaako', text: 'Kaka’ako Waterfront Park' },
-  { key: 'methodist', value: 'methodist', text: 'First United Methodist Church' },
+  { value: 'Joint Outreach Center', text: 'Joint Outreach Center' },
+  { value: 'Kailua YMCA', text: 'Kailua YMCA' },
+  { value: 'Ke’ehi Lagoon', text: 'POST – Ke’ehi Lagoon' },
+  { value: 'Kaiaka Bay', text: 'Kaiaka Bay Beach Park' },
+  { value: 'St. Augustine Church', text: 'St. Augustine Church by the Sea' },
+  { value: 'Onelauena & Onemalu', text: 'Onelauena and Onemalu Shelters' },
+  { value: 'Pai’olu Kaiaulu ', text: 'Pai’olu Kaiaulu Shelter' },
+  { value: 'Weinberg Village', text: 'Weinberg Village' },
+  { value: 'Kaka’ako', text: 'Kaka’ako Waterfront Park' },
+  { value: 'Methodist Church', text: 'First United Methodist Church' },
 ];
 /** Renders the Page for dispensing a single document. */
 
@@ -93,10 +93,10 @@ const DispenseInventory = ({ doc, ready }) => {
 
   return (ready) ? (
     <Grid id={PAGE_IDS.DISPENSE_INVENTORY} container centered className="dispenseinventory">
-      <Grid.Column width={12}>
+      <Grid.Column width={10}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment padded='very' inverted style={{ backgroundColor: '#b86d4e' }}>
-            <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
+            <Header inverted as="h2" textAlign="center">Dispense Inventory</Header>
             <Form.Group>
               <Form.Field width={8}>
                 <label>Patient ID</label>

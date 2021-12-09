@@ -10,7 +10,7 @@ import DumpDbFixture from '../components/DumpDbFixture';
 import { PAGE_IDS } from '../utilities/PageIDs';
 
 const ManageDatabase = ({ ready }) => ((ready) ? (<Container id={PAGE_IDS.MANAGE_DATABASE}>
-  <Header as="h2" textAlign="center">Manage Database</Header>
+  <Header as="h1" textAlign="center">Manage Database</Header>
   <UploadFixture />
   <DumpDbFixture />
 </Container>) : <Loader active>Getting data</Loader>);
