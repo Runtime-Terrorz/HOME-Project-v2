@@ -34,14 +34,17 @@ class App extends React.Component {
 
   componentDidMount() {
     this.updatePredicate();
+    // eslint-disable-next-line no-undef
     window.addEventListener('resize', this.updatePredicate);
   }
 
   componentWillMount() {
+    // eslint-disable-next-line no-undef
     window.removeEventListener('resize', this.updatePredicate);
   }
 
   updatePredicate() {
+    // eslint-disable-next-line no-undef
     this.setState({ isDesktop: window.innerWidth > 900 });
   }
 
