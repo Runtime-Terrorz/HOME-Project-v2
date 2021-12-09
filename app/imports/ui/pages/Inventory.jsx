@@ -166,6 +166,8 @@ const Inventory = ({ ready, inventories }) => {
               >
                 <Header size={'small'} style={{ backgroundColor: '#b86d4e', color: 'whitesmoke' }} as="h1" textAlign="center">SELECT ITEMS TO DISPENSE</Header>
                 <Modal.Content scrolling style={{ backgroundColor: '#EEE7DA' }}>
+                  <Input type='text' size='small' placeholder='Search medication...' icon='search' fluid
+                    onChange={handleSearch}/>
                   <List>
                     {sorted.map((inventory) => <List.Item key={inventory._id}>
                       <Checkbox label={inventory.name} onChange={takeValue}/>
