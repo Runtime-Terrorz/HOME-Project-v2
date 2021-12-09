@@ -65,14 +65,14 @@ const Inventory = ({ ready, inventories }) => {
   };
 
   /** Cancel Button used for both Modals */
-  const cancelButton = (e, data) => {
+  const cancelButton = () => {
     setDispense([]);
     setFirstOpen(false);
     setSecondOpen(false);
   };
 
   /** Submit button used for first modal */
-  const submitButton = (e, data) => {
+  const submitButton = () => {
     if (dispense.length === 0) {
       swal('Error', 'Please Select Item to Dispense', 'error');
     } else {
@@ -154,21 +154,19 @@ const Inventory = ({ ready, inventories }) => {
                 onOpen={() => setFirstOpen(true)}
                 open={firstOpen}
                 closeOnDimmerClick={false}
-                size={'large'}
+                size={'tiny'}
                 trigger={<Button floated labeled inverted style={{ backgroundColor: '#88a7b3', color: 'white' }}>Multi Dispense</Button>}
               >
-                <Modal.Header>Select Items to Dispense</Modal.Header>
-                <Modal.Content scrolling>
+                <Header size={'small'} style={{ backgroundColor: '#b86d4e', color: 'whitesmoke' }} as="h1" textAlign="center">SELECT ITEMS TO DISPENSE</Header>
+                <Modal.Content scrolling style={{ backgroundColor: '#EEE7DA' }}>
                   <List>
                     {sorted.map((inventory) => <List.Item key={inventory._id}>
                       <Checkbox label={inventory.name} onChange={takeValue}/>
                     </List.Item>)}
                   </List>
                 </Modal.Content>
-                <Modal.Actions>
-                  <Button color='black' onClick={cancelButton}>
-                    Cancel
-                  </Button>
+                <Modal.Actions style={{ backgroundColor: '#b86d4e' }}>
+                  <Button content='Cancel' icon={'x'} color='red' onClick={cancelButton}/>
                   <Button
                     content="Multi Dispense"
                     labelPosition='right'
@@ -184,17 +182,15 @@ const Inventory = ({ ready, inventories }) => {
                   open={secondOpen}
                   size='medium'
                 >
-                  <Modal.Header>Dispense</Modal.Header>
-                  <Modal.Content>
+                  <Header style={{ backgroundColor: '#b86d4e', color: 'whitesmoke' }} as="h5" textAlign="center">SCROLL DOWN TO SEE ALL THE MEDICATIONS<Icon name={'arrow circle down'}/></Header>
+                  <Modal.Content style={{ backgroundColor: '#EEE7DA' }}>
                     {dispense.map((toBeDispense) => <DispenseComponent key={toBeDispense} dispense={toBeDispense} inventories={inventories}/>)}
                   </Modal.Content>
-                  <Modal.Actions>
-                    <Button color='black' onClick={cancelButton}>
-                      Cancel
+                  <Modal.Actions style={{ backgroundColor: '#b86d4e' }}>
+                    <Button content='Cancel' icon='x' color='red' onClick={cancelButton}>
                     </Button>
                   </Modal.Actions>
                 </Modal>
-
               </Modal>
             </Table.Cell>
           </Table.Row>

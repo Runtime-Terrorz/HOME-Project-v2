@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Header, Segment, Form, TextArea, Select, Icon } from 'semantic-ui-react';
+import { Grid, Header, Segment, Form, TextArea, Select, Icon, Message } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import { AutoForm, ErrorsField, HiddenField, NumField, SelectField, TextField } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
@@ -93,7 +93,7 @@ const DispenseComponent = ({ dispense, inventories }) => {
       <Grid.Column width={12}>
         <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
           <Segment padded='very' inverted style={{ backgroundColor: '#b86d4e' }}>
-            <Header inverted as="h1" textAlign="center">Dispense Inventory</Header>
+            <Header inverted as="h2" textAlign="center">Dispense Medication</Header>
             <Form.Group>
               <Form.Field width={8}>
                 <label>Patient ID</label>
@@ -151,6 +151,7 @@ const DispenseComponent = ({ dispense, inventories }) => {
               disabled={disable}/>
             <ErrorsField/>
             <HiddenField name='owner' />
+            <Header as="h4" textAlign="center"><Message color={'green'}>Do not forget to submit each item to be dispensed.</Message></Header>
           </Segment>
         </AutoForm>
       </Grid.Column>

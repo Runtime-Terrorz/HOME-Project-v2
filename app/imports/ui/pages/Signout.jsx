@@ -8,12 +8,12 @@ const Signout = () => {
   Meteor.logout();
   return (
     <Container className="signout-page">
-      <Grid.Column width={8}>
-        <Image centered width={'450px'} src="/images/aeneas.jpg"/>
+      <Grid.Column width={6}>
+        <Image centered width={'320px'} src="/images/aeneas.jpg"/>
         <Header id={PAGE_IDS.SIGN_OUT} as="h2" textAlign="center">
           <em>
-            <p>You are signed out.</p>
-            <p>We hope to see you again!</p>
+            <p>You are signed out.
+              <p>We hope to see you again!</p></p>
           </em>
         </Header>
       </Grid.Column>
