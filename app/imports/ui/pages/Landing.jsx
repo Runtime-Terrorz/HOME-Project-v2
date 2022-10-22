@@ -6,7 +6,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 const Landing = () => (
   <Grid id={PAGE_IDS.LANDING} className="landing" verticalAlign='middle' textAlign='center' container>
     <Grid.Column width={6}>
-      <Image width={'340px'} src="/images/aeneas.jpg"/>
+      <Image width={'340px'} src="/images/logo.png"/>
     </Grid.Column>
   </Grid>
 );
