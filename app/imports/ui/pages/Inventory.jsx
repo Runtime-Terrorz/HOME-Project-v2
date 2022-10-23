@@ -106,29 +106,29 @@ const Inventory = ({ ready, inventories }) => {
   }
 
   return ((ready) ? (
-    <Container style={{ backgroundColor: '#88a7b3', marginTop: '-20px' }} id={PAGE_IDS.LIST_INVENTORY}>
+    <Container style={{ backgroundColor: '#255194', marginTop: '-20px' }} id={PAGE_IDS.LIST_INVENTORY}>
       <Grid container centered>
         <br/><Header as="h1">Inventory</Header>
         <Grid.Row>
           <Header as="h3"><em>Medications and Medical Supplies</em></Header>
         </Grid.Row>
-        <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
+        <Table inverted celled style={{ backgroundColor: '#255194' }}>
           <Table.Row>
             <Table.Cell width={2}>
-              <Dropdown style={{ backgroundColor: '#97B9C7', color: 'white' }}
+              <Dropdown style={{ backgroundColor: '#2c599d', color: 'white' }}
                 text='Filter'
                 icon='filter'
                 labeled
                 button
                 className='icon'
               >
-                <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+                <Dropdown.Menu style={{ backgroundColor: '#b86d4e' }}>
                   <Dropdown.Header icon='tags' style={{ color: 'white' }} content='Filter medicine by tag'/>
                   <Dropdown.Divider/>
                   <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'medication'>Medicines</Dropdown.Item>
                   <Dropdown.Item>
                     <Dropdown icon='chevron right' style={{ color: 'white' }} text='Medication Quantity '>
-                      <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+                      <Dropdown.Menu style={{ backgroundColor: '#b86d4e' }}>
                         <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'low'><Icon name={'sort numeric down'}/>Quantity (Low-High)</Dropdown.Item>
                         <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'high'><Icon name={'sort numeric up'}/>Quantity (High-Low)</Dropdown.Item>
                         <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'inventoryBad'><Icon name={'ban'}/>No Quantity</Dropdown.Item>
@@ -137,7 +137,7 @@ const Inventory = ({ ready, inventories }) => {
                   </Dropdown.Item>
                   <Dropdown.Item>
                     <Dropdown icon='chevron right' text='Expiration Date ' style={{ color: 'white' }}>
-                      <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+                      <Dropdown.Menu style={{ backgroundColor: '#b86d4e' }}>
                         <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'expired'><Icon name={'calendar times'}/>Expired</Dropdown.Item>
                         <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'notExpired'><Icon name={'calendar check'}/>Not Expired</Dropdown.Item>
                       </Dropdown.Menu>
@@ -152,7 +152,7 @@ const Inventory = ({ ready, inventories }) => {
             </Table.Cell>
             <Table.Cell width={3}>
               <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={'/report'}>
-                <Button icon color='yellow' labelPosition='left' ><Icon name='warning'/>Generate Report</Button>
+                <Button icon color='green' labelPosition='left' ><Icon name='info'/>Generate Report</Button>
               </Link>
             </Table.Cell>
             <Table.Cell width={6}>
@@ -164,8 +164,8 @@ const Inventory = ({ ready, inventories }) => {
                 size={'tiny'}
                 trigger={<Button icon color='white' inverted labelPosition='left'><Icon name='pills'/>Multi-Dispense</Button>}
               >
-                <Header size={'small'} style={{ backgroundColor: '#b86d4e', color: 'whitesmoke' }} as="h1" textAlign="center">SELECT ITEMS TO DISPENSE</Header>
-                <Modal.Content scrolling style={{ backgroundColor: '#EEE7DA' }}>
+                <Header size={'small'} style={{ backgroundColor: '#2c599d', color: 'whitesmoke' }} as="h1" textAlign="center">SELECT ITEMS TO DISPENSE</Header>
+                <Modal.Content scrolling style={{ backgroundColor: '#e8e8e8' }}>
                   <Input type='text' size='small' placeholder='Search medication...' icon='search' fluid
                     onChange={handleSearch}/>
                   <List>
@@ -174,7 +174,7 @@ const Inventory = ({ ready, inventories }) => {
                     </List.Item>)}
                   </List>
                 </Modal.Content>
-                <Modal.Actions style={{ backgroundColor: '#b86d4e' }}>
+                <Modal.Actions style={{ backgroundColor: '#2c599d' }}>
                   <Button content='Cancel' icon={'x'} color='red' onClick={cancelButton}/>
                   <Button
                     content="Multi Dispense"
@@ -191,11 +191,11 @@ const Inventory = ({ ready, inventories }) => {
                   open={secondOpen}
                   size='medium'
                 >
-                  <Header style={{ backgroundColor: '#b86d4e', color: 'whitesmoke' }} as="h5" textAlign="center">SCROLL DOWN TO SEE ALL THE MEDICATIONS<Icon name={'arrow circle down'}/></Header>
-                  <Modal.Content style={{ backgroundColor: '#EEE7DA' }}>
+                  <Header style={{ backgroundColor: '#2c599d', color: 'whitesmoke' }} as="h5" textAlign="center">SCROLL DOWN TO SEE ALL THE MEDICATIONS<Icon name={'arrow circle down'}/></Header>
+                  <Modal.Content style={{ backgroundColor: '#2c599d' }}>
                     {dispense.map((toBeDispense) => <DispenseComponent key={toBeDispense} dispense={toBeDispense} inventories={inventories}/>)}
                   </Modal.Content>
-                  <Modal.Actions style={{ backgroundColor: '#b86d4e' }}>
+                  <Modal.Actions style={{ backgroundColor: '#2c599d' }}>
                     <Button content='Cancel' icon='x' color='red' onClick={cancelButton}>
                     </Button>
                   </Modal.Actions>
@@ -205,7 +205,7 @@ const Inventory = ({ ready, inventories }) => {
           </Table.Row>
         </Table>
       </Grid>
-      <Table inverted celled className="listContainer" style={{ backgroundColor: '#88a7b3' }}>
+      <Table inverted celled className="listContainer" style={{ backgroundColor: '#b86d4e' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Medication</Table.HeaderCell>

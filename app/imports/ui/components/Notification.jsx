@@ -11,7 +11,7 @@ const Notification = ({ lowInventory }) => (
   <Dropdown id={COMPONENT_IDS.NAVBAR_NOTIFICATION} key='notification' icon={'mail'} pointing="top left">
     <Dropdown.Menu>
       <Card>
-        <Card.Content style={{ backgroundColor: '#eee7da' }}>
+        <Card.Content style={{ backgroundColor: '#e8e8e8'}}>
           <Card.Header>Notifications</Card.Header>
         </Card.Content>
         <Card.Content className='notificationItem'>

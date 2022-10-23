@@ -37,18 +37,18 @@
 .top {
     box-shadow: none;
     border: none !important;
-    background-color: #EAE1D0 !important;
-    color: #6C91A0 !important;
+    background-color: #2c599d !important;
+    color: whitesmoke !important;
 }
 
 .navbar-item {
-    color: #6C91A0 !important;
+    color: whitesmoke !important;
     font-family: "Lato", serif !important;
     font-size: 15px;
 }
 
 .navbar-home {
-  color: #6C91A0 !important;
+  color: whitesmoke !important;
   font-family: "Lato", serif !important;
   font-size: 24px;
   margin-bottom: 10px;
@@ -95,10 +95,6 @@
 .ui.container.inventory {
     margin-bottom: 2rem;
 }
-/*.listcontainer {
-  background-color: #800000 !important;
-  color: #FFFFFF !important;
-} */
 
 .ui.container.editinventory {
   margin-bottom: 90px;
@@ -120,13 +116,13 @@ h4.ui.header, h5.ui.header {
 
 h2.ui.header, .p {
   font-family: "Lato", serif !important;
-  color: #6C91A0;
+  color: whitesmoke;
   font-weight: lighter;
 }
 
 .ui.grid.landing {
-  margin-top: 160px;
-  margin-bottom: 180px;
+  margin-top: 80px;
+  margin-bottom: 100px;
 }
 
 .signout-page {
@@ -164,7 +160,7 @@ h2.ui.header, .p {
 }
 
 .rolesNavbar, .logHistoryNavbar, .databaseNavbar {
-  color: #6C91A0 !important;
+  color: whitesmoke !important;
   font-family: "Lato", serif !important;
   font-size: 15px;
 }
@@ -172,3 +168,6 @@ h2.ui.header, .p {
 .rolesNavbar {
   margin-left: 100px;
 }
+
+
+

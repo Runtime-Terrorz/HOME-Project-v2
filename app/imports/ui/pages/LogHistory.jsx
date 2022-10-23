@@ -62,24 +62,24 @@ const LogHistory = ({ ready, audit }) => {
     }
   }
   return ((ready) ? (
-    <Container style={{ backgroundColor: '#88a7b3', marginTop: '-20px' }} id={PAGE_IDS.LOG_HISTORY}>
+    <Container style={{ backgroundColor: '#255194', marginTop: '-20px' }} id={PAGE_IDS.LOG_HISTORY}>
       <Grid container centered>
         <br/><Header as="h1">Log History</Header>
         <Grid.Row>
           <Header as="h3"><em>Audit</em></Header>
         </Grid.Row>
       </Grid>
-      <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
+      <Table inverted celled style={{ backgroundColor: '#255194' }}>
         <Table.Row>
           <Table.Cell>
-            <Dropdown style={{ backgroundColor: '#97B9C7', color: 'white' }}
+            <Dropdown style={{ backgroundColor: '#255194', color: 'white' }}
               text='Filter'
               icon='filter'
               labeled
               button
               className='icon'
             >
-              <Dropdown.Menu style={{ backgroundColor: '#88a7b3' }}>
+              <Dropdown.Menu style={{ backgroundColor: '#255194' }}>
                 <Dropdown.Header icon='tags' style={{ color: 'white' }} content='Filter medicine by tag'/>
                 <Dropdown.Divider/>
                 <Dropdown.Item style={{ color: 'white' }} onClick ={handleFilter} value = 'all'><Icon name={'list ol'}/>List All</Dropdown.Item>
@@ -99,7 +99,7 @@ const LogHistory = ({ ready, audit }) => {
           </Table.Cell>
         </Table.Row>
       </Table>
-      <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
+      <Table inverted celled style={{ backgroundColor: '#b86d4e' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell><Icon name={'user'}/> Added By</Table.HeaderCell>

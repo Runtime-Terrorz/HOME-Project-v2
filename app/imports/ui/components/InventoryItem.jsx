@@ -41,12 +41,12 @@ const InventoryItem = ({ inventory }) => {
       <Table.Cell>{inventory.location}</Table.Cell>
       <Table.Cell>{inventory.lot}</Table.Cell>
       {expiration}
-      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>
+      <Table.Cell style={{ backgroundColor: '#b86d4e' }}>
         <Link id={COMPONENT_IDS.LIST_INVENTORY_EDIT} to={`/edit/${inventory._id}`}>
           <Icon style={{ marginLeft: '30px' }} inverted name='edit outline'/>
         </Link>
       </Table.Cell>
-      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>
+      <Table.Cell style={{ backgroundColor: '#b86d4e' }}>
         <Link id={COMPONENT_IDS.LIST_INVENTORY_DISPENSE} to={`/dispense/${inventory._id}`}>
           <Icon style={{ marginLeft: '20px' }} inverted name='recycle'/>
         </Link>

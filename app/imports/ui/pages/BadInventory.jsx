@@ -45,15 +45,15 @@ const BadInventory = ({ ready, badInventory }) => {
   };
 
   return (ready) ? (
-    <Container style={{ backgroundColor: '#88a7b3', marginTop: '-20px' }} id={PAGE_IDS.LIST_BAD_INVENTORY}>
+    <Container style={{ backgroundColor: '#255194FF', marginTop: '-20px' }} id={PAGE_IDS.LIST_BAD_INVENTORY}>
       <Grid container centered>
         <br/><Header as="h1">Report</Header>
         <Grid.Row>
           <Header as="h3"><em>Expired and No Stock Supplies</em></Header>
         </Grid.Row>
-        <Table inverted celled style={{ backgroundColor: '#88a7b3' }}>
+        <Table inverted celled style={{ backgroundColor: '#255194FF' }}>
           <Table.Cell width={3}>
-            <Button style={{ backgroundColor: '#97B9C7', color: 'white' }}
+            <Button style={{ backgroundColor: 'red', color: 'white' }}
               icon
               color='red'
               labelPosition='left'
@@ -68,7 +68,7 @@ const BadInventory = ({ ready, badInventory }) => {
             <CSVLink
               data={csvObj}
               filename={csvName}>
-              <Button style={{ backgroundColor: '#97B9C7', color: 'white' }}
+              <Button style={{ backgroundColor: 'green', color: 'white' }}
                 icon
                 color='green'
                 labelPosition='left'>
@@ -78,7 +78,7 @@ const BadInventory = ({ ready, badInventory }) => {
           </Table.Cell>
         </Table>
       </Grid>
-      <Table inverted celled className="listContainer" style={{ backgroundColor: '#88a7b3' }}>
+      <Table inverted celled className="listContainer" style={{ backgroundColor: '#B86D4EFF' }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Medication</Table.HeaderCell>

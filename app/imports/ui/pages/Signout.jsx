@@ -9,7 +9,7 @@ const Signout = () => {
   return (
     <Container className="signout-page">
       <Grid.Column width={6}>
-        <Image centered width={'320px'} src="/images/aeneas.jpg"/>
+        <Image centered width={'320px'} src="/images/logo.png"/>
         <Header id={PAGE_IDS.SIGN_OUT} as="h2" textAlign="center">
           <em>
             <p>You are signed out.

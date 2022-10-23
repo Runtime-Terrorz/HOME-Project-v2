@@ -18,7 +18,7 @@ const LogHistoryItem = ({ audit }) => {
 
   return (
     <Table.Row>
-      <Table.Cell style={{ backgroundColor: '#97B9C7' }}>{audit.owner}</Table.Cell>
+      <Table.Cell style={{ backgroundColor: '#c77c5b' }}>{audit.owner}</Table.Cell>
       <Table.Cell>{audit.dateChanged.toLocaleDateString()}</Table.Cell>
       <Table.Cell>{audit.patientID}</Table.Cell>
       <Table.Cell>{audit.dispenseLocation}</Table.Cell>
