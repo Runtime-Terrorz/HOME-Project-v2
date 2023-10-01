@@ -48,11 +48,4 @@ GitHub Page: https://runtime-terrorz.github.io/
 5. Go to http://localhost:3000 to see the app.
 
 
-For details, please see http://ics-software-engineering.github.io/meteor-application-template-react/
-
-
-
-
-
-
 For details, please see http://ics-software-engineering.github.io/matrp/
